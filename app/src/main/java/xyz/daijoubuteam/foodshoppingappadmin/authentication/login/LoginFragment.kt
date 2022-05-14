@@ -1,6 +1,7 @@
 package xyz.daijoubuteam.foodshoppingappadmin.authentication.login
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,21 +11,24 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentLoginBinding
+import xyz.daijoubuteam.foodshoppingappadmin.model.Eatery
 import xyz.daijoubuteam.foodshoppingappadmin.utils.hideKeyboard
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    private val viewmodel: LoginViewModel by lazy {
+
+    private val viewModel: LoginViewModel by lazy {
         val viewModelFactory = LoginViewModelFactory()
         ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-
-        binding.viewmodel = viewmodel
+        binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
 //        setNavigateToForgetPasswordObserver()
@@ -36,11 +40,11 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupMessageObserver(){
-        viewmodel.message.observe(viewLifecycleOwner){
+        viewModel.message.observe(viewLifecycleOwner){
             if(!it.isNullOrBlank()){
                 hideKeyboard()
                 Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
-                viewmodel.onShowMessageComplete()
+                viewModel.onShowMessageComplete()
             }
         }
     }
@@ -55,14 +59,19 @@ class LoginFragment : Fragment() {
 //    }
 
     private fun setLoginResultObserver() {
-        viewmodel.loginResult.observe(viewLifecycleOwner) {
+        viewModel.loginResult.observe(viewLifecycleOwner) {
             it?.let { result ->
                 if (result.isSuccess) {
-                    viewmodel.onLoginComplete()
-                    viewmodel.onShowMessage("Thành công nè")
+                    val eatery: Eatery? = result.getOrNull()
+                    eatery?.let {
+                        if (eatery.password == viewModel.password.value.toString()) {
+                            viewModel.onLoginComplete()
+                        } else
+                            viewModel.onShowMessage("Wrong password")
+                    }
                 } else if (result.isFailure) {
-                    viewmodel.onShowMessage("${result.exceptionOrNull()?.message}")
-                    viewmodel.onLoginComplete()
+                    viewModel.onShowMessage("${result.exceptionOrNull()?.message}")
+                    viewModel.onLoginComplete()
                 }
             }
         }
