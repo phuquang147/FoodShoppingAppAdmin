@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.home.HomeFragment"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.ProductsFragment"
         android:label="@string/title_dishes"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_products" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
