@@ -68,6 +68,8 @@
                             android:textColor="@color/orange_400"
                             android:textSize="30sp"
                             android:textStyle="bold"
+                            android:backgroundTint="@color/orange_400"
+                            android:textCursorDrawable="@color/orange_400"
                             android:text="Pizza"
                             tools:ignore="HardcodedText"/>
                         <androidx.constraintlayout.widget.ConstraintLayout
