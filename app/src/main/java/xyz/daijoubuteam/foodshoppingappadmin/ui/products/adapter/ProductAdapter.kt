@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.ItemProductBinding
 
-class ProductAdapter(private val onClickListener: OnClickListener): ListAdapter<Product, ProductAdapter.ProductViewHolder>(DiffCallBack) {
+class ProductAdapter(private val onClickListener: OnClickListener):
+    ListAdapter<Product, ProductAdapter.ProductViewHolder>(DiffCallBack) {
+
     class ProductViewHolder(private var binding: ItemProductBinding): RecyclerView.ViewHolder(binding.root) {
        fun bind(product: Product) {
            binding.product = product
        }
     }
+
     companion object DiffCallBack: DiffUtil.ItemCallback<Product>() {
         override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
             return oldItem == newItem
