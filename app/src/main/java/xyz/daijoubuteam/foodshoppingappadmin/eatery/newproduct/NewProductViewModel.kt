@@ -8,9 +8,12 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import xyz.daijoubuteam.foodshoppingappadmin.MainApplication
 import xyz.daijoubuteam.foodshoppingappadmin.model.Eatery
+import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.repositories.EateryRepository
 
 class NewProductViewModel : ViewModel() {
+    private val eateryRepository = EateryRepository()
+    var product = MutableLiveData<Product>()
     private val eatery = MainApplication.eatery
     private val _message = MutableLiveData("")
     private val _ingredients = MutableLiveData<ArrayList<String>>()
@@ -26,36 +29,38 @@ class NewProductViewModel : ViewModel() {
                 if (eatery.value == null) {
                     throw Exception("Eatery not found")
                 }
-                if(!ingredient.value.isNullOrEmpty() && )
-                _ingredients.value?.add(ingredient.toString())
-                ingredient.value = ""
+                if(!ingredient.value.isNullOrEmpty() && ingredient.value.toString().isNotBlank()
+                    && !_ingredients.value?.contains(ingredient.value.toString())!!){
+                    _ingredients.value?.add(ingredient.toString())
+                    ingredient.value = ""
+                }
             } catch (exception: Exception) {
                 exception.message?.let { onShowMessage(it) }
             }
         }
     }
-    fun onShowMessage(msg: String){
+    fun onShowMessage(msg: String?){
         _message.value = msg
     }
 
-    fun uploadUserAvatar(uri: Uri) {
+    fun uploadProductImage(uri: Uri) {
         viewModelScope.launch {
             try {
-                val uploadAvatarResult = userRepository.uploadAvatar(uri)
-                if (uploadAvatarResult.isFailure) {
-                    throw if (uploadAvatarResult.exceptionOrNull() == null) uploadAvatarResult.exceptionOrNull()!!
+                val uploadImageResult = eateryRepository.uploadDescriptionImage(uri)
+                if (uploadImageResult.isFailure) {
+                    throw if (uploadImageResult.exceptionOrNull() == null) uploadImageResult.exceptionOrNull()!!
                     else Exception("Upload image failed")
                 }
-                user.value?.photoUrl = uploadAvatarResult.getOrNull().toString()
-                user.value?.let {
-                    val updateResult = userRepository.updateCurrentUserInfo(it)
-                    if (updateResult.isFailure)
-                        throw if (uploadAvatarResult.exceptionOrNull() == null) uploadAvatarResult.exceptionOrNull()!!
-                        else Exception("Upload image failed")
-                    else if(updateResult.isSuccess) {
-                        onShowMessage("Upload successful")
-                    }
-                }
+                product.value?.img = uploadImageResult.getOrNull().toString()
+//                user.value?.let {
+//                    val updateResult = userRepository.updateCurrentUserInfo(it)
+//                    if (updateResult.isFailure)
+//                        throw if (uploadAvatarResult.exceptionOrNull() == null) uploadAvatarResult.exceptionOrNull()!!
+//                        else Exception("Upload image failed")
+//                    else if(updateResult.isSuccess) {
+//                        onShowMessage("Upload successful")
+//                    }
+//                }
             } catch (e: Exception) {
                 onShowMessage(e.message)
             }

@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.ProductsFragment"
         android:label="@string/title_dishes"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/action_navigation_home_to_newProductFragment"
+            app:destination="@id/newProductFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,4 +26,8 @@
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.notifications.NotificationsFragment"
         android:label="@string/title_report"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/newProductFragment"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.eatery.newproduct.NewProductFragment"
+        android:label="NewProductFragment" />
 </navigation>

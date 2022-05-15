@@ -10,6 +10,6 @@ data class Product (
     val description: String?=null,
     val oldPrice: Double ?= null,
     val newPrice: Double?=null,
-    val img: String?=null,
+    var img: String?=null,
     val ingredients: ArrayList<String>?=null
 ): Parcelable

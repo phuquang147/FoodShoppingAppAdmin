@@ -30,9 +30,7 @@ class NewProductFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         setupMessageSnackbar()
-        setupSoftKeyboardUI()
         setupIngredientListViewAdapter()
-        setupOnProfileEditUserAvatarClick()
 
         return binding.root
     }
@@ -40,11 +38,11 @@ class NewProductFragment : Fragment() {
     private fun setupIngredientListViewAdapter() {
         binding.rvIngredients.adapter = IngredientAdapter(
             IngredientAdapter.OnClickListener {
-
+                viewmodel.ingredients.value?.remove(it.toString())
             }
         )
         val adapter = binding.rvIngredients.adapter as IngredientAdapter
-        viewModel.categoryList.observe(viewLifecycleOwner) {
+        viewmodel.ingredients.observe(viewLifecycleOwner) {
             if (it != null) {
                 adapter.submitList(it)
             }
@@ -58,58 +56,5 @@ class NewProductFragment : Fragment() {
                 Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
             }
         }
-    }
-
-    private fun setupSoftKeyboardUI() {
-        binding.profileEditFirstNameTextField.editText?.setOnFocusChangeListener { view, hasFocus ->
-            if (!shouldShowSoftKeyboard()) {
-                hideKeyboard()
-            }
-        }
-        binding.profileEditLastNameTextField.editText?.setOnFocusChangeListener { view, hasFocus ->
-            if (!shouldShowSoftKeyboard()) {
-                hideKeyboard()
-            }
-        }
-        binding.profileEditPhoneNumber.editText?.setOnFocusChangeListener { view, hasFocus ->
-            if (!shouldShowSoftKeyboard()) {
-                hideKeyboard()
-            }
-        }
-    }
-
-    private fun shouldShowSoftKeyboard(): Boolean {
-        return binding.profileEditFirstNameTextField.editText?.hasFocus() == true ||
-                binding.profileEditLastNameTextField.editText?.hasFocus() == true ||
-                binding.profileEditPhoneNumber.editText?.hasFocus() == true
-    }
-
-    private fun setupOnProfileEditUserAvatarClick() {
-        binding.profileEditUserAvatar.setOnClickListener {
-            startCrop()
-        }
-    }
-
-    private val cropImage = registerForActivityResult(CropImageContract()) { result ->
-        if (result.isSuccessful) {
-            val uriContent = result.uriContent
-            binding.profileEditUserAvatar.setImageURI(uriContent)
-            if (uriContent != null) {
-                viewmodel.uploadUserAvatar(uriContent)
-            }
-
-        } else {
-            viewmodel.onShowMessage(result.error?.message)
-        }
-    }
-
-    private fun startCrop() {
-        cropImage.launch(
-            options {
-                setGuidelines(CropImageView.Guidelines.ON)
-                setCropShape(CropImageView.CropShape.OVAL)
-                setFixAspectRatio(true)
-            }
-        )
     }
 }

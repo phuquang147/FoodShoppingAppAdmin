@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="New Product"
+                android:text="@string/new_product"
                 android:textColor="@color/gray_700"
                 android:textFontWeight="500"
                 android:textSize="27sp"
@@ -67,7 +67,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Product's Name"
+                    android:hint="@string/product_name"
                     app:hintTextColor="@color/lightOrange"
                     app:boxStrokeColor="@color/lightOrange"
                     android:layout_marginTop="12dp"
@@ -90,7 +90,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Price"
+                    android:hint="@string/price"
                     app:hintTextColor="@color/lightOrange"
                     app:boxStrokeColor="@color/lightOrange"
                     android:layout_marginTop="12dp"
@@ -137,6 +137,7 @@
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:textAllCaps="true"
+                        android:onClick="@{() -> viewmodel.onAddIngredient()}"
                         android:textColor="@color/orange_400"
                         android:textFontWeight="400"
                         android:textSize="16sp"
@@ -154,6 +155,7 @@
                     android:id="@+id/imgDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
                     android:layout_marginVertical="10dp"
                     android:scaleType="fitXY"/>
                 <androidx.appcompat.widget.AppCompatButton

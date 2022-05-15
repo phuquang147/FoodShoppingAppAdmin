@@ -1,5 +1,6 @@
 package xyz.daijoubuteam.foodshoppingappadmin.repositories
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,11 +8,14 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeout
+import com.google.firebase.storage.ktx.storage
+import timber.log.Timber
 import xyz.daijoubuteam.foodshoppingappadmin.model.Eatery
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 
 class EateryRepository {
     private val db = Firebase.firestore
+    private val storage = Firebase.storage
 
     suspend fun getEateryByUsername(username: String):Result<Eatery?>{
         return try {
@@ -38,6 +42,18 @@ class EateryRepository {
             val documentSnapShot = docRef.get().await()
             products.value = documentSnapShot.toObjects(Product::class.java)
             Result.success(products.value)
+        }catch (e: Exception){
+            Result.failure(e)
+        }
+    }
+    suspend fun uploadDescriptionImage(uri: Uri): Result<Uri>{
+        return try {
+            val storageRef = storage.reference
+            val imageRef = storageRef.child("images/${uri.lastPathSegment}")
+            imageRef.putFile(uri).await()
+            val downloadUrl = imageRef.downloadUrl.await()
+            Timber.i(downloadUrl.toString())
+            Result.success(downloadUrl)
         }catch (e: Exception){
             Result.failure(e)
         }

@@ -32,6 +32,7 @@ class ProductsFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         setupProductListViewAdapter()
+        setupNavigateToProfileAndAddressFragment()
         return binding.root
     }
 
@@ -45,6 +46,11 @@ class ProductsFragment : Fragment() {
             if (it != null) {
                 adapter.submitList(it)
             }
+        }
+    }
+    private fun setupNavigateToProfileAndAddressFragment() {
+        binding.floatingActionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_newProductFragment)
         }
     }
 }
