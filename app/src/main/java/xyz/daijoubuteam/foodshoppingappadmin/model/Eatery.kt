@@ -14,4 +14,7 @@ data class Eatery (
     val reviews: ArrayList<String>?=null,
     val products: ArrayList<Product>?=null,
     val image: String?=null,
+    val username: String?=null,
+    val password: String?=null,
+    var documentId: String?=null
 ): Parcelable

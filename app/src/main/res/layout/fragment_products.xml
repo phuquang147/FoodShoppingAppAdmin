@@ -2,28 +2,49 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.products.ProductsFragment">
+        <TextView
+            android:id="@+id/tvProducts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/products"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginVertical="24dp"
+            android:layout_marginStart="24dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/avenir_next_lt_pro"
+            android:textStyle="bold"
+            android:textColor="@color/bluegray_500" />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/forYouProductRecyclerView"
+            android:id="@+id/productRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             android:nestedScrollingEnabled="false"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProducts"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:itemCount="10"
             tools:listitem="@layout/item_product" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:contentDescription="@string/add_product"
+            app:srcCompat="@drawable/ic_add"
+            android:backgroundTint="@color/lightOrange"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,5 +1,6 @@
 package xyz.daijoubuteam.foodshoppingappadmin.authentication.login
 
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -45,13 +46,12 @@ class LoginViewModel: ViewModel() {
         }
 
         viewModelScope.launch {
-            _loginResult.value = eateryRepository.getEateryByUsername(username.toString())
+            _loginResult.value = eateryRepository.getEateryByUsername(username.value.toString())
         }
     }
 
     fun onLoginComplete(){
-//        MainApplication.eatery.value = _loginResult.value?.getOrNull()
-        MainApplication.eatery.value = Eatery()
+        MainApplication.eatery.value = _loginResult.value?.getOrNull()
         _loginResult.value = null
     }
 

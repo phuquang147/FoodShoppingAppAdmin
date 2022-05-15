@@ -30,4 +30,6 @@
 
     <string name="welcome_splash_screen">Welcome to admin app</string>
     <string name="username">Username</string>
+    <string name="add_product">Add product</string>
+    <string name="products">Products</string>
 </resources>
