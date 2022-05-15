@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewmodel"
+            type="xyz.daijoubuteam.foodshoppingappadmin.eatery.newproduct.NewProductViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -122,6 +124,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:hint="Enter Ingredient"
+                        android:text="@={viewmodel.ingredient}"
                         tools:ignore="HardcodedText"/>
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_add_ingredient"
@@ -140,9 +143,12 @@
                         tools:ignore="UnusedAttribute"
                         android:text="add" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-                <ListView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvIngredients"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_ingredient"
+                    tools:itemCount="6"
                     android:layout_marginTop="12dp"/>
                 <ImageView
                     android:id="@+id/imgDescription"
