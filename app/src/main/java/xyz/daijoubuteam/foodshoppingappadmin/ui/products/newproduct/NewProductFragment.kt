@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
 //import com.canhub.cropper.CropImageContract
 //import com.canhub.cropper.CropImageView
 //import com.canhub.cropper.options
 import com.google.android.material.snackbar.Snackbar
+import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentNewProductBinding
 import xyz.daijoubuteam.foodshoppingappadmin.ui.products.adapter.IngredientAdapter
 
@@ -32,6 +34,7 @@ class NewProductFragment : Fragment() {
 
         setupMessageSnackbar()
         setupIngredientListViewAdapter()
+        hideBottomNavigationView()
 
         return binding.root
     }
@@ -84,4 +87,15 @@ class NewProductFragment : Fragment() {
 //            }
 //        )
 //    }
+
+    private fun hideBottomNavigationView() {
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
+        navBar.visibility = View.GONE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
+        navBar.visibility = View.VISIBLE
+    }
 }
