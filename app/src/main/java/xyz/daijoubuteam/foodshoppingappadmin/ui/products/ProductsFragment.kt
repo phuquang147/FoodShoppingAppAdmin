@@ -1,7 +1,6 @@
 package xyz.daijoubuteam.foodshoppingappadmin.ui.products
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import xyz.daijoubuteam.foodshoppingappadmin.MainApplication
-import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentProductsBinding
-import xyz.daijoubuteam.foodshoppingappadmin.model.Eatery
-import xyz.daijoubuteam.foodshoppingappadmin.ui.products.adapter.ProductAdapter
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import xyz.daijoubuteam.foodshoppingappadmin.R
+import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentProductsBinding
+import xyz.daijoubuteam.foodshoppingappadmin.ui.products.adapter.ProductAdapter
+
 
 class ProductsFragment : Fragment() {
     private lateinit var binding: FragmentProductsBinding
@@ -32,8 +34,10 @@ class ProductsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_products, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
+        hideActionBar()
         setupProductListViewAdapter()
         setupNavigateToProfileAndAddressFragment()
+        addProductRecyclerDivider()
         return binding.root
     }
 
@@ -53,5 +57,19 @@ class ProductsFragment : Fragment() {
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_newProductFragment)
         }
+    }
+
+    private fun addProductRecyclerDivider() {
+        val layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false).apply {
+            binding.productRecyclerView.layoutManager = this
+        }
+
+        DividerItemDecoration(this.context, layoutManager.orientation).apply {
+            binding.productRecyclerView.addItemDecoration(this)
+        }
+    }
+
+    private fun hideActionBar() {
+        (requireActivity() as? AppCompatActivity)?.supportActionBar?.hide()
     }
 }
