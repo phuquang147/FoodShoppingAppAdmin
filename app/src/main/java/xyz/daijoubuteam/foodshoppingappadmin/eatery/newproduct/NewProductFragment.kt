@@ -1,14 +1,15 @@
 package xyz.daijoubuteam.foodshoppingappadmin.eatery.newproduct
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+//import com.canhub.cropper.CropImageContract
+//import com.canhub.cropper.CropImageView
+//import com.canhub.cropper.options
 import com.google.android.material.snackbar.Snackbar
-import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentNewProductBinding
 import xyz.daijoubuteam.foodshoppingappadmin.ui.products.adapter.IngredientAdapter
 
@@ -57,4 +58,30 @@ class NewProductFragment : Fragment() {
             }
         }
     }
+//    private fun setupOnProductImageClick() {
+//        binding.btnSelectImage.setOnClickListener {
+//            startCrop()
+//        }
+//    }
+//    private val cropImage = registerForActivityResult(CropImageContract()) { result ->
+//        if (result.isSuccessful) {
+//            val uriContent = result.uriContent
+//            binding.imgDescription.setImageURI(uriContent)
+//            if (uriContent != null) {
+//                viewmodel.uploadProductImage(uriContent)
+//            }
+//
+//        } else {
+//            viewmodel.onShowMessage(result.error?.message)
+//        }
+//    }
+//    private fun startCrop() {
+//        cropImage.launch(
+//            options {
+//                setGuidelines(CropImageView.Guidelines.ON)
+//                setCropShape(CropImageView.CropShape.OVAL)
+//                setFixAspectRatio(true)
+//            }
+//        )
+//    }
 }
