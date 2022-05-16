@@ -35,4 +35,6 @@
     <string name="new_product">New Product</string>
     <string name="product_name">Product\'s Name</string>
     <string name="price">Price</string>
+    <string name="add">add</string>
+    <string name="description">Description</string>
 </resources>

@@ -46,6 +46,7 @@ class NewProductFragment : Fragment() {
             }
         )
         val adapter = binding.rvIngredients.adapter as IngredientAdapter
+        adapter.submitList(viewmodel.ingredients.value)
         viewmodel.ingredients.observe(viewLifecycleOwner) {
             if (it != null) {
                 adapter.submitList(it)

@@ -1,6 +1,7 @@
 package xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,24 +16,28 @@ class NewProductViewModel : ViewModel() {
     var product = MutableLiveData<Product>()
     private val eatery = MainApplication.eatery
     private val _message = MutableLiveData("")
-    private val _ingredients = MutableLiveData<ArrayList<String>>()
+    private val _ingredients : MutableLiveData<ArrayList<String>> = MutableLiveData()
     val ingredients: LiveData<ArrayList<String>>
         get() = _ingredients
     val message: LiveData<String>
         get() = _message
     val ingredient = MutableLiveData("")
-
+    init {
+        _ingredients.value = arrayListOf()
+    }
     fun onAddIngredient() {
         viewModelScope.launch {
             try {
                 if (eatery.value == null) {
                     throw Exception("Eatery not found")
                 }
-                if(!ingredient.value.isNullOrEmpty() && ingredient.value.toString().isNotBlank()
-                    && !_ingredients.value?.contains(ingredient.value.toString())!!){
-                    _ingredients.value?.add(ingredient.toString())
+                if(!ingredient.value.isNullOrEmpty() && ingredient.value!!.isNotBlank()
+                    && !_ingredients.value?.contains(ingredient.value.toString())!!
+                ){
+                    _ingredients.value?.add(ingredient.value.toString())
                     ingredient.value = ""
                 }
+
             } catch (exception: Exception) {
                 exception.message?.let { onShowMessage(it) }
             }

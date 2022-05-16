@@ -10,8 +10,12 @@ class EditProductViewModel(productProperty: Product, app: Application): AndroidV
     private val _selectedProperty = MutableLiveData<Product>()
     val selectedProperty: LiveData<Product>
         get() = _selectedProperty
-
+    var ingredientString: String
     init {
         _selectedProperty.value = productProperty
+        ingredientString = when(_selectedProperty.value!!.ingredients?.joinToString(", ")){
+            null -> ""
+            else -> _selectedProperty.value!!.ingredients?.joinToString(", ").toString()
+        }
     }
 }

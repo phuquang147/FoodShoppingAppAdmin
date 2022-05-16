@@ -157,7 +157,7 @@
                                     android:textFontWeight="400"
                                     tools:ignore="RtlSymmetry"
                                     tools:targetApi="p"
-                                    android:text="Unbleached enriched wheat flour, water, sugar, soybean oil, salt, yeast, Cheese. Part-skim mozzarella cheese (pasteurized milk, cultures, salt, enzymes), modified food starch, sugarcane fiber, whey protein concentrate, sodium citrat" />
+                                    android:text="@{viewModel.ingredientString}" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                         <ImageView
@@ -166,7 +166,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="10dp"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/img_rectangle44"/>
+                            app:imageUrl="@{viewModel.selectedProperty.img.toString()}"/>
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_select_image"
                             android:layout_width="match_parent"
