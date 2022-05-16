@@ -1,4 +1,4 @@
-package xyz.daijoubuteam.foodshoppingappadmin.eatery.newproduct
+package xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -9,7 +9,6 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeout
 import com.google.firebase.storage.ktx.storage
-import timber.log.Timber
 import xyz.daijoubuteam.foodshoppingappadmin.model.Eatery
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 
@@ -52,7 +51,6 @@ class EateryRepository {
             val imageRef = storageRef.child("images/${uri.lastPathSegment}")
             imageRef.putFile(uri).await()
             val downloadUrl = imageRef.downloadUrl.await()
-            Timber.i(downloadUrl.toString())
             Result.success(downloadUrl)
         }catch (e: Exception){
             Result.failure(e)

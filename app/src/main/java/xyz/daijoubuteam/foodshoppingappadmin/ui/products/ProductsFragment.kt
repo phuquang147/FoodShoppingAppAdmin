@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -38,7 +39,7 @@ class ProductsFragment : Fragment() {
 
     private fun setupProductListViewAdapter() {
         binding.productRecyclerView.adapter = ProductAdapter(ProductAdapter.OnClickListener{
-//            findNavController().navigate(DetailEateryFragmentDirections.actionDetailEateryFragmentToProductToBagFragment(it))
+            findNavController().navigate(ProductsFragmentDirections.actionNavigationHomeToEditProductFragment(it))
         })
         val adapter = binding.productRecyclerView.adapter as ProductAdapter
         adapter.submitList(viewModel.productList.value)

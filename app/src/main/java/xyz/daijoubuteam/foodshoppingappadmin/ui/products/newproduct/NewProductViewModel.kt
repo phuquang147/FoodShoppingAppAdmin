@@ -1,4 +1,4 @@
-package xyz.daijoubuteam.foodshoppingappadmin.eatery.newproduct
+package xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import xyz.daijoubuteam.foodshoppingappadmin.MainApplication
-import xyz.daijoubuteam.foodshoppingappadmin.model.Eatery
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.repositories.EateryRepository
 

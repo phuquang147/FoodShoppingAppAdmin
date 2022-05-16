@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_newProductFragment"
             app:destination="@id/newProductFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_editProductFragment"
+            app:destination="@id/editProductFragment" />
     </fragment>
 
     <fragment
@@ -28,6 +31,15 @@
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/newProductFragment"
-        android:name="xyz.daijoubuteam.foodshoppingappadmin.eatery.newproduct.NewProductFragment"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct.NewProductFragment"
         android:label="NewProductFragment" />
+    <fragment
+        android:id="@+id/editProductFragment"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.editproduct.EditProductFragment"
+        android:label="EditProductFragment">
+        <argument
+            android:name="productSelected"
+            app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Product">
+        </argument>
+    </fragment>
 </navigation>

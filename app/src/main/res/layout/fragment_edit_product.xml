@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="xyz.daijoubuteam.foodshoppingappadmin.ui.products.editproduct.EditProductViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,8 +72,8 @@
                             android:textStyle="bold"
                             android:backgroundTint="@color/orange_400"
                             android:textCursorDrawable="@color/orange_400"
-                            android:text="Pizza"
-                            tools:ignore="HardcodedText"/>
+                            android:text="@{viewModel.selectedProperty.name}"
+                            tools:text="Pizza"/>
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -93,10 +95,13 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
+                                android:digits="0123456789."
+                                android:inputType="numberDecimal"
                                 app:layout_constraintStart_toEndOf="@id/tvCurrentPrice"
                                 app:layout_constraintTop_toTopOf="@id/tvCurrentPrice"
                                 app:layout_constraintBottom_toBottomOf="@id/tvCurrentPrice"
-                                android:text="12.00"
+                                android:text="@{viewModel.selectedProperty.newPrice.toString()}"
+                                tools:text="12.00"
                                 tools:ignore="HardcodedText"/>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -123,7 +128,8 @@
                                 app:layout_constraintStart_toEndOf="@id/tvOldPrice"
                                 app:layout_constraintTop_toTopOf="@id/tvOldPrice"
                                 app:layout_constraintBottom_toBottomOf="@id/tvOldPrice"
-                                android:text="15.00"
+                                android:text="@{viewModel.selectedProperty.oldPrice.toString()}"
+                                tools:text="15.00"
                                 tools:ignore="HardcodedText"/>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                             <TextView
@@ -159,7 +165,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="10dp"
-                            android:scaleType="fitXY"
+                            android:scaleType="fitCenter"
                             android:src="@drawable/img_rectangle44"/>
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_select_image"
@@ -186,28 +192,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
             <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_delete"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/rectangle_bg_white_a700_border_gray_300_radius_8"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textAllCaps="true"
-            android:textColor="@color/orange_400"
-            android:textFontWeight="400"
-            android:textSize="16sp"
-            tools:ignore="UnusedAttribute"
-            android:text="delete" />
+                android:id="@+id/btn_delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_save"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/rectangle_bg_white_a700_border_gray_300_radius_8"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textAllCaps="true"
+                android:textColor="@color/orange_400"
+                android:textFontWeight="400"
+                android:textSize="16sp"
+                tools:ignore="UnusedAttribute"
+                android:text="delete" />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_save"
-                android:layout_width="160dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_delete"
+                android:layout_marginLeft="8dp"
                 android:background="@drawable/rectangle_bg_blue_a200_radius_6"
                 android:ellipsize="end"
                 android:singleLine="true"
