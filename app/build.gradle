@@ -63,7 +63,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     kapt 'com.github.bumptech.glide:compiler:4.13.0'
     // Image crop
-  //  implementation 'com.github.CanHub:Android-Image-Cropper:4.2.1'
+    implementation 'com.github.CanHub:Android-Image-Cropper:4.2.1'
     // Declare the dependency for the Cloud Firestore library
     implementation 'com.google.firebase:firebase-firestore-ktx'
 

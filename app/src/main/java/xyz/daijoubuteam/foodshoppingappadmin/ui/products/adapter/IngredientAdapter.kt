@@ -13,6 +13,7 @@ class IngredientAdapter(private val onClickListener: OnClickListener) : ListAdap
     class IngredientViewHolder(private var binding: ItemIngredientBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(ingredient: String) {
             binding.ingredient = ingredient
+            binding.executePendingBindings()
         }
     }
     companion object DiffCallBack: DiffUtil.ItemCallback<String>() {

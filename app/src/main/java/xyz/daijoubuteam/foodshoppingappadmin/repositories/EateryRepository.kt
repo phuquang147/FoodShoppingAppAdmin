@@ -1,16 +1,20 @@
 package xyz.daijoubuteam.foodshoppingappadmin.repositories
 
 import android.net.Uri
+import android.provider.SyncStateContract
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeout
 import com.google.firebase.storage.ktx.storage
+import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.model.Eatery
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
+import xyz.daijoubuteam.foodshoppingappadmin.utils.Constants
 
 class EateryRepository {
     private val db = Firebase.firestore
@@ -52,6 +56,14 @@ class EateryRepository {
             imageRef.putFile(uri).await()
             val downloadUrl = imageRef.downloadUrl.await()
             Result.success(downloadUrl)
+        }catch (e: Exception){
+            Result.failure(e)
+        }
+    }
+    fun createNewProduct(documentId: String, product: Product): Result<Product> {
+        return try {
+            db.collection("eateries").document(documentId).collection("products").add(product)
+            Result.success(product)
         }catch (e: Exception){
             Result.failure(e)
         }

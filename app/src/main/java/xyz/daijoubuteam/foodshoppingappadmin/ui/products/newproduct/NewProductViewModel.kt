@@ -2,6 +2,7 @@ package xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct
 
 import android.net.Uri
 import android.util.Log
+import androidx.core.view.isEmpty
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +13,7 @@ import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.repositories.EateryRepository
 
 class NewProductViewModel : ViewModel() {
-    private val eateryRepository = EateryRepository()
+    val eateryRepository = EateryRepository()
     var product = MutableLiveData<Product>()
     private val eatery = MainApplication.eatery
     private val _message = MutableLiveData("")
@@ -35,6 +36,7 @@ class NewProductViewModel : ViewModel() {
                     && !_ingredients.value?.contains(ingredient.value.toString())!!
                 ){
                     _ingredients.value?.add(ingredient.value.toString())
+                    _ingredients.value = _ingredients.value
                     ingredient.value = ""
                 }
 
@@ -55,19 +57,17 @@ class NewProductViewModel : ViewModel() {
                     throw if (uploadImageResult.exceptionOrNull() == null) uploadImageResult.exceptionOrNull()!!
                     else Exception("Upload image failed")
                 }
+                else if(uploadImageResult.isSuccess) {
+                        onShowMessage("Upload successful")
+                }
                 product.value?.img = uploadImageResult.getOrNull().toString()
-//                user.value?.let {
-//                    val updateResult = userRepository.updateCurrentUserInfo(it)
-//                    if (updateResult.isFailure)
-//                        throw if (uploadAvatarResult.exceptionOrNull() == null) uploadAvatarResult.exceptionOrNull()!!
-//                        else Exception("Upload image failed")
-//                    else if(updateResult.isSuccess) {
-//                        onShowMessage("Upload successful")
-//                    }
-//                }
             } catch (e: Exception) {
                 onShowMessage(e.message)
             }
         }
     }
+    fun removeIngredient(ingredient: String){
+        _ingredients.value?.remove(ingredient)
+    }
+
 }
