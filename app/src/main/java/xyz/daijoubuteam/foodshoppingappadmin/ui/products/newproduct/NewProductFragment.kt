@@ -138,7 +138,7 @@ class NewProductFragment : Fragment() {
                 val ingredients = viewmodel.ingredients.value
                 val image = uriContent.toString()
                 val product = Product(name = productName, description = description, newPrice = price, img = image, ingredients = ingredients)
-                viewmodel.eateryRepository.createNewProduct(MainApplication.eatery.value?.documentId.toString(), product)
+                viewmodel.eateryRepository.createNewProduct(MainApplication.eatery.value?.id.toString(), product)
                 binding.etProductName.setText("")
             } catch (e: Exception) {
                 viewmodel.onShowMessage(e.message)

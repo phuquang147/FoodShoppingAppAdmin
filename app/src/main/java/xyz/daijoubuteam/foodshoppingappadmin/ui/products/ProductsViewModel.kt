@@ -14,7 +14,7 @@ import xyz.daijoubuteam.foodshoppingappadmin.repositories.EateryRepository
 class ProductsViewModel : ViewModel() {
     private val eateryRepository = EateryRepository()
 
-    private val _productList = MutableLiveData<List<Product>>(null)
+    private var _productList = MutableLiveData<List<Product>>(null)
     val productList: LiveData<List<Product>>
         get() = _productList
 
@@ -33,8 +33,8 @@ class ProductsViewModel : ViewModel() {
     init {
         viewModelScope.launch {
             val products = eateryRepository
-                .getProductList(MainApplication.eatery.value?.documentId.toString())
-            _productList.value = products.getOrNull() as List<Product>
+                .getProductList(MainApplication.eatery.value?.id.toString())
+            _productList = products.getOrNull()!!
         }
     }
 

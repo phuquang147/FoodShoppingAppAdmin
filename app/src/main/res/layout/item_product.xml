@@ -59,7 +59,7 @@
             android:textSize="12sp"
             android:fontFamily="@font/avenir_next_lt_pro"
             android:textFontWeight="500"
-            android:text="@{product.ingredients.toString().substring(1,product.ingredients.toString().length())}"
+            android:text="@{product.ingredients.toString().substring(1,product.ingredients.toString().length() - 1)}"
             tools:text="Shrimp, mushroom, cheese, tomato"
             tools:ignore="UnusedAttribute" />
         <androidx.constraintlayout.widget.ConstraintLayout
