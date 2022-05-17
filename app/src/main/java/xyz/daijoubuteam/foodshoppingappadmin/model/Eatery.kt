@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Eatery (
-    val id: String?=null,
+    var id: String?=null,
     val name: String?=null,
     val address: String?=null,
     val work_time: String?=null,
@@ -16,5 +16,4 @@ data class Eatery (
     val image: String?=null,
     val username: String?=null,
     val password: String?=null,
-    var documentId: String?=null
 ): Parcelable
