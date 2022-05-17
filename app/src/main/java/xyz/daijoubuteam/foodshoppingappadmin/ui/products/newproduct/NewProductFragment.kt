@@ -3,6 +3,7 @@ package xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct
 //import com.canhub.cropper.CropImageContract
 //import com.canhub.cropper.CropImageView
 //import com.canhub.cropper.options
+import android.app.ActionBar
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -101,6 +102,7 @@ class NewProductFragment : Fragment() {
         if (result.isSuccessful) {
             uriContent = result.uriContent
             binding.imgDescription.setImageURI(uriContent)
+            binding.imgDescription.layoutParams.width = ActionBar.LayoutParams.MATCH_PARENT
             if (uriContent != null) {
                 viewmodel.uploadProductImage(uriContent!!)
             }
