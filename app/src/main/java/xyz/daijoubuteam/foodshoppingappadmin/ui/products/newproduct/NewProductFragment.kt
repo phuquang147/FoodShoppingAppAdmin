@@ -100,7 +100,7 @@ class NewProductFragment : Fragment() {
         if (result.isSuccessful) {
             uriContent = result.uriContent
             binding.imgDescription.setImageURI(uriContent)
-            binding.imgDescription.layoutParams.width = ActionBar.LayoutParams.MATCH_PARENT
+            binding.cardNewProductAvatar.layoutParams.width = ActionBar.LayoutParams.MATCH_PARENT
             if (uriContent != null) {
                 viewmodel.uploadProductImage(uriContent!!)
             }
