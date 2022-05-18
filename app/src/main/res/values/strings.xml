@@ -31,10 +31,13 @@
     <string name="welcome_splash_screen">Welcome to admin app</string>
     <string name="username">Username</string>
     <string name="add_product">Add product</string>
-    <string name="products">Products</string>
     <string name="new_product">New Product</string>
     <string name="product_name">Product\'s Name</string>
     <string name="price">Price</string>
     <string name="add">add</string>
     <string name="description">Description</string>
+    <string name="orders">Orders</string>
+    <string name="status">Status</string>
+    <string name="save">Save</string>
+    <string name="products">Products</string>
 </resources>

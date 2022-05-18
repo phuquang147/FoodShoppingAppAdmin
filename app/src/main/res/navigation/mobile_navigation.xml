@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_products">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_products"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.ProductsFragment"
-        android:label="@string/title_dishes"
+        android:label="Products"
         tools:layout="@layout/fragment_products" >
         <action
             android:id="@+id/action_navigation_home_to_newProductFragment"
@@ -19,10 +19,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_orders"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.orders.OrdersFragment"
         android:label="@string/title_order"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_orders" />
 
     <fragment
         android:id="@+id/navigation_notifications"
