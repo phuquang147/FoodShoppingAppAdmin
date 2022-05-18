@@ -19,7 +19,7 @@ fun setImageUrlDescriptionUri(view: ImageView, url: Uri?) {
 }
 
 @BindingAdapter("imageUrl")
-fun setImageUrlAvatarString(view: ImageView, url: String?) {
+fun setImageUrlDescriptionString(view: ImageView, url: String?) {
     val uri: Uri? = if(url.isNullOrBlank()) null else url.toUri()
     setImageUrlDescriptionUri(view, uri)
 }

@@ -26,7 +26,6 @@ import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentNewProductBindi
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.ui.products.adapter.IngredientAdapter
 
-const val REQUEST_CODE = 100
 class NewProductFragment : Fragment() {
 
     var uriContent: Uri?
@@ -52,14 +51,13 @@ class NewProductFragment : Fragment() {
         setupIngredientListViewAdapter()
         hideBottomNavigationView()
         setupOnProductImageClick()
-        setupAddProduct()
         return binding.root
     }
 
     private fun setupIngredientListViewAdapter() {
         binding.rvIngredients.adapter = IngredientAdapter(
             IngredientAdapter.OnClickListener {
-                viewmodel.removeIngredient(it)
+         //       viewmodel.removeIngredient(it)
             }
         )
         val adapter = binding.rvIngredients.adapter as IngredientAdapter
@@ -121,28 +119,5 @@ class NewProductFragment : Fragment() {
             }
         )
     }
-    private fun setupAddProduct() {
-        binding.btnConfirm.setOnClickListener {
-            try {
-                if(binding.etProductName.text.isNullOrEmpty() || binding.etProductName.text!!.isBlank())
-                    throw Exception("Product Name Is Required")
-                if(binding.etPrice.text.isNullOrEmpty() || binding.etPrice.text!!.isBlank())
-                    throw Exception("Price Is Required")
-                if(binding.rvIngredients.isEmpty())
-                    throw Exception("Ingredients Is Required")
-                if(uriContent.toString().isNullOrEmpty())
-                    throw Exception("Description Image Is Required")
-                val productName = binding.etProductName.text.toString()
-                val description = binding.etDescription.text.toString()
-                val price = binding.etPrice.text.toString().toDoubleOrNull()
-                val ingredients = viewmodel.ingredients.value
-                val image = uriContent.toString()
-                val product = Product(name = productName, description = description, newPrice = price, img = image, ingredients = ingredients)
-                viewmodel.eateryRepository.createNewProduct(MainApplication.eatery.value?.id.toString(), product)
-                binding.etProductName.setText("")
-            } catch (e: Exception) {
-                viewmodel.onShowMessage(e.message)
-            }
-        }
-    }
+
 }

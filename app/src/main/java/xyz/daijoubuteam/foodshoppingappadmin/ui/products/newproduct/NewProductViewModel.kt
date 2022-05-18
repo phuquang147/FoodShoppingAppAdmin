@@ -16,13 +16,17 @@ class NewProductViewModel : ViewModel() {
     val eateryRepository = EateryRepository()
     var product = MutableLiveData<Product>()
     private val eatery = MainApplication.eatery
-    private val _message = MutableLiveData("")
     private val _ingredients : MutableLiveData<ArrayList<String>> = MutableLiveData()
     val ingredients: LiveData<ArrayList<String>>
         get() = _ingredients
+    private val _message = MutableLiveData("")
     val message: LiveData<String>
         get() = _message
     val ingredient = MutableLiveData("")
+    val name = MutableLiveData("")
+    val price = MutableLiveData("")
+    val description = MutableLiveData("")
+    val image = MutableLiveData("")
     init {
         _ingredients.value = arrayListOf()
     }
@@ -36,7 +40,6 @@ class NewProductViewModel : ViewModel() {
                     && !_ingredients.value?.contains(ingredient.value.toString())!!
                 ){
                     _ingredients.value?.add(ingredient.value.toString())
-                    _ingredients.value = _ingredients.value
                     ingredient.value = ""
                 }
 
@@ -60,14 +63,34 @@ class NewProductViewModel : ViewModel() {
                 else if(uploadImageResult.isSuccess) {
                         onShowMessage("Upload successful")
                 }
-                product.value?.img = uploadImageResult.getOrNull().toString()
+                Log.i("image", uploadImageResult.getOrNull().toString())
+                image.value = uploadImageResult.getOrNull().toString()
             } catch (e: Exception) {
                 onShowMessage(e.message)
             }
         }
     }
-    fun removeIngredient(ingredient: String){
-        _ingredients.value?.remove(ingredient)
+    fun onAddProduct() {
+            try {
+                if(name.value.isNullOrEmpty() || name.value!!.isBlank())
+                    throw Exception("Product Name Is Required")
+                if(price.value.isNullOrEmpty() || price.value!!.isBlank())
+                    throw Exception("Price Is Required")
+                if(_ingredients.value.isNullOrEmpty())
+                    throw Exception("Ingredients Is Required")
+                if(image.value.isNullOrEmpty())
+                    throw Exception("Description Image Is Required")
+                val product = Product(name = name.value, description = description.value, newPrice = price.value!!.toDoubleOrNull()
+                    , img = image.value, ingredients = _ingredients.value)
+                eateryRepository.createNewProduct(MainApplication.eatery.value?.id.toString(), product)
+                onShowMessage("Add product success")
+                name.value = ""
+                price.value = ""
+                description.value = ""
+                _ingredients.value = arrayListOf()
+                image.value = ""
+            } catch (e: Exception) {
+                onShowMessage(e.message)
+            }
     }
-
 }

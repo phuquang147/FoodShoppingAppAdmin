@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@{product.img}"
+            app:imageUrl="@{product.img}"
             tools:src="@drawable/img_rectangle44"
             tools:ignore="ContentDescription" />
         <TextView

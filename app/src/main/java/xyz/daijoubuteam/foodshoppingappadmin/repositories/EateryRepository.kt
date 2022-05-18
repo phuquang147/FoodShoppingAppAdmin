@@ -66,6 +66,7 @@ class EateryRepository {
             val imageRef = storageRef.child("images/${uri.lastPathSegment}")
             imageRef.putFile(uri).await()
             val downloadUrl = imageRef.downloadUrl.await()
+            Log.i("uri", downloadUrl.toString())
             Result.success(downloadUrl.toString())
         }catch (e: Exception){
             Result.failure(e)
@@ -80,7 +81,6 @@ class EateryRepository {
             Result.failure(e)
         }
     }
-
     fun deleteProduct(eateryId: String, productId: String): Result<String> {
         return try {
             db.collection("eateries").document(eateryId)
@@ -93,9 +93,24 @@ class EateryRepository {
                     throw Exception("Delete product failed")
                 }
             Result.success("Delete product success!")
-        }
-        catch (e: Exception) {
+        } catch (e: Exception) {
             Result.failure(e)
+        }
+    }
+    fun updateProductInfo(eateryId: String, productId: String, product: Product): Result<Boolean>{
+        return try {
+            db.collection("eateries").document(eateryId).collection("products")
+                .document(productId)
+                .set(product)
+                .addOnSuccessListener {
+                    Result.success("Update product success")
+                }
+                .addOnFailureListener {
+                    throw Exception("Update product failed")
+                }
+            Result.success(true)
+        } catch (exception: Exception){
+            Result.failure(exception)
         }
     }
 }
