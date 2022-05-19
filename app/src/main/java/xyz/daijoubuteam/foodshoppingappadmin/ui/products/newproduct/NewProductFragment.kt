@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
@@ -51,6 +52,8 @@ class NewProductFragment : Fragment() {
         setupIngredientListViewAdapter()
         hideBottomNavigationView()
         setupOnProductImageClick()
+        setupBackClick()
+        
         return binding.root
     }
 
@@ -120,4 +123,9 @@ class NewProductFragment : Fragment() {
         )
     }
 
+    private fun setupBackClick(){
+        binding.imageChevronleft.setOnClickListener {
+            findNavController().navigate(NewProductFragmentDirections.actionNewProductFragmentToNavigationProducts())
+        }
+    }
 }
