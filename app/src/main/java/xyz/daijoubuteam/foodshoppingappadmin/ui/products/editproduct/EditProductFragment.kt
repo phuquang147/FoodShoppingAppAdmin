@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -36,6 +38,13 @@ class EditProductFragment : Fragment() {
         ViewModelProvider(this, viewModelFactory)[EditProductViewModel::class.java]
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            checkForNavigate()
+        }
+        callback.isEnabled = true
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -127,37 +136,39 @@ class EditProductFragment : Fragment() {
                 .show()
         }
     }
+    fun checkForNavigate(){
+        if (viewModel.originalProduct.name != viewModel.selectedProperty.value?.name
+            || viewModel.originalProduct.description != viewModel.selectedProperty.value?.description
+            || viewModel.originalProduct.newPrice != viewModel.newPrice.value.toString()
+                .toDoubleOrNull()
+            || viewModel.originalProduct.oldPrice != viewModel.oldPrice.value.toString()
+                .toDoubleOrNull()
+            || viewModel.originalProduct.ingredients != viewModel.selectedProperty.value?.ingredients
+            || viewModel.originalProduct.img != viewModel.selectedProperty.value?.img
+        ) {
+
+            MaterialAlertDialogBuilder(this.requireContext())
+                .setTitle(resources.getString(R.string.save_product))
+                .setMessage(resources.getString(R.string.save_confirm))
+                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+                    dialog.cancel()
+                }
+                .setNegativeButton(resources.getString(R.string.no)) { dialog, which ->
+                    findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
+                }
+                .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
+                    viewModel.updateProductInfo()
+                    findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
+                }
+                .show()
+        } else {
+            findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
+        }
+    }
 
     private fun setupOnBackClick() {
         binding.imageChevronleft.setOnClickListener {
-            if (viewModel.originalProduct.name != viewModel.selectedProperty.value?.name
-                || viewModel.originalProduct.description != viewModel.selectedProperty.value?.description
-                || viewModel.originalProduct.newPrice != viewModel.newPrice.value.toString()
-                    .toDoubleOrNull()
-                || viewModel.originalProduct.oldPrice != viewModel.oldPrice.value.toString()
-                    .toDoubleOrNull()
-                || viewModel.originalProduct.ingredients != viewModel.selectedProperty.value?.ingredients
-                || viewModel.originalProduct.img != viewModel.selectedProperty.value?.img
-            ) {
-
-                MaterialAlertDialogBuilder(this.requireContext())
-                    .setTitle(resources.getString(R.string.save_product))
-                    .setMessage(resources.getString(R.string.save_confirm))
-                    .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
-                        dialog.cancel()
-                    }
-                    .setNegativeButton(resources.getString(R.string.no)) { dialog, which ->
-                        findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
-                    }
-                    .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
-                        viewModel.updateProductInfo()
-                        findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
-                    }
-                    .show()
-            } else {
-                findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
-            }
-
+            checkForNavigate()
         }
     }
 }
