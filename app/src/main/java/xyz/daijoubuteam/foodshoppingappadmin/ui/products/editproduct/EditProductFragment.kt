@@ -45,6 +45,7 @@ class EditProductFragment : Fragment() {
         }
         callback.isEnabled = true
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -136,7 +137,8 @@ class EditProductFragment : Fragment() {
                 .show()
         }
     }
-    fun checkForNavigate(){
+
+    fun checkForNavigate() {
         if (viewModel.originalProduct.name != viewModel.selectedProperty.value?.name
             || viewModel.originalProduct.description != viewModel.selectedProperty.value?.description
             || viewModel.originalProduct.newPrice != viewModel.newPrice.value.toString()

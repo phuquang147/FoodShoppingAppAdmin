@@ -39,9 +39,9 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupMessageObserver(){
-        viewModel.message.observe(viewLifecycleOwner){
-            if(!it.isNullOrBlank()){
+    private fun setupMessageObserver() {
+        viewModel.message.observe(viewLifecycleOwner) {
+            if (!it.isNullOrBlank()) {
                 hideKeyboard()
                 Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
                 viewModel.onShowMessageComplete()
@@ -77,14 +77,14 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun setupSoftKeyboardUI(){
+    private fun setupSoftKeyboardUI() {
         binding.etUsername.setOnFocusChangeListener { view, hasFocus ->
-            if(!shouldShowSoftKeyboard()){
+            if (!shouldShowSoftKeyboard()) {
                 hideKeyboard()
             }
         }
         binding.etPassword.setOnFocusChangeListener { view, hasFocus ->
-            if(!shouldShowSoftKeyboard()){
+            if (!shouldShowSoftKeyboard()) {
                 hideKeyboard()
             }
         }

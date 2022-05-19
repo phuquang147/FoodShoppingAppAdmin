@@ -35,9 +35,11 @@ class NewProductFragment : Fragment() {
         val factory = NewProductViewModelFactory()
         ViewModelProvider(this, factory)[NewProductViewModel::class.java]
     }
+
     init {
         uriContent = null
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,7 +55,7 @@ class NewProductFragment : Fragment() {
         hideBottomNavigationView()
         setupOnProductImageClick()
         setupBackClick()
-        
+
         return binding.root
     }
 
@@ -82,6 +84,7 @@ class NewProductFragment : Fragment() {
             }
         }
     }
+
     private fun setupOnProductImageClick() {
         binding.btnSelectImage.setOnClickListener {
             startCrop()
@@ -123,7 +126,7 @@ class NewProductFragment : Fragment() {
         )
     }
 
-    private fun setupBackClick(){
+    private fun setupBackClick() {
         binding.imageChevronleft.setOnClickListener {
             findNavController().navigate(NewProductFragmentDirections.actionNewProductFragmentToNavigationProducts())
         }

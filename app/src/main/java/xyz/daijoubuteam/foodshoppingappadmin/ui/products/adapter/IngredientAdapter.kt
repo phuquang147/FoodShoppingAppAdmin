@@ -9,14 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.ItemIngredientBinding
 
-class IngredientAdapter(private val onClickListener: OnClickListener) : ListAdapter<String, IngredientAdapter.IngredientViewHolder>(DiffCallBack) {
-    class IngredientViewHolder(private var binding: ItemIngredientBinding): RecyclerView.ViewHolder(binding.root) {
+class IngredientAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<String, IngredientAdapter.IngredientViewHolder>(DiffCallBack) {
+    class IngredientViewHolder(private var binding: ItemIngredientBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(ingredient: String) {
             binding.ingredient = ingredient
             binding.executePendingBindings()
         }
     }
-    companion object DiffCallBack: DiffUtil.ItemCallback<String>() {
+
+    companion object DiffCallBack : DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
@@ -27,7 +30,8 @@ class IngredientAdapter(private val onClickListener: OnClickListener) : ListAdap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientViewHolder {
-        val binding = ItemIngredientBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            ItemIngredientBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return IngredientViewHolder(binding)
     }
 
