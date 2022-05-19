@@ -297,7 +297,6 @@
                 android:textColor="@color/orange_400"
                 android:textFontWeight="400"
                 android:textSize="16sp"
-                android:onClick="@{() -> viewModel.onDeleteProduct()}"
                 tools:ignore="UnusedAttribute"
                 android:text="delete" />
             <com.google.android.material.button.MaterialButton

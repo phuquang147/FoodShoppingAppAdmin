@@ -41,5 +41,8 @@
             android:name="productSelected"
             app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Product">
         </argument>
+        <action
+            android:id="@+id/action_editProductFragment_to_navigation_products"
+            app:destination="@id/navigation_products" />
     </fragment>
 </navigation>

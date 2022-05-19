@@ -57,7 +57,7 @@ class NewProductFragment : Fragment() {
     private fun setupIngredientListViewAdapter() {
         binding.rvIngredients.adapter = IngredientAdapter(
             IngredientAdapter.OnClickListener {
-         //       viewmodel.removeIngredient(it)
+                viewmodel.ingredients.value?.remove(it)
             }
         )
         val adapter = binding.rvIngredients.adapter as IngredientAdapter

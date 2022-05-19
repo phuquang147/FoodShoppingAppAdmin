@@ -11,5 +11,5 @@ data class Product (
     var oldPrice: Double ?= null,
     var newPrice: Double?=null,
     var img: String?=null,
-    val ingredients: ArrayList<String>?=null,
+    var ingredients: ArrayList<String>?=null,
 ): Parcelable
