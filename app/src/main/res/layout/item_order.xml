@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-
+        <variable
+            name="order"
+            type="xyz.daijoubuteam.foodshoppingappadmin.model.Order" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="wrap_content"
@@ -28,6 +30,7 @@
             android:textColor="@color/bluegray_700"
             android:fontFamily="@font/avenir_next_lt_pro"
             android:textFontWeight="600"
+            android:text="@{order.customerName}"
             tools:text="Đỗ Phú Quang"
             tools:ignore="HardcodedText,UnusedAttribute" />
         <TextView
@@ -46,6 +49,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             tools:ignore="HardcodedText,UnusedAttribute"
+            android:text="@{order.orderTime.toDate().toLocaleString()}"
             tools:text="Thời gian đặt: 16h30" />
         <TextView
             android:id="@+id/tvAddress"

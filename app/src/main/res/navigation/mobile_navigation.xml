@@ -22,7 +22,11 @@
         android:id="@+id/navigation_orders"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.orders.OrdersFragment"
         android:label="@string/title_order"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_navigation_orders_to_editOrderFragment"
+            app:destination="@id/editOrderFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -40,6 +44,15 @@
         <argument
             android:name="productSelected"
             app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Product">
+        </argument>
+    </fragment>
+    <fragment
+        android:id="@+id/editOrderFragment"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.orders.editorder.EditOrderFragment"
+        android:label="EditOrderFragment">
+        <argument
+            android:name="orderSelected"
+            app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Order">
         </argument>
     </fragment>
 </navigation>

@@ -22,19 +22,19 @@
             android:fontFamily="@font/avenir_next_lt_pro"
             android:textStyle="bold"
             android:textColor="@color/bluegray_500" />
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/ordersRecyclerView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:nestedScrollingEnabled="false"-->
-<!--            android:orientation="vertical"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tvOrders"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            tools:itemCount="10"-->
-<!--            tools:listitem="@layout/item_order" />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ordersRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/tvOrders"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_order" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

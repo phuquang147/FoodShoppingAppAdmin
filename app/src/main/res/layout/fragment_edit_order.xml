@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="xyz.daijoubuteam.foodshoppingappadmin.ui.orders.editorder.EditOrderViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,6 +27,7 @@
             android:textColor="@color/bluegray_700"
             android:fontFamily="@font/avenir_next_lt_pro"
             android:textFontWeight="600"
+            android:text="@{viewModel.selectedProperty.customerName}"
             tools:text="Đỗ Phú Quang"
             tools:ignore="HardcodedText,UnusedAttribute" />
         <TextView
@@ -43,6 +46,7 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
             tools:ignore="HardcodedText,UnusedAttribute"
+            android:text="@{viewModel.selectedProperty.orderTime.toDate().toLocaleString()}"
             tools:text="Thời gian đặt: 16h30" />
         <TextView
             android:id="@+id/tvAddress"
@@ -87,7 +91,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total: $100.0"
+                android:text="@{'$' + viewModel.selectedProperty.totalPrice.toString()}"
                 android:paddingVertical="8dp"
                 android:paddingHorizontal="24dp"
                 android:textSize="18sp"
