@@ -36,7 +36,11 @@
     <fragment
         android:id="@+id/newProductFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct.NewProductFragment"
-        android:label="NewProductFragment" />
+        android:label="NewProductFragment" >
+        <action
+            android:id="@+id/action_newProductFragment_to_navigation_products"
+            app:destination="@id/navigation_products" />
+    </fragment>
     <fragment
         android:id="@+id/editProductFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.editproduct.EditProductFragment"
@@ -45,6 +49,9 @@
             android:name="productSelected"
             app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Product">
         </argument>
+        <action
+            android:id="@+id/action_editProductFragment_to_navigation_products"
+            app:destination="@id/navigation_products" />
     </fragment>
     <fragment
         android:id="@+id/editOrderFragment"

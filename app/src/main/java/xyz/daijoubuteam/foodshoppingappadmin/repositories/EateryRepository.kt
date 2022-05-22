@@ -21,9 +21,9 @@ class EateryRepository {
     private val db = Firebase.firestore
     private val storage = Firebase.storage
 
-    suspend fun getEateryByUsername(username: String):Result<Eatery?>{
+    suspend fun getEateryByUsername(username: String): Result<Eatery?> {
         return try {
-            withTimeout(2000){
+            withTimeout(2000) {
                 val docRef = db.collection("eateries").whereEqualTo("username", username)
                 val documentSnapShot = docRef.get().await()
                 if (documentSnapShot.documents.isEmpty()) {
@@ -33,13 +33,13 @@ class EateryRepository {
                 eatery?.id = documentSnapShot.documents[0].id
                 Result.success(eatery)
             }
-        }catch (exception: Exception){
+        } catch (exception: Exception) {
             Result.failure(exception)
         }
     }
 
     fun getProductList(documentId: String): Result<MutableLiveData<List<Product>>> {
-        val products : MutableLiveData<List<Product>> = MutableLiveData<List<Product>>()
+        val products: MutableLiveData<List<Product>> = MutableLiveData<List<Product>>()
         return try {
             val docRef = db.collection("eateries").document(documentId)
                 .collection("products")
@@ -55,12 +55,12 @@ class EateryRepository {
                 products.value = productList
             }
             Result.success(products)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             Result.failure(e)
         }
     }
 
-    suspend fun uploadDescriptionImage(uri: Uri): Result<String>{
+    suspend fun uploadDescriptionImage(uri: Uri): Result<String> {
         return try {
             val storageRef = storage.reference
             val imageRef = storageRef.child("images/${uri.lastPathSegment}")
@@ -68,7 +68,7 @@ class EateryRepository {
             val downloadUrl = imageRef.downloadUrl.await()
             Log.i("uri", downloadUrl.toString())
             Result.success(downloadUrl.toString())
-        }catch (e: Exception){
+        } catch (e: Exception) {
             Result.failure(e)
         }
     }
@@ -77,10 +77,11 @@ class EateryRepository {
         return try {
             db.collection("eateries").document(documentId).collection("products").add(product)
             Result.success(product)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             Result.failure(e)
         }
     }
+
     fun deleteProduct(eateryId: String, productId: String): Result<String> {
         return try {
             db.collection("eateries").document(eateryId)
@@ -97,7 +98,8 @@ class EateryRepository {
             Result.failure(e)
         }
     }
-    fun updateProductInfo(eateryId: String, productId: String, product: Product): Result<Boolean>{
+
+    fun updateProductInfo(eateryId: String, productId: String, product: Product): Result<Boolean> {
         return try {
             db.collection("eateries").document(eateryId).collection("products")
                 .document(productId)
@@ -109,7 +111,7 @@ class EateryRepository {
                     throw Exception("Update product failed")
                 }
             Result.success(true)
-        } catch (exception: Exception){
+        } catch (exception: Exception) {
             Result.failure(exception)
         }
     }

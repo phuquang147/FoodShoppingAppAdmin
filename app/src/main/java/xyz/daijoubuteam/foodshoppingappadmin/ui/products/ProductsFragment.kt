@@ -42,8 +42,12 @@ class ProductsFragment : Fragment() {
     }
 
     private fun setupProductListViewAdapter() {
-        binding.productRecyclerView.adapter = ProductAdapter(ProductAdapter.OnClickListener{
-            findNavController().navigate(ProductsFragmentDirections.actionNavigationHomeToEditProductFragment(it))
+        binding.productRecyclerView.adapter = ProductAdapter(ProductAdapter.OnClickListener {
+            findNavController().navigate(
+                ProductsFragmentDirections.actionNavigationHomeToEditProductFragment(
+                    it
+                )
+            )
         })
         val adapter = binding.productRecyclerView.adapter as ProductAdapter
         adapter.submitList(viewModel.productList.value)
@@ -53,9 +57,10 @@ class ProductsFragment : Fragment() {
             }
         }
     }
+
     private fun setupNavigateToProfileAndAddressFragment() {
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_newProductFragment)
+            findNavController().navigate(ProductsFragmentDirections.actionNavigationHomeToNewProductFragment())
         }
     }
 
