@@ -1,5 +1,6 @@
 package xyz.daijoubuteam.foodshoppingappadmin.repositories
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
@@ -34,6 +35,7 @@ class OrderRepository {
                             val order = orderValue?.toObject(Order::class.java)
                             if (order != null) {
                                 order.customerName = customerName
+                                order.orderPath = orderRef
                                 orderList.add(order)
                                 orders.value = orderList
                             }
@@ -51,17 +53,26 @@ class OrderRepository {
         val newOrder: MutableLiveData<Order> = MutableLiveData<Order>(order)
         return try {
             val productList = arrayListOf<ProductInOrder>()
-            for (orderItem in order.orderItems!!) {
-                val productRef = orderItem.productId
-                productRef?.addSnapshotListener { value, error ->
-                    val productInOrder = orderItem.copy()
-                    val product = MutableLiveData<Product>(value?.toObject(Product::class.java))
-                    productInOrder.product = product
-                    productList.add(productInOrder)
-                    newOrder.value?.orderItems = productList
-                }
-            }
+//            for (orderItem in order.orderItems!!) {
+//                val productRef = orderItem.productId
+//                productRef?.addSnapshotListener { value, error ->
+//                    val productInOrder = orderItem.copy()
+//                    val product = MutableLiveData<Product>(value?.toObject(Product::class.java))
+//                    productInOrder.product = product
+//                    productList.add(productInOrder)
+//                    newOrder.value?.orderItems = productList
+//                }
+//            }
             Result.success(newOrder)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    fun updateOrderStatus(status: String?, orderPath: DocumentReference): Result<Boolean>{
+        return try {
+            orderPath.update("status", status)
+            Result.success(true)
         } catch (e: Exception) {
             Result.failure(e)
         }
