@@ -8,7 +8,7 @@
             type="xyz.daijoubuteam.foodshoppingappadmin.authentication.login.LoginViewModel" />
     </data>
     <LinearLayout
-        android:id="@+id/linearSignin"
+        android:id="@+id/fragment_login"
         android:gravity="start"
         android:layout_height="match_parent"
         android:layout_width="match_parent"

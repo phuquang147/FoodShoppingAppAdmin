@@ -29,10 +29,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_report"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.report.ReportFragment"
         android:label="@string/title_report"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_report" />
     <fragment
         android:id="@+id/newProductFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct.NewProductFragment"
@@ -62,4 +62,8 @@
             app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Order">
         </argument>
     </fragment>
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.profile.ProfileFragment"
+        android:label="@string/title_profile" />
 </navigation>
