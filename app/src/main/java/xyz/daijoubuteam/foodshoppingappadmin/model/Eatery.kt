@@ -13,7 +13,7 @@ data class Eatery (
     val description: String?=null,
     val reviews: ArrayList<String>?=null,
     val products: ArrayList<Product>?=null,
-    val image: String?=null,
+    val photoUrl: String?=null,
     val username: String?=null,
     val password: String?=null,
 ): Parcelable
