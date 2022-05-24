@@ -48,4 +48,11 @@
     <string name="save">Save</string>
     <string name="products">Products</string>
     <string name="title_profile">Profile</string>
+    <string name="eatery_information">Eatery Information</string>
+    <string name="eatery_name">Eatery name</string>
+    <string name="eatery_description">Eatery description</string>
+    <string name="eatery_address">Eatery address</string>
+    <string name="worktime">Worktime</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
 </resources>
