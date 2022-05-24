@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentEditProductBinding
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentProfileBinding
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
+import xyz.daijoubuteam.foodshoppingappadmin.ui.products.ProductsFragmentDirections
 import xyz.daijoubuteam.foodshoppingappadmin.ui.products.ProductsViewModelFactory
 import xyz.daijoubuteam.foodshoppingappadmin.ui.products.editproduct.EditProductFragmentArgs
 import xyz.daijoubuteam.foodshoppingappadmin.ui.products.editproduct.EditProductViewModel
@@ -33,7 +35,14 @@ class ProfileFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+        setupNavigateToReviewsFragment()
 
         return binding.root
+    }
+
+    private fun setupNavigateToReviewsFragment() {
+        binding.btnReviews.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToReviewsFragment())
+        }
     }
 }

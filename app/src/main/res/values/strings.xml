@@ -50,4 +50,5 @@
     <string name="title_profile">Profile</string>
     <string name="user_profile_avatar">User profile avatar</string>
     <string name="profile">Profile &amp; Address</string>
+    <string name="reviews">Reviews</string>
 </resources>
