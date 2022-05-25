@@ -138,7 +138,7 @@ class EditProductFragment : Fragment() {
         }
     }
 
-    fun checkForNavigate() {
+    private fun checkForNavigate() {
         if (viewModel.originalProduct.name != viewModel.selectedProperty.value?.name
             || viewModel.originalProduct.description != viewModel.selectedProperty.value?.description
             || viewModel.originalProduct.newPrice != viewModel.newPrice.value.toString()

@@ -139,7 +139,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="KTX Khu A"
-                        android:text="@={viewModel.eatery.address}" />
+                        android:text="@={viewModel.eatery.addressEatery.address}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
@@ -195,6 +195,7 @@
             android:singleLine="true"
             android:textAllCaps="true"
             android:textColor="@color/white_A700"
+            android:onClick="@{() -> viewModel.updateProfileInfo()}"
             android:textFontWeight="400"
             android:textSize="16sp"
             tools:ignore="UnusedAttribute"

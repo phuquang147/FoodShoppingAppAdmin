@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Eatery (
     var id: String?=null,
     var name: String?=null,
-    var addressEatery: String?=null,
+    var addressEatery: EateryAddress?=null,
     var work_time: String?=null,
     val average_rating_count: Double?=null,
     var description: String?=null,

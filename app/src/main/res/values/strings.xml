@@ -33,6 +33,7 @@
     <string name="delete_product_alert">Are you sure to delete this product?</string>
     <string name="cancel">Cancel</string>
     <string name="save_product">Save Product</string>
+    <string name="save_eatery">Save Eatery</string>
     <string name="save_confirm">Do you want to save these changes?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
