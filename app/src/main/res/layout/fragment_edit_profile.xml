@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="viewmodel"
-            type="xyz.daijoubuteam.foodshoppingapp.client.profile.profile_address.ProfileAddressEditViewModel" />
+            name="viewModel"
+            type="xyz.daijoubuteam.foodshoppingappadmin.ui.profile.editprofile.EditProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,17 +15,31 @@
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/imageChevronleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            app:backgroundTint="#4DFFFFFF"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvEateryInformation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvEateryInformation"
+            app:pressedTranslationZ="0dp"
+            app:srcCompat="@drawable/img_chevronleft"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvEateryInformation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/avenir_next_lt_pro"
             android:text="@string/eatery_information"
             android:textSize="24sp"
             android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageChevronleft"
             app:layout_constraintTop_toTopOf="parent" />
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -56,7 +70,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="Trần Văn"
-                        android:text="@={viewmodel.user.firstname}"/>
+                        android:text="@={viewModel.eatery.name}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -79,7 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="An"
-                        android:text="@={viewmodel.user.lastname}"/>
+                        android:text="@={viewModel.eatery.description}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -103,7 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="1am - 2am"
-                        android:text="@={viewmodel.user.phoneNumber}"/>
+                        android:text="@={viewModel.eatery.work_time}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -125,7 +139,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="KTX Khu A"
-                        android:text="@{viewmodel.user.email}" />
+                        android:text="@={viewModel.eatery.address}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
@@ -178,7 +192,6 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:ellipsize="end"
-            android:onClick="@{() -> viewModel.updateProductInfo()}"
             android:singleLine="true"
             android:textAllCaps="true"
             android:textColor="@color/white_A700"

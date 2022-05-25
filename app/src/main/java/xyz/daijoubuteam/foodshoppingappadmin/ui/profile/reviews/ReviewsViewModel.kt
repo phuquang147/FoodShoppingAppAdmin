@@ -16,7 +16,6 @@ class ReviewsViewModel : ViewModel() {
     init {
         viewModelScope.launch {
             _reviewList.value = MainApplication.eatery.value?.reviews!!
-            Log.i("reviews", _reviewList.value.toString())
         }
     }
 }

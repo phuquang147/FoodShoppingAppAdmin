@@ -38,6 +38,7 @@ class ReviewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_reviews, container, false)
+        binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
         hideActionBar()

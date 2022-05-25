@@ -36,6 +36,7 @@ class ProfileFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         setupNavigateToReviewsFragment()
+        setupNavigateToEditProfileFragment()
 
         return binding.root
     }
@@ -43,6 +44,12 @@ class ProfileFragment : Fragment() {
     private fun setupNavigateToReviewsFragment() {
         binding.btnReviews.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToReviewsFragment())
+        }
+    }
+
+    private fun setupNavigateToEditProfileFragment() {
+        binding.btnProfileAndAddress.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditProfileFragment())
         }
     }
 }

@@ -6,14 +6,14 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Eatery (
     var id: String?=null,
-    val name: String?=null,
-    val address: String?=null,
-    val work_time: String?=null,
+    var name: String?=null,
+    var addressEatery: String?=null,
+    var work_time: String?=null,
     val average_rating_count: Double?=null,
-    val description: String?=null,
+    var description: String?=null,
     val reviews: ArrayList<String>?=null,
     val products: ArrayList<Product>?=null,
-    val photoUrl: String?=null,
+    var photoUrl: String?=null,
     val username: String?=null,
     val password: String?=null,
 ): Parcelable
