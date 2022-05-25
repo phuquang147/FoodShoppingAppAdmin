@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MonthPickerDialogStyle">
+<!--        <item name="monthBgColor">@color/white</item>-->
+<!--        <item name="monthBgSelectedColor">@color/orange</item>-->
+<!--        <item name="monthFontColorSelected">@color/white</item>-->
+<!--        <item name="monthFontColorNormal">@android:color/black</item>-->
+<!--        <item name="monthFontColorDisabled">@android:color/darker_gray</item>-->
+
+<!--        <item name="headerBgColor">@color/orange</item>-->
+<!--        <item name="headerFontColorSelected">#fff</item>-->
+<!--        <item name="headerFontColorNormal">#85FFFFFF</item>-->
+<!--        <item name="headerTitleColor">#fff</item>-->
+
+<!--        <item name="dialogActionButtonColor">@color/orange</item>-->
+    </style>
+    <style name="circular_image">
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>

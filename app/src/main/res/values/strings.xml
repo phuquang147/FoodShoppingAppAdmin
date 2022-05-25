@@ -51,4 +51,9 @@
     <string name="user_profile_avatar">User profile avatar</string>
     <string name="profile">Profile &amp; Address</string>
     <string name="reviews">Reviews</string>
+    <string name="eatery_information">Eatery Information</string>
+    <string name="eatery_name">Eatery name</string>
+    <string name="eatery_description">Eatery description</string>
+    <string name="eatery_address">Eatery address</string>
+    <string name="worktime">Worktime</string>
 </resources>
