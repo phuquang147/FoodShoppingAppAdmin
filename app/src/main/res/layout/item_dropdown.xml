@@ -1,0 +1,10 @@
+<TextView
+    android:id="@+id/textView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/avenir_next_lt_pro"
+    android:textColor="@color/black"
+    android:padding="10dp"
+    android:textSize="16sp"
+    android:paddingHorizontal="24dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

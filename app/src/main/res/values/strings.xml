@@ -48,4 +48,7 @@
     <string name="save">Save</string>
     <string name="products">Products</string>
     <string name="title_profile">Profile</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="total_orders">Total orders:</string>
 </resources>
