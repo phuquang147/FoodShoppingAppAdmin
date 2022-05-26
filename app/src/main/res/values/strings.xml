@@ -57,4 +57,7 @@
     <string name="eatery_description">Eatery description</string>
     <string name="eatery_address">Eatery address</string>
     <string name="worktime">Worktime</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="total_orders">Total orders:</string>
 </resources>
