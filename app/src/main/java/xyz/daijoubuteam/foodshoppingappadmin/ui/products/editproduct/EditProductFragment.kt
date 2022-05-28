@@ -152,13 +152,13 @@ class EditProductFragment : Fragment() {
             MaterialAlertDialogBuilder(this.requireContext())
                 .setTitle(resources.getString(R.string.save_product))
                 .setMessage(resources.getString(R.string.save_confirm))
-                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, _ ->
                     dialog.cancel()
                 }
-                .setNegativeButton(resources.getString(R.string.no)) { dialog, which ->
+                .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
                     findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
                 }
-                .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
+                .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
                     viewModel.updateProductInfo()
                     findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
                 }

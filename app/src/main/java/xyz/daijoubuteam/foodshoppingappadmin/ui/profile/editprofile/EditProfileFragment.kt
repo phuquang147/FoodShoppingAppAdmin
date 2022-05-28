@@ -104,13 +104,13 @@ class EditProfileFragment : Fragment() {
             MaterialAlertDialogBuilder(this.requireContext())
                 .setTitle(resources.getString(R.string.save_eatery))
                 .setMessage(resources.getString(R.string.save_confirm))
-                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, _ ->
                     dialog.cancel()
                 }
-                .setNegativeButton(resources.getString(R.string.no)) { dialog, which ->
+                .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
                     findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
                 }
-                .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
+                .setPositiveButton(resources.getString(R.string.yes)) { dialog, _ ->
                     if(viewModel.updateProfileInfo())
                         findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
                     else dialog.cancel()
