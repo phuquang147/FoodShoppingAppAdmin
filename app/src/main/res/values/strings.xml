@@ -51,4 +51,10 @@
     <string name="month">Month</string>
     <string name="year">Year</string>
     <string name="total_orders">Total orders:</string>
+    <string-array name="status_list">
+        <item>Pending</item>
+        <item>Preparing</item>
+        <item>Shipping</item>
+        <item>Completed</item>
+    </string-array>
 </resources>

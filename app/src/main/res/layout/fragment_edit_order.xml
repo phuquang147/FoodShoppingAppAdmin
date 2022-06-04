@@ -110,12 +110,16 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="12dp">
             <AutoCompleteTextView
+                android:id="@+id/status_drop_down"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@={viewModel.selectedProperty.status}"
                 android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"

@@ -65,7 +65,6 @@ class NewProductViewModel : ViewModel() {
                 } else if (uploadImageResult.isSuccess) {
                     onShowMessage("Upload successful")
                 }
-                Log.i("image", uploadImageResult.getOrNull().toString())
                 image.value = uploadImageResult.getOrNull().toString()
             } catch (e: Exception) {
                 onShowMessage(e.message)

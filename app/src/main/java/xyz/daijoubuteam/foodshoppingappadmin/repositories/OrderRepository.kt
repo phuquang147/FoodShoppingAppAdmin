@@ -1,5 +1,7 @@
 package xyz.daijoubuteam.foodshoppingappadmin.repositories
 
+import android.os.Build
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
@@ -34,7 +36,13 @@ class OrderRepository {
                             val order = orderValue?.toObject(Order::class.java)
                             if (order != null) {
                                 order.customerName = customerName
-                                orderList.add(order)
+                                order.orderPath = orderRef
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                    orderList.removeIf {
+                                        it.id == order.id
+                                    }
+                                    orderList.add(order)
+                                }
                                 orders.value = orderList
                             }
                         }
@@ -62,6 +70,15 @@ class OrderRepository {
                 }
             }
             Result.success(newOrder)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    fun updateOrderStatus(status: String?, orderPath: DocumentReference): Result<Boolean>{
+        return try {
+            orderPath.update("status", status)
+            Result.success(true)
         } catch (e: Exception) {
             Result.failure(e)
         }
