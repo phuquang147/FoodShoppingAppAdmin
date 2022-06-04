@@ -1,5 +1,6 @@
 package xyz.daijoubuteam.foodshoppingappadmin.repositories
 
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.DocumentReference
@@ -33,11 +34,15 @@ class OrderRepository {
                             val order = orderValue?.toObject(Order::class.java)
                             if (order != null) {
                                 order.customerName = customerName
-                                orderList.add(order)
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                    orderList.removeIf {
+                                        it.id == order.id
+                                    }
+                                    orderList.add(order)
+                                }
                                 orders.value = orderList
                             }
                         }
-                        Log.i("customername", orders.value.toString())
                     }
                 }
             }

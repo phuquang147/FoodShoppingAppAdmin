@@ -60,4 +60,8 @@
     <string name="month">Month</string>
     <string name="year">Year</string>
     <string name="total_orders">Total orders:</string>
+    <string name="total_revenue">Total revenue:</string>
+    <string name="select">select</string>
+    <string name="your_eatery_is_here">Your eatery is here</string>
+    <string name="please_select_location">Please select location</string>
 </resources>

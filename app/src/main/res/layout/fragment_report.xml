@@ -120,7 +120,7 @@
                     android:textColor="@color/deep_orange_A200"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    tools:text="24" />
+                    android:text="@{viewModel.totalOrderLabel}" />
                 <TextView
                     android:id="@+id/tvTextTotalRevenue"
                     android:layout_width="wrap_content"
@@ -130,7 +130,7 @@
                     android:layout_marginTop="8dp"
                     android:textSize="20sp"
                     android:textFontWeight="600"
-                    android:text="Total revenue:"
+                    android:text="@string/total_revenue"
                     tools:ignore="UnusedAttribute" />
                 <TextView
                     android:id="@+id/tvTotalRevenue"
@@ -142,7 +142,7 @@
                     android:textColor="@color/deep_orange_A200"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    tools:text="$ 24" />
+                    android:text="@{viewModel.totalRevenueLabel}"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
