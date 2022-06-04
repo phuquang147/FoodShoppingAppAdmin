@@ -1,5 +1,6 @@
 package xyz.daijoubuteam.foodshoppingappadmin.repositories
 
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.DocumentReference
@@ -36,7 +37,12 @@ class OrderRepository {
                             if (order != null) {
                                 order.customerName = customerName
                                 order.orderPath = orderRef
-                                orderList.add(order)
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                    orderList.removeIf {
+                                        it.id == order.id
+                                    }
+                                    orderList.add(order)
+                                }
                                 orders.value = orderList
                             }
                         }
@@ -53,16 +59,16 @@ class OrderRepository {
         val newOrder: MutableLiveData<Order> = MutableLiveData<Order>(order)
         return try {
             val productList = arrayListOf<ProductInOrder>()
-//            for (orderItem in order.orderItems!!) {
-//                val productRef = orderItem.productId
-//                productRef?.addSnapshotListener { value, error ->
-//                    val productInOrder = orderItem.copy()
-//                    val product = MutableLiveData<Product>(value?.toObject(Product::class.java))
-//                    productInOrder.product = product
-//                    productList.add(productInOrder)
-//                    newOrder.value?.orderItems = productList
-//                }
-//            }
+            for (orderItem in order.orderItems!!) {
+                val productRef = orderItem.productId
+                productRef?.addSnapshotListener { value, error ->
+                    val productInOrder = orderItem.copy()
+                    val product = MutableLiveData<Product>(value?.toObject(Product::class.java))
+                    productInOrder.product = product
+                    productList.add(productInOrder)
+                    newOrder.value?.orderItems = productList
+                }
+            }
             Result.success(newOrder)
         } catch (e: Exception) {
             Result.failure(e)
