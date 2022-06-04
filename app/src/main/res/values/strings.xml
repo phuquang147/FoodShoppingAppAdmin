@@ -33,6 +33,7 @@
     <string name="delete_product_alert">Are you sure to delete this product?</string>
     <string name="cancel">Cancel</string>
     <string name="save_product">Save Product</string>
+    <string name="save_eatery">Save Eatery</string>
     <string name="save_confirm">Do you want to save these changes?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -48,6 +49,14 @@
     <string name="save">Save</string>
     <string name="products">Products</string>
     <string name="title_profile">Profile</string>
+    <string name="user_profile_avatar">User profile avatar</string>
+    <string name="profile">Profile &amp; Address</string>
+    <string name="reviews">Reviews</string>
+    <string name="eatery_information">Eatery Information</string>
+    <string name="eatery_name">Eatery name</string>
+    <string name="eatery_description">Eatery description</string>
+    <string name="eatery_address">Eatery address</string>
+    <string name="worktime">Worktime</string>
     <string name="month">Month</string>
     <string name="year">Year</string>
     <string name="total_orders">Total orders:</string>
@@ -57,4 +66,8 @@
         <item>Shipping</item>
         <item>Completed</item>
     </string-array>
+    <string name="total_revenue">Total revenue:</string>
+    <string name="select">select</string>
+    <string name="your_eatery_is_here">Your eatery is here</string>
+    <string name="please_select_location">Please select location</string>
 </resources>

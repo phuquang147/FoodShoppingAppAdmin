@@ -12,6 +12,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeout
 import com.google.firebase.storage.ktx.storage
+import xyz.daijoubuteam.foodshoppingappadmin.MainApplication
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.model.Eatery
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
@@ -109,6 +110,22 @@ class EateryRepository {
                 }
                 .addOnFailureListener {
                     throw Exception("Update product failed")
+                }
+            Result.success(true)
+        } catch (exception: Exception) {
+            Result.failure(exception)
+        }
+    }
+
+    fun updateEateryInfo(eateryId: String, eatery: Eatery): Result<Boolean> {
+        return try {
+            db.collection("eateries").document(eateryId)
+                .set(eatery)
+                .addOnSuccessListener {
+                    Result.success("Update eatery success")
+                }
+                .addOnFailureListener {
+                    throw Exception("Update eatery failed")
                 }
             Result.success(true)
         } catch (exception: Exception) {

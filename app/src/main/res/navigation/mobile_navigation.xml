@@ -65,5 +65,28 @@
     <fragment
         android:id="@+id/navigation_profile"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.profile.ProfileFragment"
-        android:label="@string/title_profile" />
+        android:label="@string/title_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_reviewsFragment"
+            app:destination="@id/reviewsFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewsFragment"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.profile.reviews.ReviewsFragment"
+        android:label="ReviewsFragment" >
+        <action
+            android:id="@+id/action_reviewsFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.profile.editprofile.EditProfileFragment"
+        android:label="EditProfileFragment" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
 </navigation>

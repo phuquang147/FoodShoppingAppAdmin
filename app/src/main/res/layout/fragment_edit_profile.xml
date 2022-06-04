@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="xyz.daijoubuteam.foodshoppingappadmin.ui.profile.editprofile.EditProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/imageChevronleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            app:backgroundTint="#4DFFFFFF"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvEateryInformation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvEateryInformation"
+            app:pressedTranslationZ="0dp"
+            app:srcCompat="@drawable/img_chevronleft"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvEateryInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/avenir_next_lt_pro"
+            android:text="@string/eatery_information"
+            android:textSize="24sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@id/imageChevronleft"
+            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEateryInformation"
+            app:layout_constraintBottom_toTopOf="@id/btn_save"
+            android:layout_marginBottom="20dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etEateryName"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/avenir_next_lt_pro"
+                    android:hint="@string/eatery_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Trần Văn"
+                        android:text="@={viewModel.eatery.name}"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etEateryDescription"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/avenir_next_lt_pro"
+                    android:hint="@string/eatery_description"
+                    android:singleLine="true"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etEateryName">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="An"
+                        android:text="@={viewModel.eatery.description}"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etEateryWorktime"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/avenir_next_lt_pro"
+                    android:hint="@string/worktime"
+                    android:singleLine="true"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etEateryDescription">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="1am - 2am"
+                        android:text="@={viewModel.eatery.work_time}"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etEateryAddress"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/avenir_next_lt_pro"
+                    android:hint="@string/eatery_address"
+                    android:singleLine="true"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etEateryWorktime">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="KTX Khu A"
+                        android:text="@={viewModel.eatery.addressEatery.address}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/img_description"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="24dp"
+                    app:layout_constraintHeight_percent="0.33"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etEateryAddress"
+                    tools:src="@drawable/ic_orange_and_white_polygon_background_template_design"
+                    app:imageUrl="@{viewModel.eatery.photoUrl}"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_select_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/img_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="@color/lightOrange"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white_A700"
+                    android:textFontWeight="400"
+                    android:textSize="16sp"
+                    tools:ignore="UnusedAttribute"
+                    android:text="select image" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/blue_A200"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAllCaps="true"
+            android:textColor="@color/white_A700"
+            android:onClick="@{() -> viewModel.updateProfileInfo()}"
+            android:textFontWeight="400"
+            android:textSize="16sp"
+            tools:ignore="UnusedAttribute"
+            android:text="save" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

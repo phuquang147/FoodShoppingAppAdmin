@@ -14,15 +14,13 @@ class OrderRepository {
     private val db = Firebase.firestore
 
     fun getOrderList(eateryId: String): Result<MutableLiveData<List<Order>>> {
-        val orders: MutableLiveData<List<Order>> = MutableLiveData<List<Order>>()
-
         return try {
             val docRef = db.collection("eateries").document(eateryId)
                 .collection("orders")
-
+            val orders: MutableLiveData<List<Order>> = MutableLiveData<List<Order>>()
             docRef.addSnapshotListener { value, error ->
                 if (value != null) {
-                    val orderList = arrayListOf<Order>()
+                    val orderList = mutableListOf<Order>()
                     for (document in value.documents) {
                         val orderRef: DocumentReference =
                             document.data?.get("orderId") as DocumentReference

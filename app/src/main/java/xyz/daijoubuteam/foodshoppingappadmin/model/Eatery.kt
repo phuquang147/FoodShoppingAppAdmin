@@ -1,19 +1,21 @@
 package xyz.daijoubuteam.foodshoppingappadmin.model
 
 import android.os.Parcelable
+import com.google.firebase.firestore.DocumentId
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Eatery (
+    @DocumentId
     var id: String?=null,
-    val name: String?=null,
-    val address: String?=null,
-    val work_time: String?=null,
+    var name: String?=null,
+    var addressEatery: EateryAddress?=null,
+    var work_time: String?=null,
     val average_rating_count: Double?=null,
-    val description: String?=null,
+    var description: String?=null,
     val reviews: ArrayList<String>?=null,
     val products: ArrayList<Product>?=null,
-    val image: String?=null,
+    var photoUrl: String?=null,
     val username: String?=null,
     val password: String?=null,
 ): Parcelable
