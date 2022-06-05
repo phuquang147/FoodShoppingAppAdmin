@@ -21,7 +21,7 @@ class EditOrderViewModel(orderProperty: Order, app: Application) : AndroidViewMo
             orderRepository.getProductListInOrder(orderProperty).getOrNull()?.value
     }
 
-    fun updateStatus(){
+    fun updateStatus() {
         try {
             orderRepository.updateOrderStatus(
                 selectedProperty.value?.status,
@@ -37,7 +37,7 @@ class EditOrderViewModel(orderProperty: Order, app: Application) : AndroidViewMo
         _message.value = msg
     }
 
-    fun onShowMessageComplete(){
+    fun onShowMessageComplete() {
         _message.value = ""
     }
 }

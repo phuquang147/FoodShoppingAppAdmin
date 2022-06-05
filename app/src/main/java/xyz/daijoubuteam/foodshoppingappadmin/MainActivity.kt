@@ -19,12 +19,15 @@ class MainActivity : AppCompatActivity() {
         setupHomeActionBar()
     }
 
-    private fun setupHomeActionBar(){
+    private fun setupHomeActionBar() {
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_products, R.id.navigation_orders, R.id.navigation_report, R.id.navigation_profile
+                R.id.navigation_products,
+                R.id.navigation_orders,
+                R.id.navigation_report,
+                R.id.navigation_profile
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

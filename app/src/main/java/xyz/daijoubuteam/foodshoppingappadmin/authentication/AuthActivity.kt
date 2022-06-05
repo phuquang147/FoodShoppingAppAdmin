@@ -30,7 +30,7 @@ class AuthActivity : AppCompatActivity() {
 
         MainApplication.eatery.observe(this) {
             if (it != null) {
-                with (sharedPref?.edit()) {
+                with(sharedPref?.edit()) {
                     this?.putString(USERNAME, it.username)
                     this?.apply()
                 }

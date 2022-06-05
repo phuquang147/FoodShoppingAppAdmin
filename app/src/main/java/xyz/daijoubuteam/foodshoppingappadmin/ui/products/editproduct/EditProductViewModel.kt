@@ -39,7 +39,7 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
         _message.value = msg
     }
 
-    fun onShowMessageComplete(){
+    fun onShowMessageComplete() {
         _message.value = ""
     }
 

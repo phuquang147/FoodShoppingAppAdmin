@@ -42,7 +42,8 @@ class OrderRepository {
                                     orderList.add(order)
                                 }
                                 orders.value = orderList
-                                orders.value = (orders.value as MutableList<Order>).sortedByDescending { it.orderTime }
+                                orders.value =
+                                    (orders.value as MutableList<Order>).sortedByDescending { it.orderTime }
                             }
                         }
                     }
@@ -74,7 +75,7 @@ class OrderRepository {
         }
     }
 
-    fun updateOrderStatus(status: String?, orderPath: DocumentReference): Result<Boolean>{
+    fun updateOrderStatus(status: String?, orderPath: DocumentReference): Result<Boolean> {
         return try {
             orderPath.update("status", status)
             Result.success(true)

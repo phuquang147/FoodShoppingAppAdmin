@@ -8,16 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.ItemProductBinding
 
-class ProductAdapter(private val onClickListener: OnClickListener):
+class ProductAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Product, ProductAdapter.ProductViewHolder>(DiffCallBack) {
 
-    class ProductViewHolder(private var binding: ItemProductBinding): RecyclerView.ViewHolder(binding.root) {
-       fun bind(product: Product) {
-           binding.product = product
-       }
+    class ProductViewHolder(private var binding: ItemProductBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(product: Product) {
+            binding.product = product
+        }
     }
 
-    companion object DiffCallBack: DiffUtil.ItemCallback<Product>() {
+    companion object DiffCallBack : DiffUtil.ItemCallback<Product>() {
         override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
             return oldItem == newItem
         }
@@ -28,13 +29,13 @@ class ProductAdapter(private val onClickListener: OnClickListener):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ProductViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val productItem = getItem(position)
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onClickListener.onClick(productItem)
         }
         holder.bind(productItem)

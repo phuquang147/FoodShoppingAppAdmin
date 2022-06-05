@@ -44,7 +44,8 @@ class EditOrderFragment : Fragment() {
         setupMessageObserver()
 
         val statuses = resources.getStringArray(R.array.status_list)
-        val adapter = ArrayAdapter(this.requireContext(), R.layout.status_drop_down_layout, statuses)
+        val adapter =
+            ArrayAdapter(this.requireContext(), R.layout.status_drop_down_layout, statuses)
         binding.statusDropDown.setAdapter(adapter)
         binding.statusDropDown.threshold = 100
 
@@ -83,7 +84,7 @@ class EditOrderFragment : Fragment() {
         navBar.visibility = View.VISIBLE
     }
 
-    private fun setupSaveClick(){
+    private fun setupSaveClick() {
         binding.btnSave.setOnClickListener {
             viewModel.updateStatus()
         }

@@ -59,15 +59,14 @@ class ReportViewModel : ViewModel() {
         }
     }
 
-    private fun updateTotalRevenue(){
+    private fun updateTotalRevenue() {
         totalRevenue = 0.0
-        if(filteredOrders.value != null && filteredOrders.value?.size!! > 0){
-            for(order in filteredOrders.value!!){
+        if (filteredOrders.value != null && filteredOrders.value?.size!! > 0) {
+            for (order in filteredOrders.value!!) {
                 totalRevenue += order.totalPrice!!
             }
             totalOrderLabel.value = filteredOrders.value!!.size.toString()
-        }
-        else{
+        } else {
             totalOrderLabel.value = "0"
         }
         totalRevenueLabel.value = NumberFormat.getCurrencyInstance().format(totalRevenue)

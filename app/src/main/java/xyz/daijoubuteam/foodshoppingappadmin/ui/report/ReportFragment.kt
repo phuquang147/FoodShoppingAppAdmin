@@ -46,13 +46,17 @@ class ReportFragment : Fragment() {
     }
 
     private fun setupOrderListViewAdapter() {
-        binding.ordersRecyclerView.adapter = OrderAdapter(OrderAdapter.OnClickListener{
-            findNavController().navigate(ReportFragmentDirections.actionNavigationReportToOrderDetailFragment(it))
+        binding.ordersRecyclerView.adapter = OrderAdapter(OrderAdapter.OnClickListener {
+            findNavController().navigate(
+                ReportFragmentDirections.actionNavigationReportToOrderDetailFragment(
+                    it
+                )
+            )
         })
         val adapter = binding.ordersRecyclerView.adapter as OrderAdapter
         adapter.submitList(viewModel.filteredOrders.value)
         viewModel.filteredOrders.observe(viewLifecycleOwner) {
-            if(it != null) {
+            if (it != null) {
                 adapter.submitList(it)
             }
         }
@@ -64,7 +68,8 @@ class ReportFragment : Fragment() {
         val years = listOf(
             (viewModel.calendar.get(Calendar.YEAR) - 2).toString(),
             (viewModel.calendar.get(Calendar.YEAR) - 1).toString(),
-            (viewModel.calendar.get(Calendar.YEAR)).toString())
+            (viewModel.calendar.get(Calendar.YEAR)).toString()
+        )
         val yearAdapter = ArrayAdapter(this.requireContext(), R.layout.item_dropdown, years)
         binding.monthAuto.setAdapter(monthAdapter)
         binding.monthAuto.threshold = 100
