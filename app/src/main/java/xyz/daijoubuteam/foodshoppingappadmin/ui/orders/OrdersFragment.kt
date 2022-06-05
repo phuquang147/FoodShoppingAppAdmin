@@ -43,9 +43,7 @@ class OrdersFragment : Fragment() {
     private fun setupOrderListViewAdapter() {
         binding.ordersRecyclerView.adapter = OrderAdapter(OrderAdapter.OnClickListener {
             findNavController().navigate(
-                OrdersFragmentDirections.actionNavigationOrdersToEditOrderFragment(
-                    it
-                )
+                OrdersFragmentDirections.actionNavigationOrdersToEditOrderFragment(it)
             )
         })
         val adapter = binding.ordersRecyclerView.adapter as OrderAdapter

@@ -42,6 +42,7 @@ class OrderRepository {
                                     orderList.add(order)
                                 }
                                 orders.value = orderList
+                                orders.value = (orders.value as MutableList<Order>).sortedByDescending { it.orderTime }
                             }
                         }
                     }

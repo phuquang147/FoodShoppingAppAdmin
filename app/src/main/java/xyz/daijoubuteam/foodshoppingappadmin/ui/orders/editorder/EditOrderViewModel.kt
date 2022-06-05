@@ -33,7 +33,7 @@ class EditOrderViewModel(orderProperty: Order, app: Application) : AndroidViewMo
         }
     }
 
-    fun onShowMessage(msg: String?) {
+    private fun onShowMessage(msg: String?) {
         _message.value = msg
     }
 
