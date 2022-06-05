@@ -20,10 +20,12 @@ import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentEditProductBinding
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.ui.products.adapter.IngredientAdapter
+import xyz.daijoubuteam.foodshoppingappadmin.utils.hideKeyboard
 
 
 class EditProductFragment : Fragment() {
@@ -57,6 +59,7 @@ class EditProductFragment : Fragment() {
         binding.viewModel = viewModel
 
         hideBottomNavigationView()
+        setupMessageObserver()
         setupIngredientListViewAdapter()
         setupOnProductImageClick()
         setupOnDeleteProductClick()
@@ -90,6 +93,16 @@ class EditProductFragment : Fragment() {
         super.onDestroy()
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
         navBar.visibility = View.VISIBLE
+    }
+
+    private fun setupMessageObserver() {
+        viewModel.message.observe(viewLifecycleOwner) {
+            if (!it.isNullOrBlank()) {
+                hideKeyboard()
+                Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
+                viewModel.onShowMessageComplete()
+            }
+        }
     }
 
     private fun setupOnProductImageClick() {

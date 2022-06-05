@@ -18,6 +18,8 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
     private val eatery = MainApplication.eatery
     val selectedProperty = MutableLiveData<Product>()
     private val _message = MutableLiveData("")
+    val message: LiveData<String>
+        get() = _message
     val newPrice = MutableLiveData("")
     val oldPrice = MutableLiveData("")
     var originalProduct: Product
@@ -35,6 +37,10 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
 
     fun onShowMessage(msg: String?) {
         _message.value = msg
+    }
+
+    fun onShowMessageComplete(){
+        _message.value = ""
     }
 
     fun onAddIngredient() {
@@ -97,6 +103,7 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
             val description = selectedProperty.value?.description.toString()
             val newPrice = newPrice.value.toString().toDoubleOrNull()
             val oldPrice = oldPrice.value.toString().toDoubleOrNull()
+            Log.i("oldprice", oldPrice.toString())
             val ingredients = selectedProperty.value?.ingredients
             val image = selectedProperty.value?.img.toString()
             val product = Product(
@@ -112,6 +119,7 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
                 selectedProperty.value?.id.toString(),
                 product
             )
+            originalProduct = product
             onShowMessage("Update success")
         } catch (e: Exception) {
             onShowMessage(e.message)
