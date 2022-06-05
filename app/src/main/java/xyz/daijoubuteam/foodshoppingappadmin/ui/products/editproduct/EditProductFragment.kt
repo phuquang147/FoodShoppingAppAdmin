@@ -58,7 +58,6 @@ class EditProductFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        hideBottomNavigationView()
         setupMessageObserver()
         setupIngredientListViewAdapter()
         setupOnProductImageClick()
