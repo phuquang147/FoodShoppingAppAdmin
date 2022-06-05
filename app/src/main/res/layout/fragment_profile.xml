@@ -96,6 +96,7 @@
                 android:background="@android:color/darker_gray" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
                 app:icon="@drawable/ic_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

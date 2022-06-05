@@ -6,6 +6,7 @@
         <variable
             name="product"
             type="xyz.daijoubuteam.foodshoppingappadmin.model.Product" />
+        <import type="android.view.View"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="wrap_content"
@@ -110,6 +111,7 @@
                 android:textSize="12sp"
                 android:fontFamily="@font/avenir_next_lt_pro"
                 android:textFontWeight="500"
+                android:visibility="@{product.oldPrice == null ? View.GONE : View.VISIBLE}"
                 android:text="@{'$' + Double.toString(product.oldPrice)}"
                 tools:text="$ 20.00"
                 tools:ignore="HardcodedText,UnusedAttribute" />
