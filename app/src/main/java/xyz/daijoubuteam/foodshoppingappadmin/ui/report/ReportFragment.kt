@@ -1,6 +1,7 @@
 package xyz.daijoubuteam.foodshoppingappadmin.ui.report
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentReportBinding
 import xyz.daijoubuteam.foodshoppingappadmin.ui.orders.adapter.OrderAdapter
@@ -44,7 +46,9 @@ class ReportFragment : Fragment() {
     }
 
     private fun setupOrderListViewAdapter() {
-        binding.ordersRecyclerView.adapter = OrderAdapter(OrderAdapter.OnClickListener{})
+        binding.ordersRecyclerView.adapter = OrderAdapter(OrderAdapter.OnClickListener{
+            findNavController().navigate(ReportFragmentDirections.actionNavigationReportToOrderDetailFragment(it))
+        })
         val adapter = binding.ordersRecyclerView.adapter as OrderAdapter
         adapter.submitList(viewModel.filteredOrders.value)
         viewModel.filteredOrders.observe(viewLifecycleOwner) {

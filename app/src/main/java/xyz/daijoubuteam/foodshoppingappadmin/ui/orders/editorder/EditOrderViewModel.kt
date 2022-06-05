@@ -10,7 +10,7 @@ import xyz.daijoubuteam.foodshoppingappadmin.model.Order
 import xyz.daijoubuteam.foodshoppingappadmin.repositories.OrderRepository
 
 class EditOrderViewModel(orderProperty: Order, app: Application) : AndroidViewModel(app) {
-    val orderRepository = OrderRepository()
+    private val orderRepository = OrderRepository()
     val selectedProperty = MutableLiveData<Order>()
     private val _message = MutableLiveData("")
     val message: LiveData<String>

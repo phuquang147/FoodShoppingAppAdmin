@@ -20,7 +20,6 @@ class OrdersViewModel : ViewModel() {
         viewModelScope.launch {
             val orders = orderRepository.getOrderList(MainApplication.eatery.value?.id.toString())
             _orderList = orders.getOrNull()!!
-            Log.i("orderlist", _orderList.value.toString())
         }
     }
 }
