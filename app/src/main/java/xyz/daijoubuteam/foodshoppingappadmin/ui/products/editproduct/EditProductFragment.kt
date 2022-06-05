@@ -84,13 +84,14 @@ class EditProductFragment : Fragment() {
         }
     }
 
-    private fun hideBottomNavigationView() {
+    override fun onResume() {
+        super.onResume()
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
         navBar.visibility = View.GONE
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
         navBar.visibility = View.VISIBLE
     }

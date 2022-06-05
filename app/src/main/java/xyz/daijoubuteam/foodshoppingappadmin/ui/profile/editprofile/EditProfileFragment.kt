@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import xyz.daijoubuteam.foodshoppingappadmin.R
@@ -53,6 +54,18 @@ class EditProfileFragment : Fragment() {
         setupMessageObserver()
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
+        navBar.visibility = View.GONE
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
+        navBar.visibility = View.VISIBLE
     }
 
     private fun setupMessageObserver() {
