@@ -12,13 +12,39 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/imageChevronleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            app:backgroundTint="#4DFFFFFF"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvOrder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvOrder"
+            app:pressedTranslationZ="0dp"
+            app:srcCompat="@drawable/img_chevronleft"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/avenir_next_lt_pro"
+            android:text="@string/order_detail"
+            android:textSize="24sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@id/imageChevronleft"
+            app:layout_constraintTop_toTopOf="parent" />
         <TextView
             android:id="@+id/tvCustomerName"
             android:ellipsize="end"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:singleLine="true"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvOrder"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginHorizontal="24dp"

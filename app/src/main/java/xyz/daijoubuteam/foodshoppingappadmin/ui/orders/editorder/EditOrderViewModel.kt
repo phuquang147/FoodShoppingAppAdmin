@@ -15,18 +15,21 @@ class EditOrderViewModel(orderProperty: Order, app: Application) : AndroidViewMo
     private val _message = MutableLiveData("")
     val message: LiveData<String>
         get() = _message
+    var originalStatus = ""
 
     init {
         selectedProperty.value =
             orderRepository.getProductListInOrder(orderProperty).getOrNull()?.value
+        originalStatus = selectedProperty.value?.status.toString()
     }
 
     fun updateStatus() {
-        try {
+        return try {
             orderRepository.updateOrderStatus(
                 selectedProperty.value?.status,
                 selectedProperty.value?.orderPath!!
             )
+            originalStatus = selectedProperty.value!!.status.toString()
             onShowMessage("Update success")
         } catch (e: Exception) {
             onShowMessage(e.message)

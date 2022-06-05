@@ -34,6 +34,7 @@
     <string name="cancel">Cancel</string>
     <string name="save_product">Save Product</string>
     <string name="save_eatery">Save Eatery</string>
+    <string name="save_order">Save Order</string>
     <string name="save_confirm">Do you want to save these changes?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -72,4 +73,5 @@
     <string name="please_select_location">Please select location</string>
     <string name="total">Total: %1$s</string>
     <string name="report">Report</string>
+    <string name="order_detail">Order detail</string>
 </resources>
