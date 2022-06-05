@@ -48,6 +48,18 @@ class ReviewsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
+        navBar.visibility = View.GONE
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
+        navBar.visibility = View.VISIBLE
+    }
+
     private fun setupReviewListViewAdapter() {
         binding.reviewsRecyclerView.adapter = ReviewAdapter()
         val adapter = binding.reviewsRecyclerView.adapter as ReviewAdapter?
