@@ -137,7 +137,7 @@ class EditProfileFragment : Fragment() {
 
     private fun setupBackButtonClick() {
         binding.imageChevronleft.setOnClickListener {
-            checkForNavigate()
+
         }
     }
 }

@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import xyz.daijoubuteam.foodshoppingappadmin.R
@@ -41,6 +43,7 @@ class OrderDetailFragment : Fragment() {
 
         hideBottomNavigationView()
         setupProductInOrderListViewAdapter()
+        setupBackButtonClick()
 
         return binding.root
     }
@@ -61,8 +64,20 @@ class OrderDetailFragment : Fragment() {
         navBar.visibility = View.GONE
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    private fun setupBackButtonClick() {
+        binding.imageChevronleft.setOnClickListener {
+            findNavController().navigate(OrderDetailFragmentDirections.actionOrderDetailFragmentToNavigationReport())
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
+        navBar.visibility = View.GONE
+    }
+
+    override fun onStop() {
+        super.onStop()
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
         navBar.visibility = View.VISIBLE
     }
