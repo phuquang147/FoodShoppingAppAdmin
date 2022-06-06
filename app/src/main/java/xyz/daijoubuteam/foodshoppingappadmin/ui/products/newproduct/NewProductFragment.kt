@@ -128,7 +128,7 @@ class NewProductFragment : Fragment() {
 
     private fun setupBackClick() {
         binding.imageChevronleft.setOnClickListener {
-            findNavController().navigate(NewProductFragmentDirections.actionNewProductFragmentToNavigationProducts())
+            findNavController().navigateUp()
         }
     }
 }

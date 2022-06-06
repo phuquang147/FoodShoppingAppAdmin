@@ -74,7 +74,7 @@ class ReviewsFragment : Fragment() {
 
     private fun setupNavigateToProfileFragment() {
         binding.imageChevronleft.setOnClickListener {
-            findNavController().navigate(ReviewsFragmentDirections.actionReviewsFragmentToNavigationProfile())
+            findNavController().navigateUp()
         }
     }
 

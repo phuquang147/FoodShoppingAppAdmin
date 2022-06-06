@@ -145,7 +145,7 @@ class EditProductFragment : Fragment() {
                 }
                 .setPositiveButton(resources.getString(R.string.yes)) { dialog, which ->
                     viewModel.onDeleteProduct()
-                    findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
+                    findNavController().navigateUp()
                 }
                 .show()
         }
@@ -169,15 +169,15 @@ class EditProductFragment : Fragment() {
                     dialog.cancel()
                 }
                 .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
-                    findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
+                    findNavController().navigateUp()
                 }
                 .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
                     viewModel.updateProductInfo()
-                    findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
+                    findNavController().navigateUp()
                 }
                 .show()
         } else {
-            findNavController().navigate(EditProductFragmentDirections.actionEditProductFragmentToNavigationProducts())
+            findNavController().navigateUp()
         }
     }
 

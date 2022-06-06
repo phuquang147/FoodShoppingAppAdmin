@@ -14,12 +14,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
-import xyz.daijoubuteam.foodshoppingappadmin.MainApplication
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentEditOrderBinding
 import xyz.daijoubuteam.foodshoppingappadmin.model.Order
 import xyz.daijoubuteam.foodshoppingappadmin.ui.orders.adapter.ProductInOrderAdapter
-import xyz.daijoubuteam.foodshoppingappadmin.ui.profile.editprofile.EditProfileFragmentDirections
 import xyz.daijoubuteam.foodshoppingappadmin.utils.hideKeyboard
 
 class EditOrderFragment : Fragment() {
@@ -118,15 +116,15 @@ class EditOrderFragment : Fragment() {
                     dialog.cancel()
                 }
                 .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
-                    findNavController().navigate(EditOrderFragmentDirections.actionEditOrderFragmentToNavigationOrders())
+                    findNavController().navigateUp()
                 }
                 .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
                     viewModel.updateStatus()
-                    findNavController().navigate(EditOrderFragmentDirections.actionEditOrderFragmentToNavigationOrders())
+                    findNavController().navigateUp()
                 }
                 .show()
         } else {
-            findNavController().navigate(EditOrderFragmentDirections.actionEditOrderFragmentToNavigationOrders())
+            findNavController().navigateUp()
         }
     }
 

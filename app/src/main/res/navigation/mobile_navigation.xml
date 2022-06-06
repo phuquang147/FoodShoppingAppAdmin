@@ -35,16 +35,13 @@
         tools:layout="@layout/fragment_report" >
         <action
             android:id="@+id/action_navigation_report_to_orderDetailFragment"
-            app:destination="@id/orderDetailFragment" />
+            app:destination="@id/orderDetailFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/newProductFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct.NewProductFragment"
-        android:label="NewProductFragment" >
-        <action
-            android:id="@+id/action_newProductFragment_to_navigation_products"
-            app:destination="@id/navigation_products" />
-    </fragment>
+        android:label="NewProductFragment" />
     <fragment
         android:id="@+id/editProductFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.editproduct.EditProductFragment"
@@ -53,9 +50,6 @@
             android:name="productSelected"
             app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Product">
         </argument>
-        <action
-            android:id="@+id/action_editProductFragment_to_navigation_products"
-            app:destination="@id/navigation_products" />
     </fragment>
     <fragment
         android:id="@+id/editOrderFragment"
@@ -65,9 +59,6 @@
             android:name="orderSelected"
             app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Order">
         </argument>
-        <action
-            android:id="@+id/action_editOrderFragment_to_navigation_orders"
-            app:destination="@id/navigation_orders" />
     </fragment>
     <fragment
         android:id="@+id/navigation_profile"
@@ -83,19 +74,11 @@
     <fragment
         android:id="@+id/reviewsFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.profile.reviews.ReviewsFragment"
-        android:label="ReviewsFragment" >
-        <action
-            android:id="@+id/action_reviewsFragment_to_navigation_profile"
-            app:destination="@id/navigation_profile" />
-    </fragment>
+        android:label="ReviewsFragment" />
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.profile.editprofile.EditProfileFragment"
-        android:label="EditProfileFragment" >
-        <action
-            android:id="@+id/action_editProfileFragment_to_navigation_profile"
-            app:destination="@id/navigation_profile" />
-    </fragment>
+        android:label="EditProfileFragment" />
     <fragment
         android:id="@+id/orderDetailFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.report.orderdetail.OrderDetailFragment"
@@ -103,8 +86,5 @@
         <argument
             android:name="orderSelected"
             app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Order" />
-        <action
-            android:id="@+id/action_orderDetailFragment_to_navigation_report"
-            app:destination="@id/navigation_report" />
     </fragment>
 </navigation>

@@ -19,8 +19,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentEditProfileBinding
-import xyz.daijoubuteam.foodshoppingappadmin.ui.products.editproduct.EditProductFragmentDirections
-import xyz.daijoubuteam.foodshoppingappadmin.ui.profile.ProfileFragmentDirections
 import xyz.daijoubuteam.foodshoppingappadmin.utils.hideKeyboard
 
 class EditProfileFragment : Fragment() {
@@ -122,16 +120,16 @@ class EditProfileFragment : Fragment() {
                     dialog.cancel()
                 }
                 .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
-                    findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
+                    findNavController().navigateUp()
                 }
                 .setPositiveButton(resources.getString(R.string.yes)) { dialog, _ ->
                     if (viewModel.updateProfileInfo())
-                        findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
+                        findNavController().navigateUp()
                     else dialog.cancel()
                 }
                 .show()
         } else {
-            findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
+            findNavController().navigateUp()
         }
     }
 
