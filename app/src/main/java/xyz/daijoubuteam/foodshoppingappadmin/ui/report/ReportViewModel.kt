@@ -40,34 +40,33 @@ class ReportViewModel : ViewModel() {
             filteredOrders.value = it.filter { order ->
                 (order.orderTime?.toDate()?.month?.plus(1)).toString() == month.value
                         && (order.orderTime?.toDate()?.year?.plus(1900)).toString() == year.value
-            }
+            }.sortedBy { filteredOrder -> filteredOrder.orderTime }
             updateTotalRevenue()
         }
         mediatorLiveData.addSource(month) {
             filteredOrders.value = wholeOrderList.value?.filter { order ->
                 (order.orderTime?.toDate()?.month?.plus(1)).toString() == it
                         && (order.orderTime?.toDate()?.year?.plus(1900)).toString() == year.value
-            }
+            }?.sortedBy { filteredOrder -> filteredOrder.orderTime }
             updateTotalRevenue()
         }
         mediatorLiveData.addSource(year) {
             filteredOrders.value = wholeOrderList.value?.filter { order ->
                 (order.orderTime?.toDate()?.month?.plus(1)).toString() == month.value
                         && (order.orderTime?.toDate()?.year?.plus(1900)).toString() == it
-            }
+            }?.sortedBy { filteredOrder -> filteredOrder.orderTime }
             updateTotalRevenue()
         }
     }
 
-    private fun updateTotalRevenue(){
+    private fun updateTotalRevenue() {
         totalRevenue = 0.0
-        if(filteredOrders.value != null && filteredOrders.value?.size!! > 0){
-            for(order in filteredOrders.value!!){
+        if (filteredOrders.value != null && filteredOrders.value?.size!! > 0) {
+            for (order in filteredOrders.value!!) {
                 totalRevenue += order.totalPrice!!
             }
             totalOrderLabel.value = filteredOrders.value!!.size.toString()
-        }
-        else{
+        } else {
             totalOrderLabel.value = "0"
         }
         totalRevenueLabel.value = NumberFormat.getCurrencyInstance().format(totalRevenue)

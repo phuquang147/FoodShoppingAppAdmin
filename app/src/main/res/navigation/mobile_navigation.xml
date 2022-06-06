@@ -32,7 +32,11 @@
         android:id="@+id/navigation_report"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.report.ReportFragment"
         android:label="@string/title_report"
-        tools:layout="@layout/fragment_report" />
+        tools:layout="@layout/fragment_report" >
+        <action
+            android:id="@+id/action_navigation_report_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newProductFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct.NewProductFragment"
@@ -88,5 +92,13 @@
         <action
             android:id="@+id/action_editProfileFragment_to_navigation_profile"
             app:destination="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.report.orderdetail.OrderDetailFragment"
+        android:label="OrderDetailFragment" >
+        <argument
+            android:name="orderSelected"
+            app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Order" />
     </fragment>
 </navigation>

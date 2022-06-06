@@ -9,7 +9,7 @@ import java.util.*
 data class EateryAddress(
     var address: String? = "",
     var geoPointLocation: GeoPoint? = null
-): Serializable {
+) : Serializable {
     @get:Exclude
     @set:Exclude
     var location: LatLng?
@@ -19,7 +19,7 @@ data class EateryAddress(
         set(value) = setGeoPointLocation(value)
 
     @Exclude
-    private fun setGeoPointLocation(location: LatLng?){
+    private fun setGeoPointLocation(location: LatLng?) {
         location?.let {
             geoPointLocation = GeoPoint(location.latitude, location.longitude)
         }

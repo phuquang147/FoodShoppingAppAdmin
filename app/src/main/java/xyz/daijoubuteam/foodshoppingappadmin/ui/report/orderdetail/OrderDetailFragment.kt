@@ -1,7 +1,6 @@
-package xyz.daijoubuteam.foodshoppingappadmin.ui.orders.editorder
+package xyz.daijoubuteam.foodshoppingappadmin.ui.report.orderdetail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,21 +10,23 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
-import xyz.daijoubuteam.foodshoppingappadmin.MainApplication
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentEditOrderBinding
+import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentOrderDetailBinding
 import xyz.daijoubuteam.foodshoppingappadmin.model.Order
 import xyz.daijoubuteam.foodshoppingappadmin.ui.orders.adapter.ProductInOrderAdapter
+import xyz.daijoubuteam.foodshoppingappadmin.ui.orders.editorder.EditOrderFragmentArgs
+import xyz.daijoubuteam.foodshoppingappadmin.ui.orders.editorder.EditOrderViewModel
+import xyz.daijoubuteam.foodshoppingappadmin.ui.orders.editorder.EditOrderViewModelFactory
 import xyz.daijoubuteam.foodshoppingappadmin.utils.hideKeyboard
 
-class EditOrderFragment : Fragment() {
-    private lateinit var binding: FragmentEditOrderBinding
+class OrderDetailFragment : Fragment() {
+    private lateinit var binding: FragmentOrderDetailBinding
     private lateinit var orderProperty: Order
-    private val viewModel: EditOrderViewModel by lazy {
-        val application = requireNotNull(activity).application
-        orderProperty = EditOrderFragmentArgs.fromBundle(requireArguments()).orderSelected
-        val viewModelFactory = EditOrderViewModelFactory(orderProperty, application)
-        ViewModelProvider(this, viewModelFactory)[EditOrderViewModel::class.java]
+    private val viewModel: OrderDetailViewModel by lazy {
+        orderProperty = OrderDetailFragmentArgs.fromBundle(requireArguments()).orderSelected
+        val viewModelFactory = OrderDetailViewModelFactory(orderProperty)
+        ViewModelProvider(this, viewModelFactory)[OrderDetailViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -34,32 +35,14 @@ class EditOrderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_edit_order, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_order_detail, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
         hideBottomNavigationView()
         setupProductInOrderListViewAdapter()
-        setupSaveClick()
-        setupMessageObserver()
-
-        val statuses = resources.getStringArray(R.array.status_list)
-        val adapter =
-            ArrayAdapter(this.requireContext(), R.layout.status_drop_down_layout, statuses)
-        binding.statusDropDown.setAdapter(adapter)
-        binding.statusDropDown.threshold = 100
 
         return binding.root
-    }
-
-    private fun setupMessageObserver() {
-        viewModel.message.observe(viewLifecycleOwner) {
-            if (!it.isNullOrBlank()) {
-                hideKeyboard()
-                Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
-                viewModel.onShowMessageComplete()
-            }
-        }
     }
 
     private fun setupProductInOrderListViewAdapter() {
@@ -82,11 +65,5 @@ class EditOrderFragment : Fragment() {
         super.onDestroy()
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
         navBar.visibility = View.VISIBLE
-    }
-
-    private fun setupSaveClick() {
-        binding.btnSave.setOnClickListener {
-            viewModel.updateStatus()
-        }
     }
 }

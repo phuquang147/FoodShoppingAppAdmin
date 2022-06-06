@@ -13,7 +13,7 @@ import xyz.daijoubuteam.foodshoppingappadmin.model.EateryAddress
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.repositories.EateryRepository
 
-class EditProfileViewModel() : ViewModel(){
+class EditProfileViewModel() : ViewModel() {
     private val eateryRepository = EateryRepository()
     val eatery = MutableLiveData<Eatery>()
     var originalEatery: Eatery?
@@ -24,14 +24,17 @@ class EditProfileViewModel() : ViewModel(){
     init {
         eatery.value = MainApplication.eatery.value?.copy()
         originalEatery = MainApplication.eatery.value?.copy()
-        originalEatery?.addressEatery = EateryAddress(eatery.value?.addressEatery?.address, eatery.value?.addressEatery?.geoPointLocation)
+        originalEatery?.addressEatery = EateryAddress(
+            eatery.value?.addressEatery?.address,
+            eatery.value?.addressEatery?.geoPointLocation
+        )
     }
 
     fun onShowMessage(msg: String?) {
         _message.value = msg
     }
 
-    fun onShowMessageComplete(){
+    fun onShowMessageComplete() {
         _message.value = ""
     }
 
@@ -52,7 +55,7 @@ class EditProfileViewModel() : ViewModel(){
         }
     }
 
-    fun updateProfileInfo() : Boolean{
+    fun updateProfileInfo(): Boolean {
         try {
             Log.i("eateryName", eatery.value?.name.toString())
             Log.i("eateryName", MainApplication.eatery.value?.id.toString())

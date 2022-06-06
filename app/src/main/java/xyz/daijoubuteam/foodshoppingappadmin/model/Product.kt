@@ -5,13 +5,13 @@ import com.google.firebase.firestore.DocumentId
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Product (
+data class Product(
     @DocumentId
-    var id: String?=null,
-    var name: String?=null,
-    var description: String?=null,
-    var oldPrice: Double ?= null,
-    var newPrice: Double?=null,
-    var img: String?=null,
-    var ingredients: ArrayList<String>?=null,
-): Parcelable
+    var id: String? = null,
+    var name: String? = null,
+    var description: String? = null,
+    var oldPrice: Double? = null,
+    var newPrice: Double? = null,
+    var img: String? = null,
+    var ingredients: ArrayList<String>? = null,
+) : Parcelable

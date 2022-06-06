@@ -10,7 +10,7 @@ import xyz.daijoubuteam.foodshoppingappadmin.model.Order
 import xyz.daijoubuteam.foodshoppingappadmin.repositories.OrderRepository
 
 class EditOrderViewModel(orderProperty: Order, app: Application) : AndroidViewModel(app) {
-    val orderRepository = OrderRepository()
+    private val orderRepository = OrderRepository()
     val selectedProperty = MutableLiveData<Order>()
     private val _message = MutableLiveData("")
     val message: LiveData<String>
@@ -21,7 +21,7 @@ class EditOrderViewModel(orderProperty: Order, app: Application) : AndroidViewMo
             orderRepository.getProductListInOrder(orderProperty).getOrNull()?.value
     }
 
-    fun updateStatus(){
+    fun updateStatus() {
         try {
             orderRepository.updateOrderStatus(
                 selectedProperty.value?.status,
@@ -33,11 +33,11 @@ class EditOrderViewModel(orderProperty: Order, app: Application) : AndroidViewMo
         }
     }
 
-    fun onShowMessage(msg: String?) {
+    private fun onShowMessage(msg: String?) {
         _message.value = msg
     }
 
-    fun onShowMessageComplete(){
+    fun onShowMessageComplete() {
         _message.value = ""
     }
 }

@@ -44,7 +44,8 @@ class EditProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit_profile, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_edit_profile, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -124,7 +125,7 @@ class EditProfileFragment : Fragment() {
                     findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
                 }
                 .setPositiveButton(resources.getString(R.string.yes)) { dialog, _ ->
-                    if(viewModel.updateProfileInfo())
+                    if (viewModel.updateProfileInfo())
                         findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
                     else dialog.cancel()
                 }
