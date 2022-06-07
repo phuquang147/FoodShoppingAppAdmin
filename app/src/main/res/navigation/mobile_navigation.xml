@@ -78,7 +78,18 @@
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.profile.editprofile.EditProfileFragment"
-        android:label="EditProfileFragment" />
+        android:label="EditProfileFragment" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_selectLocationFragment"
+            app:destination="@id/selectLocationFragment" />
+        <argument
+            android:name="eateryAddress"
+            app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.EateryAddress"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
     <fragment
         android:id="@+id/orderDetailFragment"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.report.orderdetail.OrderDetailFragment"
@@ -86,5 +97,18 @@
         <argument
             android:name="orderSelected"
             app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Order" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectLocationFragment"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.profile.editprofile.SelectLocationFragment"
+        android:label="SelectLocationFragment" >
+        <argument
+            android:name="editAddress"
+            app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.EateryAddress"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_selectLocationFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
 </navigation>

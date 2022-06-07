@@ -3,6 +3,7 @@ package xyz.daijoubuteam.foodshoppingappadmin.ui.profile.editprofile
 import android.app.ActionBar
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,8 @@ import com.canhub.cropper.options
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import xyz.daijoubuteam.foodshoppingappadmin.MainActivity
+import xyz.daijoubuteam.foodshoppingappadmin.MainApplication
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentEditProfileBinding
 import xyz.daijoubuteam.foodshoppingappadmin.utils.hideKeyboard
@@ -24,9 +27,9 @@ import xyz.daijoubuteam.foodshoppingappadmin.utils.hideKeyboard
 class EditProfileFragment : Fragment() {
     private lateinit var binding: FragmentEditProfileBinding
     private var uriContent: Uri? = null
-
     private val viewModel: EditProfileViewModel by lazy {
-        val viewModelFactory = EditProfileViewModelFactory()
+        var eateryAddress = EditProfileFragmentArgs.fromBundle(requireArguments()).eateryAddress
+        val viewModelFactory = EditProfileViewModelFactory(eateryAddress)
         ViewModelProvider(this, viewModelFactory)[EditProfileViewModel::class.java]
     }
 
@@ -50,6 +53,8 @@ class EditProfileFragment : Fragment() {
         setupBackButtonClick()
         setupOnProductImageClick()
         setupMessageObserver()
+        setupOnChangeAddressClick()
+        customHideActionbar()
 
         return binding.root
     }
@@ -97,6 +102,7 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun startCrop() {
+        Log.i("cropimage", cropImage.toString())
         cropImage.launch(
             options {
                 setGuidelines(CropImageView.Guidelines.ON)
@@ -120,22 +126,38 @@ class EditProfileFragment : Fragment() {
                     dialog.cancel()
                 }
                 .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
-                    findNavController().navigateUp()
+                    findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
                 }
                 .setPositiveButton(resources.getString(R.string.yes)) { dialog, _ ->
                     if (viewModel.updateProfileInfo())
-                        findNavController().navigateUp()
+                        findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
                     else dialog.cancel()
                 }
                 .show()
         } else {
-            findNavController().navigateUp()
+            findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
         }
     }
 
     private fun setupBackButtonClick() {
         binding.imageChevronleft.setOnClickListener {
-
+            checkForNavigate()
         }
+    }
+
+    private fun setupOnChangeAddressClick() {
+        binding.btnChangeAddress.setOnClickListener {
+            findNavController().navigate(
+                EditProfileFragmentDirections.actionEditProfileFragmentToSelectLocationFragment(
+                    MainApplication.eatery.value?.addressEatery?.copy()
+                )
+            )
+        }
+    }
+
+    private fun customHideActionbar(title: String? = null) {
+        val activity = requireActivity() as MainActivity
+        activity.supportActionBar?.hide()
+        activity.supportActionBar?.title = title ?: ""
     }
 }

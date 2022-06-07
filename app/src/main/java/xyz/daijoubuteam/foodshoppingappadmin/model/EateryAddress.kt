@@ -8,6 +8,7 @@ import java.util.*
 
 data class EateryAddress(
     var address: String? = "",
+    @Transient
     var geoPointLocation: GeoPoint? = null
 ) : Serializable {
     @get:Exclude

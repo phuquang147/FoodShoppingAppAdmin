@@ -49,7 +49,9 @@ class ProfileFragment : Fragment() {
 
     private fun setupNavigateToEditProfileFragment() {
         binding.btnProfileAndAddress.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditProfileFragment())
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditProfileFragment(
+                MainApplication.eatery.value?.addressEatery!!
+            ))
         }
     }
 

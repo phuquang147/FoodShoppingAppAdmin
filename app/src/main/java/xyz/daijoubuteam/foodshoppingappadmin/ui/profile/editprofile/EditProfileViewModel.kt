@@ -13,7 +13,7 @@ import xyz.daijoubuteam.foodshoppingappadmin.model.EateryAddress
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.repositories.EateryRepository
 
-class EditProfileViewModel() : ViewModel() {
+class EditProfileViewModel(eateryAddress: EateryAddress?) : ViewModel() {
     private val eateryRepository = EateryRepository()
     val eatery = MutableLiveData<Eatery>()
     var originalEatery: Eatery?
@@ -24,10 +24,8 @@ class EditProfileViewModel() : ViewModel() {
     init {
         eatery.value = MainApplication.eatery.value?.copy()
         originalEatery = MainApplication.eatery.value?.copy()
-        originalEatery?.addressEatery = EateryAddress(
-            eatery.value?.addressEatery?.address,
-            eatery.value?.addressEatery?.geoPointLocation
-        )
+        originalEatery?.addressEatery = MainApplication.eatery.value?.addressEatery?.copy()
+        eatery.value?.addressEatery = eateryAddress?.copy()
     }
 
     fun onShowMessage(msg: String?) {
@@ -57,8 +55,6 @@ class EditProfileViewModel() : ViewModel() {
 
     fun updateProfileInfo(): Boolean {
         try {
-            Log.i("eateryName", eatery.value?.name.toString())
-            Log.i("eateryName", MainApplication.eatery.value?.id.toString())
             if (eatery.value?.name.isNullOrEmpty() || eatery.value?.name?.isBlank() == true)
                 throw Exception("Eatery Name Is Required")
             if (eatery.value?.work_time.isNullOrEmpty() || eatery.value?.work_time?.isBlank() == true)
