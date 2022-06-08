@@ -31,7 +31,7 @@ class EateryRepository {
                     throw Exception("Wrong username")
                 }
                 val eatery = documentSnapShot.documents[0].toObject(Eatery::class.java)
-                eatery?.id = documentSnapShot.documents[0].id
+                eatery?.eateryId = documentSnapShot.documents[0].id
                 Result.success(eatery)
             }
         } catch (exception: Exception) {

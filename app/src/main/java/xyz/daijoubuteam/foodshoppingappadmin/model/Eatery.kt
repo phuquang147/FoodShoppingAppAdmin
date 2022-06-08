@@ -18,4 +18,5 @@ data class Eatery(
     var photoUrl: String? = null,
     val username: String? = null,
     val password: String? = null,
+    var eateryId: String? = null
 ) : Parcelable

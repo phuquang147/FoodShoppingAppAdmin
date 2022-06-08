@@ -75,4 +75,7 @@
     <string name="report">Report</string>
     <string name="order_detail">Order detail</string>
     <string name="change">Change</string>
+    <string name="events">Events</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="unsubscribe">Unsubscribe</string>
 </resources>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="event"
+            type="xyz.daijoubuteam.foodshoppingappadmin.model.Event" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintEventCard"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@drawable/rectangle_bg_event_item"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:elevation="6dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:shapeAppearanceOverlay="@style/topRoundedImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/constraintInfo"
+            app:imageUrl="@{event.image}"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintInfo"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAvatar"
+            android:background="@drawable/rectangle_bg_white_radius_bl_12_br_12">
+            <TextView
+                android:ellipsize="end"
+                android:gravity="start"
+                android:id="@+id/tvEventName"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_width="0dp"
+                android:singleLine="true"
+                app:layout_constraintBottom_toTopOf="@+id/tvEventContent"
+                app:layout_constraintEnd_toStartOf="@+id/btnSubscribe"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="16sp"
+                android:textColor="@color/bluegray_700"
+                android:fontFamily="@font/avenir_next_lt_pro"
+                android:textFontWeight="500"
+                android:text="@{event.name}"
+                tools:text="Cháy cùng Baemin"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/tvEventContent"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_width="0dp"
+                android:singleLine="true"
+                app:layout_constraintEnd_toStartOf="@+id/btnSubscribe"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEventName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="12dp"
+                android:textColor="@color/gray_500"
+                android:textSize="12sp"
+                android:fontFamily="@font/avenir_next_lt_pro"
+                android:textFontWeight="500"
+                android:text="@{event.content}"
+                tools:text="Thơm ngon mời bạn ăn nha"
+                tools:ignore="UnusedAttribute" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnSubscribe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:contentDescription="@string/subscribe"
+                app:srcCompat="@drawable/ic_check"
+                app:backgroundTint="@color/green_500"
+                app:tint="@null"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="12dp"
+                app:fabSize="normal"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnUnsubsribe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:contentDescription="@string/unsubscribe"
+                app:srcCompat="@drawable/ic_close"
+                app:backgroundTint="@color/red_500_cc"
+                app:tint="@null"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="12dp"
+                app:fabSize="normal" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

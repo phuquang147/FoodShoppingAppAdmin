@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
+                R.id.navigation_events,
                 R.id.navigation_products,
                 R.id.navigation_orders,
                 R.id.navigation_report,
