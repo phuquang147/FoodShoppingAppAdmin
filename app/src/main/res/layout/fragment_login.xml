@@ -80,21 +80,6 @@
                 android:text="@={viewmodel.password}"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            android:id="@+id/tvForgotPassword"
-            android:ellipsize="end"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="20dp"
-            android:singleLine="true"
-            android:text="@string/forgot_password"
-            android:textFontWeight="500"
-            android:textSize="15sp"
-            android:textColor="@color/bluegray_700"
-            android:fontFamily="@font/avenir_next_lt_pro"
-            tools:targetApi="p"
-            android:onClick="@{() -> viewmodel.onNavigateToForgetPassword()}"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignIn"
             android:ellipsize="end"
@@ -102,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:padding="20dp"
             android:singleLine="true"
             android:text="@string/btn_sign_in"

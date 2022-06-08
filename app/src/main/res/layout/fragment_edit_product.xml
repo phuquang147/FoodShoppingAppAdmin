@@ -19,7 +19,7 @@
                 android:id="@+id/tvHeader"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginVertical="24dp"
+                android:layout_marginVertical="8dp"
                 android:orientation="horizontal">
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/imageChevronleft"
@@ -44,7 +44,7 @@
                     android:text="Edit Product"
                     android:textColor="@color/gray_700"
                     android:textFontWeight="500"
-                    android:textSize="27sp"
+                    android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,6 @@
                     android:clipToPadding="false"
                     android:fillViewport="true"
                     android:orientation="vertical"
-                    android:layout_marginTop="24dp"
                     android:layout_marginBottom="8dp"
                     app:layout_constraintVertical_bias="0.0">
                     <LinearLayout
@@ -71,7 +70,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/orange_400"
-                            android:textSize="30sp"
+                            android:textSize="22sp"
                             android:textStyle="bold"
                             android:text="@={viewModel.selectedProperty.name}"
                             android:backgroundTint="@color/orange_400"

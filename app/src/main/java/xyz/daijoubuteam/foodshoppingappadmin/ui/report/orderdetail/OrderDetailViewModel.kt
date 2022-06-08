@@ -15,6 +15,6 @@ class OrderDetailViewModel(orderProperty: Order) : ViewModel() {
     init {
         selectedProperty.value =
             orderRepository.getProductListInOrder(orderProperty).getOrNull()?.value
-        total = NumberFormat.getCurrencyInstance().format(selectedProperty.value?.totalPrice)
+        total = selectedProperty.value?.totalPrice.toString()
     }
 }
