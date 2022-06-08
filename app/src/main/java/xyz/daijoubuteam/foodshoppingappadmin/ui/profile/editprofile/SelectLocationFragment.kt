@@ -26,6 +26,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import xyz.daijoubuteam.foodshoppingappadmin.MainActivity
 import xyz.daijoubuteam.foodshoppingappadmin.R
@@ -89,6 +90,8 @@ class SelectLocationFragment() : Fragment(), OnMapReadyCallback {
 
         // Inflate the layout for this fragment
         binding = FragmentSelectLocationBinding.inflate(inflater, container, false)
+        hideBottomNavigationView()
+
         return binding.root
     }
 
@@ -125,6 +128,10 @@ class SelectLocationFragment() : Fragment(), OnMapReadyCallback {
         }
     }
 
+    private fun hideBottomNavigationView() {
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
+        navBar.visibility = View.GONE
+    }
 
     @SuppressLint("MissingPermission")
     private fun setupMap() {
