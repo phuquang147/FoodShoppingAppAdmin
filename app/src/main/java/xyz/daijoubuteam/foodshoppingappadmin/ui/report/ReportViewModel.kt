@@ -20,10 +20,8 @@ class ReportViewModel : ViewModel() {
     val year = MutableLiveData(calendar.get(Calendar.YEAR).toString())
     private var wholeOrderList = MutableLiveData<List<Order>>(null)
     val mediatorLiveData = MediatorLiveData<List<Order>>()
-    var totalRevenue: Double = 0.0
-    var totalRevenueLabel = MutableLiveData("")
+    var totalRevenue = MutableLiveData(0.0)
     var totalOrderLabel = MutableLiveData("")
-
     val filteredOrders = MutableLiveData<List<Order>>()
 
     init {
@@ -60,15 +58,14 @@ class ReportViewModel : ViewModel() {
     }
 
     private fun updateTotalRevenue() {
-        totalRevenue = 0.0
+        totalRevenue.value = 0.0
         if (filteredOrders.value != null && filteredOrders.value?.size!! > 0) {
             for (order in filteredOrders.value!!) {
-                totalRevenue += order.totalPrice!!
+                totalRevenue.value = totalRevenue.value?.plus(order.totalPrice!!)
             }
             totalOrderLabel.value = filteredOrders.value!!.size.toString()
         } else {
             totalOrderLabel.value = "0"
         }
-        totalRevenueLabel.value = NumberFormat.getCurrencyInstance().format(totalRevenue)
     }
 }
