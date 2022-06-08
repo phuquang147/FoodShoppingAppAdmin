@@ -111,7 +111,11 @@
             android:id="@+id/action_selectLocationFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
     </fragment>
+    <fragment
         android:id="@+id/navigation_events"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.events.EventsFragment"
+        android:label="EventsFragment" />
+    android:id="@+id/navigation_events"
         android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.events.EventsFragment"
         android:label="EventsFragment" />
 </navigation>
