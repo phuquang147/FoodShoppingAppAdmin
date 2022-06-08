@@ -17,4 +17,9 @@
     <style name="circular_image">
         <item name="cornerSize">50%</item>
     </style>
+    <style name="topRoundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">12dp</item>
+        <item name="cornerSizeTopRight">12dp</item>
+    </style>
 </resources>
