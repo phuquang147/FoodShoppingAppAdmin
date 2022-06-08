@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_products">
+    app:startDestination="@+id/navigation_events">
 
     <fragment
         android:id="@+id/navigation_products"
@@ -87,4 +87,8 @@
             android:name="orderSelected"
             app:argType="xyz.daijoubuteam.foodshoppingappadmin.model.Order" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_events"
+        android:name="xyz.daijoubuteam.foodshoppingappadmin.ui.events.EventsFragment"
+        android:label="EventsFragment" />
 </navigation>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_events"
+        android:icon="@drawable/ic_event"
+        android:title="@string/events" />
 
     <item
         android:id="@+id/navigation_products"
@@ -8,7 +12,7 @@
 
     <item
         android:id="@+id/navigation_orders"
-        android:icon="@drawable/ic_order"
+        android:icon="@drawable/ic_orders"
         android:title="@string/title_order" />
 
     <item
