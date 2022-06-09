@@ -32,6 +32,7 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
 
     init {
         selectedProperty.value = productProperty.copy()
+        selectedProperty.value!!.ingredients = ArrayList(productProperty.ingredients)
         originalProduct = productProperty.copy()
         originalProduct.ingredients = ArrayList(selectedProperty.value!!.ingredients)
         price.value = selectedProperty.value?.price.toString()
