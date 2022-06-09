@@ -126,16 +126,16 @@ class EditProfileFragment : Fragment() {
                     dialog.cancel()
                 }
                 .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
-                    findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
+                    findNavController().navigateUp()
                 }
                 .setPositiveButton(resources.getString(R.string.yes)) { dialog, _ ->
                     if (viewModel.updateProfileInfo())
-                        findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
+                        findNavController().navigateUp()
                     else dialog.cancel()
                 }
                 .show()
         } else {
-            findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToNavigationProfile())
+            findNavController().navigateUp()
         }
     }
 

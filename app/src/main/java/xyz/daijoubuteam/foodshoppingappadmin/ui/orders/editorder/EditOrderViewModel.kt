@@ -18,8 +18,7 @@ class EditOrderViewModel(orderProperty: Order, app: Application) : AndroidViewMo
     var originalStatus = ""
 
     init {
-        selectedProperty.value =
-            orderRepository.getProductListInOrder(orderProperty).getOrNull()?.value
+        selectedProperty.value = orderProperty
         originalStatus = selectedProperty.value?.status.toString()
     }
 

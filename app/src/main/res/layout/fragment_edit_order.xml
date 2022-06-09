@@ -57,11 +57,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:textSize="16sp"
-            android:textColor="@color/bluegray_700"
+            android:textSize="18sp"
+            android:textColor="@color/orange_400"
             android:fontFamily="@font/avenir_next_lt_pro"
             android:textFontWeight="600"
-            android:text="@{viewModel.selectedProperty.customerName}"
+            android:text="@{viewModel.selectedProperty.shippingAddress.name}"
             tools:text="Đỗ Phú Quang"
             tools:ignore="HardcodedText,UnusedAttribute" />
         <TextView
@@ -98,6 +98,7 @@
             android:textSize="13sp"
             android:fontFamily="@font/avenir_next_lt_pro"
             android:textFontWeight="500"
+            android:text="@{viewModel.selectedProperty.shippingAddress.address}"
             tools:text="Địa chỉ: KTX Khu A, ĐHQG TP.HCM"
             tools:ignore="UnusedAttribute" />
         <androidx.recyclerview.widget.RecyclerView

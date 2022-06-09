@@ -10,6 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentReportBinding
 import xyz.daijoubuteam.foodshoppingappadmin.ui.orders.adapter.OrderAdapter
@@ -35,6 +38,7 @@ class ReportFragment : Fragment() {
         setupTotalOrderListViewAdapter()
         setupMonthAndYearDropDownMenu()
         setupOrderListViewAdapter()
+        addOrderRecyclerDivider()
         return binding.root
     }
 
@@ -59,6 +63,16 @@ class ReportFragment : Fragment() {
             if (it != null) {
                 adapter.submitList(it)
             }
+        }
+    }
+
+    private fun addOrderRecyclerDivider() {
+        val layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false).apply {
+            binding.ordersRecyclerView.layoutManager = this
+        }
+
+        DividerItemDecoration(this.context, layoutManager.orientation).apply {
+            binding.ordersRecyclerView.addItemDecoration(this)
         }
     }
 
