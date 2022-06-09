@@ -1,32 +1,21 @@
 package xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct
 
-//import com.canhub.cropper.CropImageContract
-//import com.canhub.cropper.CropImageView
-//import com.canhub.cropper.options
-import android.annotation.SuppressLint
-import android.app.ActionBar
-import android.app.Activity
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import xyz.daijoubuteam.foodshoppingappadmin.MainActivity
-import xyz.daijoubuteam.foodshoppingappadmin.MainApplication
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentNewProductBinding
-import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.ui.products.adapter.IngredientAdapter
 import xyz.daijoubuteam.foodshoppingappadmin.utils.hideKeyboard
 
@@ -56,6 +45,7 @@ class NewProductFragment : Fragment() {
         setupMessageSnackbar()
         setupIngredientListViewAdapter()
         setupOnProductImageClick()
+        setupImageObserver()
         val activity = requireActivity() as MainActivity
         activity.setAppBarTitle("New Product")
 
@@ -83,17 +73,22 @@ class NewProductFragment : Fragment() {
         }
     }
 
-    private fun customActionbar(title: String) {
-        val activity = requireActivity() as MainActivity
-        activity.setAppBarTitle(title)
-    }
-
     private fun setupMessageSnackbar() {
         viewmodel.message.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty() && it.isNotBlank()) {
                 hideKeyboard()
                 Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
                 viewmodel.onShowMessageComplete()
+            }
+        }
+    }
+
+    private fun setupImageObserver() {
+        viewmodel.image.observe(viewLifecycleOwner) {
+            if (it == "") {
+                binding.cardNewProductAvatar.visibility = View.GONE
+            } else {
+                binding.cardNewProductAvatar.visibility = View.VISIBLE
             }
         }
     }
@@ -120,7 +115,6 @@ class NewProductFragment : Fragment() {
         if (result.isSuccessful) {
             uriContent = result.uriContent
             binding.imgDescription.setImageURI(uriContent)
-            binding.cardNewProductAvatar.layoutParams.width = ActionBar.LayoutParams.MATCH_PARENT
             if (uriContent != null) {
                 viewmodel.uploadProductImage(uriContent!!)
             }
