@@ -31,7 +31,7 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
     var originalProduct: Product
 
     init {
-        selectedProperty.value = productProperty
+        selectedProperty.value = productProperty.copy()
         originalProduct = productProperty.copy()
         originalProduct.ingredients = ArrayList(selectedProperty.value!!.ingredients)
         price.value = selectedProperty.value?.price.toString()
@@ -66,8 +66,8 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
         }
     }
 
-    fun onResetIngredientList() {
-        selectedProperty.value!!.ingredients = ArrayList(originalProduct.ingredients)
+    fun onResetProductChanges() {
+        selectedProperty.value = originalProduct.copy()
     }
 
     fun uploadProductImage(uri: Uri) {

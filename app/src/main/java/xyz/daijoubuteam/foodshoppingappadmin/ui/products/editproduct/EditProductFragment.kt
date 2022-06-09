@@ -187,7 +187,7 @@ class EditProductFragment : Fragment() {
                     dialog.cancel()
                 }
                 .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
-                    viewModel.onResetIngredientList()
+                    viewModel.onResetProductChanges()
                     findNavController().navigateUp()
                 }
                 .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
