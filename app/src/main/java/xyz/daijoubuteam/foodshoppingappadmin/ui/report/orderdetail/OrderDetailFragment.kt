@@ -40,8 +40,7 @@ class OrderDetailFragment : Fragment() {
         hideBottomNavigationView()
         setupProductInOrderListViewAdapter()
         addProductInOrderRecyclerDivider()
-        setupBackButtonClick()
-        
+
         val activity = requireActivity() as MainActivity
         activity.setAppBarTitle("Order Detail")
 

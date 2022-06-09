@@ -27,6 +27,9 @@
             android:textFontWeight="600"
             android:text="@{viewModel.selectedProperty.shippingAddress.name}"
             tools:text="Đỗ Phú Quang"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="HardcodedText,UnusedAttribute" />
         <TextView
             android:id="@+id/tvOrderTime"
@@ -61,6 +64,9 @@
             android:textFontWeight="500"
             android:text="@{viewModel.selectedProperty.shippingAddress.address}"
             tools:text="Địa chỉ: KTX Khu A, ĐHQG TP.HCM"
+            app:layout_constraintTop_toBottomOf="@id/tvOrderTime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="UnusedAttribute" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productsInOrderRecyclerView"
