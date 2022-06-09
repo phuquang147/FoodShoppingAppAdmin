@@ -57,6 +57,9 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.homeToolbar, navController, appBarConfiguration)
         navController.addOnDestinationChangedListener { controller: NavController?, destination: NavDestination, arguments: Bundle? ->
             binding.homeToolbar.setNavigationIcon(R.drawable.img_chevronleft)
+            binding.homeToolbar.setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
