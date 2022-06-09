@@ -1,7 +1,6 @@
 package xyz.daijoubuteam.foodshoppingappadmin.authentication.login
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +30,6 @@ class LoginFragment : Fragment() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-//        setNavigateToForgetPasswordObserver()
         setLoginResultObserver()
         setupSoftKeyboardUI()
         setupMessageObserver()
@@ -48,15 +46,6 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
-//    private fun setNavigateToForgetPasswordObserver() {
-//        viewmodel.navigateToForgetPassword.observe(viewLifecycleOwner){
-//            if(it){
-//                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment())
-//                viewmodel.onNavigateToForgetPasswordComplete()
-//            }
-//        }
-//    }
 
     private fun setLoginResultObserver() {
         viewModel.loginResult.observe(viewLifecycleOwner) {
@@ -78,12 +67,12 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupSoftKeyboardUI() {
-        binding.etUsername.setOnFocusChangeListener { view, hasFocus ->
+        binding.etUsername.setOnFocusChangeListener { _, _ ->
             if (!shouldShowSoftKeyboard()) {
                 hideKeyboard()
             }
         }
-        binding.etPassword.setOnFocusChangeListener { view, hasFocus ->
+        binding.etPassword.setOnFocusChangeListener { _, _ ->
             if (!shouldShowSoftKeyboard()) {
                 hideKeyboard()
             }

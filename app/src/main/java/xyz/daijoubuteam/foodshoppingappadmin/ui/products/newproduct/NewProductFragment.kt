@@ -21,6 +21,7 @@ import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
+import xyz.daijoubuteam.foodshoppingappadmin.MainActivity
 import xyz.daijoubuteam.foodshoppingappadmin.MainApplication
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentNewProductBinding
@@ -53,7 +54,8 @@ class NewProductFragment : Fragment() {
         setupMessageSnackbar()
         setupIngredientListViewAdapter()
         setupOnProductImageClick()
-        setupBackClick()
+        val activity = requireActivity() as MainActivity
+        activity.setAppBarTitle("New Product")
 
         return binding.root
     }
@@ -70,11 +72,14 @@ class NewProductFragment : Fragment() {
             if (it != null) {
                 adapter.submitList(null)
                 adapter.submitList(it)
-                Log.i("it", it.size.toString())
             }
         }
     }
 
+    private fun customActionbar(title: String) {
+        val activity = requireActivity() as MainActivity
+        activity.setAppBarTitle(title)
+    }
 
     private fun setupMessageSnackbar() {
         viewmodel.message.observe(viewLifecycleOwner) {
@@ -124,11 +129,5 @@ class NewProductFragment : Fragment() {
                 setFixAspectRatio(true)
             }
         )
-    }
-
-    private fun setupBackClick() {
-        binding.imageChevronleft.setOnClickListener {
-            findNavController().navigateUp()
-        }
     }
 }

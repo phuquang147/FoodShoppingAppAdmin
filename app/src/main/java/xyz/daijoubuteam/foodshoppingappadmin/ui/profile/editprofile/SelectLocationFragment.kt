@@ -53,13 +53,8 @@ class SelectLocationFragment() : Fragment(), OnMapReadyCallback {
 
     override fun onStart() {
         super.onStart()
-        showActionBar()
-    }
-
-    private fun showActionBar(){
         val activity = requireActivity() as MainActivity
-        activity.supportActionBar?.show()
-        activity.supportActionBar?.title = "Choose address"
+        activity.setAppBarTitle("Eatery Information")
     }
 
     private fun customHideActionbar(title: String? = null) {

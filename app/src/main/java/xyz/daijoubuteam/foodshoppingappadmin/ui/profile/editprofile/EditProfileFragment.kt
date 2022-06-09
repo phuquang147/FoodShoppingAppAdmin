@@ -50,11 +50,12 @@ class EditProfileFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        setupBackButtonClick()
         setupOnProductImageClick()
         setupMessageObserver()
         setupOnChangeAddressClick()
-        customHideActionbar()
+        requireActivity()
+        val activity = requireActivity() as MainActivity
+        activity.setAppBarTitle("Eatery Information")
 
         return binding.root
     }
@@ -139,12 +140,6 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    private fun setupBackButtonClick() {
-        binding.imageChevronleft.setOnClickListener {
-            checkForNavigate()
-        }
-    }
-
     private fun setupOnChangeAddressClick() {
         binding.btnChangeAddress.setOnClickListener {
             findNavController().navigate(
@@ -153,11 +148,5 @@ class EditProfileFragment : Fragment() {
                 )
             )
         }
-    }
-
-    private fun customHideActionbar(title: String? = null) {
-        val activity = requireActivity() as MainActivity
-        activity.supportActionBar?.hide()
-        activity.supportActionBar?.title = title ?: ""
     }
 }

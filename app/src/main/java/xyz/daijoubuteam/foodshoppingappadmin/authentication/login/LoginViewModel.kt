@@ -12,26 +12,15 @@ import xyz.daijoubuteam.foodshoppingappadmin.repositories.EateryRepository
 class LoginViewModel : ViewModel() {
     private val eateryRepository = EateryRepository()
     private val _loginResult = MutableLiveData<Result<Eatery?>?>(null)
-    private val _navigateToForgetPassword = MutableLiveData(false)
     private val _message = MutableLiveData("")
 
     val loginResult: LiveData<Result<Eatery?>?>
         get() = _loginResult
-    val navigateToForgetPassword: LiveData<Boolean>
-        get() = _navigateToForgetPassword
     val message: LiveData<String>
         get() = _message
 
     val username = MutableLiveData("")
     val password = MutableLiveData("")
-
-    fun onNavigateToForgetPassword() {
-        _navigateToForgetPassword.value = true
-    }
-
-    fun onNavigateToForgetPasswordComplete() {
-        _navigateToForgetPassword.value = false
-    }
 
     fun onLoginWithUsernameAndPassword() {
         if (username.value.isNullOrEmpty() || password.value.isNullOrEmpty()) {

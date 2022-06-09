@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import xyz.daijoubuteam.foodshoppingappadmin.MainActivity
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentOrdersBinding
 import xyz.daijoubuteam.foodshoppingappadmin.model.Order
@@ -34,6 +35,7 @@ class OrdersFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_orders, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
+        customHideActionbar()
         addOrderRecyclerDivider()
         setupOrderListViewAdapter()
 
@@ -53,6 +55,12 @@ class OrdersFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
+    }
+
+    private fun customHideActionbar(title: String? = null) {
+        val activity = requireActivity() as MainActivity
+        activity.supportActionBar?.hide()
+        activity.supportActionBar?.title = title ?: ""
     }
 
     private fun addOrderRecyclerDivider() {

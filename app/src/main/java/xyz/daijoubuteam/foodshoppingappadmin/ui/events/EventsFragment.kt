@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import xyz.daijoubuteam.foodshoppingappadmin.MainActivity
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentEventsBinding
 import xyz.daijoubuteam.foodshoppingappadmin.ui.events.adapter.EventAdapter
@@ -24,6 +25,11 @@ class EventsFragment : Fragment() {
         ViewModelProvider(this, viewModelFactory)[EventsViewModel::class.java]
     }
 
+    override fun onStart() {
+        super.onStart()
+        (requireActivity() as? AppCompatActivity)?.supportActionBar?.hide()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,7 +37,7 @@ class EventsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_events, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        hideActionBar()
+        customHideActionbar()
         setupEventListViewAdapter()
         setupMessageObserver()
         return binding.root
@@ -57,8 +63,10 @@ class EventsFragment : Fragment() {
         }
     }
 
-    private fun hideActionBar() {
-        (requireActivity() as? AppCompatActivity)?.supportActionBar?.hide()
+    private fun customHideActionbar(title: String? = null) {
+        val activity = requireActivity() as? AppCompatActivity
+        activity?.supportActionBar?.hide()
+        activity?.supportActionBar?.title = title ?: ""
     }
 
     private fun setupMessageObserver() {

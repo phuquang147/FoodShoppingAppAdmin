@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import xyz.daijoubuteam.foodshoppingappadmin.MainActivity
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentOrderDetailBinding
 import xyz.daijoubuteam.foodshoppingappadmin.model.Order
@@ -36,7 +35,8 @@ class OrderDetailFragment : Fragment() {
 
         hideBottomNavigationView()
         setupProductInOrderListViewAdapter()
-        setupBackButtonClick()
+        val activity = requireActivity() as MainActivity
+        activity.setAppBarTitle("Order Detail")
 
         return binding.root
     }
@@ -55,12 +55,6 @@ class OrderDetailFragment : Fragment() {
     private fun hideBottomNavigationView() {
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
         navBar.visibility = View.GONE
-    }
-
-    private fun setupBackButtonClick() {
-        binding.imageChevronleft.setOnClickListener {
-            findNavController().navigateUp()
-        }
     }
 
     override fun onResume() {

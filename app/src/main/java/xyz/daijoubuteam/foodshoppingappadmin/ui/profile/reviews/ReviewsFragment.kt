@@ -44,7 +44,6 @@ class ReviewsFragment : Fragment() {
         hideActionBar()
         setupReviewListViewAdapter()
         addReviewRecyclerDivider()
-        setupNavigateToProfileFragment()
         return binding.root
     }
 
@@ -69,12 +68,6 @@ class ReviewsFragment : Fragment() {
                 adapter?.submitList(null)
                 adapter?.submitList(it)
             }
-        }
-    }
-
-    private fun setupNavigateToProfileFragment() {
-        binding.imageChevronleft.setOnClickListener {
-            findNavController().navigateUp()
         }
     }
 

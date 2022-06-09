@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import xyz.daijoubuteam.foodshoppingappadmin.MainActivity
 import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentEditOrderBinding
 import xyz.daijoubuteam.foodshoppingappadmin.model.Order
@@ -52,7 +53,9 @@ class EditOrderFragment : Fragment() {
         setupProductInOrderListViewAdapter()
         setupSaveClick()
         setupMessageObserver()
-        setupBackButtonClick()
+
+        val activity = requireActivity() as MainActivity
+        activity.setAppBarTitle("Order Detail")
 
         val statuses = resources.getStringArray(R.array.status_list)
         val adapter =
@@ -125,12 +128,6 @@ class EditOrderFragment : Fragment() {
                 .show()
         } else {
             findNavController().navigateUp()
-        }
-    }
-
-    private fun setupBackButtonClick() {
-        binding.imageChevronleft.setOnClickListener {
-            checkForNavigate()
         }
     }
 }

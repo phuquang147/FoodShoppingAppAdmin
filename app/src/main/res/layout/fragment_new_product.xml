@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct.NewProductViewModel" />
@@ -13,68 +14,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_A700">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvHeader"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginVertical="8dp"
-            android:orientation="horizontal">
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/imageChevronleft"
-                app:backgroundTint="#4DFFFFFF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:borderWidth="0dp"
-                app:elevation="0dp"
-                app:pressedTranslationZ="0dp"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/img_chevronleft"
-                app:layout_constraintBottom_toBottomOf="@id/new_product"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/new_product"
-                tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/new_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/new_product"
-                android:textColor="@color/gray_700"
-                android:textFontWeight="500"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.core.widget.NestedScrollView
             android:id="@+id/productScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvHeader"
-            app:layout_constraintBottom_toTopOf="@id/btn_confirm"
+            android:layout_marginBottom="10dp"
             android:clipToPadding="false"
             android:fillViewport="true"
             android:orientation="vertical"
-            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_confirm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/product_name"
-                    app:hintTextColor="@color/lightOrange"
-                    app:boxStrokeColor="@color/lightOrange"
-                    android:layout_marginTop="12dp"
                     android:layout_marginHorizontal="24dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/product_name"
+                    app:boxStrokeColor="@color/lightOrange"
+                    app:hintTextColor="@color/lightOrange">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etProductName"
@@ -91,15 +58,16 @@
                         tools:targetApi="p" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/description"
-                    app:hintTextColor="@color/lightOrange"
-                    app:boxStrokeColor="@color/lightOrange"
-                    android:layout_marginTop="12dp"
                     android:layout_marginHorizontal="24dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/description"
+                    app:boxStrokeColor="@color/lightOrange"
+                    app:hintTextColor="@color/lightOrange">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etDescription"
@@ -116,15 +84,16 @@
                         tools:targetApi="p" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/price"
-                    app:hintTextColor="@color/lightOrange"
-                    app:boxStrokeColor="@color/lightOrange"
-                    android:layout_marginTop="12dp"
                     android:layout_marginHorizontal="24dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/price"
+                    app:boxStrokeColor="@color/lightOrange"
+                    app:hintTextColor="@color/lightOrange">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPrice"
@@ -141,126 +110,136 @@
                         tools:ignore="RtlSymmetry"
                         tools:targetApi="p" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <EditText
                         android:id="@+id/etIngredient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_marginVertical="12dp"
                         android:layout_marginStart="24dp"
                         android:hint="Enter Ingredient"
                         android:text="@={viewmodel.ingredient}"
-                        tools:ignore="HardcodedText"/>
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_add_ingredient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="@id/etIngredient"
-                        app:layout_constraintBottom_toBottomOf="@id/etIngredient"
-                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginEnd="24dp"
+                        android:ellipsize="end"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
-                        app:backgroundTint="@color/white"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:textAllCaps="true"
                         android:onClick="@{() -> viewmodel.onAddIngredient()}"
+                        android:singleLine="true"
+                        android:text="@string/add"
+                        android:textAllCaps="true"
                         android:textColor="@color/orange_400"
                         android:textFontWeight="400"
                         android:textSize="16sp"
-                        tools:ignore="UnusedAttribute"
-                        android:text="@string/add" />
+                        app:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@id/etIngredient"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/etIngredient"
+                        tools:ignore="UnusedAttribute" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvIngredients"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
                     android:nestedScrollingEnabled="false"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_ingredient"
                     tools:itemCount="6"
-                    android:layout_marginHorizontal="24dp"/>
+                    tools:listitem="@layout/item_ingredient" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintImgDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
+
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardNewProductAvatar"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
+                            android:layout_marginHorizontal="24dp"
+                            android:layout_marginVertical="10dp"
+                            app:cardCornerRadius="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintDimensionRatio="1:1"
-                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            android:layout_marginVertical="10dp"
-                            android:layout_marginHorizontal="24dp"
-                            app:cardCornerRadius="8dp">
+                            app:layout_constraintTop_toTopOf="parent">
+
                             <ImageView
                                 android:id="@+id/imgDescription"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                app:imageUrl="@{viewmodel.image}"/>
+                                app:imageUrl="@{viewmodel.image}" />
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_select_image"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="6dp"
-                        android:layout_marginHorizontal="24dp"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        app:layout_constraintTop_toBottomOf="@id/constraintImgDescription"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         android:backgroundTint="@color/deep_orange_A200"
                         android:ellipsize="end"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
                         android:singleLine="true"
+                        android:text="select image"
                         android:textAllCaps="true"
                         android:textColor="@color/white_A700"
                         android:textFontWeight="400"
                         android:textSize="16sp"
-                        tools:ignore="UnusedAttribute"
-                        android:text="select image" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/constraintImgDescription"
+                        tools:ignore="UnusedAttribute" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_confirm"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="10dp"
             android:layout_marginEnd="24dp"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/blue_A200"
             android:ellipsize="end"
-            android:singleLine="true"
-            android:textAllCaps="true"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:onClick="@{() -> viewmodel.onAddProduct()}"
+            android:singleLine="true"
+            android:text="confirm"
+            android:textAllCaps="true"
             android:textColor="@color/white_A700"
             android:textFontWeight="400"
             android:textSize="16sp"
-            tools:ignore="UnusedAttribute"
-            android:text="confirm" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="UnusedAttribute" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
