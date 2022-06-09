@@ -38,6 +38,7 @@ class ReportViewModel : ViewModel() {
             filteredOrders.value = it.filter { order ->
                 (order.orderTime?.toDate()?.month?.plus(1)).toString() == month.value
                         && (order.orderTime?.toDate()?.year?.plus(1900)).toString() == year.value
+                        && order.status == "Completed"
             }.sortedBy { filteredOrder -> filteredOrder.orderTime }
             updateTotalRevenue()
         }
@@ -45,6 +46,7 @@ class ReportViewModel : ViewModel() {
             filteredOrders.value = wholeOrderList.value?.filter { order ->
                 (order.orderTime?.toDate()?.month?.plus(1)).toString() == it
                         && (order.orderTime?.toDate()?.year?.plus(1900)).toString() == year.value
+                        && order.status == "Completed"
             }?.sortedBy { filteredOrder -> filteredOrder.orderTime }
             updateTotalRevenue()
         }
@@ -52,6 +54,7 @@ class ReportViewModel : ViewModel() {
             filteredOrders.value = wholeOrderList.value?.filter { order ->
                 (order.orderTime?.toDate()?.month?.plus(1)).toString() == month.value
                         && (order.orderTime?.toDate()?.year?.plus(1900)).toString() == it
+                        && order.status == "Completed"
             }?.sortedBy { filteredOrder -> filteredOrder.orderTime }
             updateTotalRevenue()
         }
