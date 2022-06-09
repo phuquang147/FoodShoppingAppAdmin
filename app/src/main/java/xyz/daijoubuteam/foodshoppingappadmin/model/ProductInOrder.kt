@@ -11,10 +11,11 @@ import kotlinx.android.parcel.RawValue
 @Parcelize
 data class ProductInOrder(
     @DocumentId
-    var id: String? = null,
+    val id: String? = null,
     val price: Double? = null,
     val productId: @RawValue DocumentReference? = null,
     val quantity: Int? = null,
-    @Exclude
-    var product: @RawValue LiveData<Product>? = null
+    val productImg: String? = null,
+    val productName: String? = null,
+    val productPrice: Double? = null,
 ) : Parcelable

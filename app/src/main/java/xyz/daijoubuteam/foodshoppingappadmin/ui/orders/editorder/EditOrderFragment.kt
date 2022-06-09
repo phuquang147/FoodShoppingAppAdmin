@@ -11,6 +11,9 @@ import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -51,6 +54,7 @@ class EditOrderFragment : Fragment() {
 
         hideBottomNavigationView()
         setupProductInOrderListViewAdapter()
+        addProductInOrderRecyclerDivider()
         setupSaveClick()
         setupMessageObserver()
 
@@ -86,6 +90,17 @@ class EditOrderFragment : Fragment() {
             }
         }
     }
+
+    private fun addProductInOrderRecyclerDivider() {
+        val layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false).apply {
+            binding.productsInOrderRecyclerView.layoutManager = this
+        }
+
+        DividerItemDecoration(this.context, layoutManager.orientation).apply {
+            binding.productsInOrderRecyclerView.addItemDecoration(this)
+        }
+    }
+
 
     private fun hideBottomNavigationView() {
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)

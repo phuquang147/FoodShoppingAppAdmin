@@ -21,19 +21,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:ellipsize="end"
+            android:textSize="18sp"
+            android:textColor="@color/orange_400"
             android:fontFamily="@font/avenir_next_lt_pro"
-            android:singleLine="true"
-            android:text="@{viewModel.selectedProperty.customerName}"
-            android:textColor="@color/bluegray_700"
             android:textFontWeight="600"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText,UnusedAttribute"
-            tools:text="Đỗ Phú Quang" />
-
+            android:text="@{viewModel.selectedProperty.shippingAddress.name}"
+            tools:text="Đỗ Phú Quang"
+            tools:ignore="HardcodedText,UnusedAttribute" />
         <TextView
             android:id="@+id/tvOrderTime"
             android:layout_width="0dp"
@@ -65,13 +59,9 @@
             android:singleLine="true"
             android:textColor="@color/gray_500"
             android:textFontWeight="500"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvOrderTime"
-            tools:ignore="UnusedAttribute"
-            tools:text="Địa chỉ: KTX Khu A, ĐHQG TP.HCM" />
-
+            android:text="@{viewModel.selectedProperty.shippingAddress.address}"
+            tools:text="Địa chỉ: KTX Khu A, ĐHQG TP.HCM"
+            tools:ignore="UnusedAttribute" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productsInOrderRecyclerView"
             android:layout_width="match_parent"

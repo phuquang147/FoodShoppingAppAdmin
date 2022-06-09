@@ -18,8 +18,7 @@ data class Order(
     val orderTime: @RawValue Timestamp? = null,
     val totalPrice: Double? = null,
     var status: String? = null,
-    @Exclude
-    var customerName: @RawValue LiveData<String>? = null,
+    val shippingAddress: ShippingAddress ?= null,
     @Exclude
     var orderPath: @RawValue DocumentReference? = null
 ) : Parcelable

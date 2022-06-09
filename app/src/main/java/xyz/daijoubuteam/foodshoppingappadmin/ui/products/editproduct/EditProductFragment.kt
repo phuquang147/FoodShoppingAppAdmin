@@ -15,6 +15,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
@@ -61,6 +64,7 @@ class EditProductFragment : Fragment() {
 
         setupMessageObserver()
         setupIngredientListViewAdapter()
+        addIngredientRecyclerDivider()
         setupOnProductImageClick()
         setupOnDeleteProductClick()
         val activity = requireActivity() as MainActivity
@@ -79,9 +83,25 @@ class EditProductFragment : Fragment() {
         adapter.submitList(viewModel.selectedProperty.value?.ingredients)
         viewModel.selectedProperty.observe(viewLifecycleOwner) {
             if (it != null) {
-                adapter.submitList(null)
                 adapter.submitList(it.ingredients)
             }
+        }
+
+        viewModel.notify.observe(viewLifecycleOwner) {
+            if (it > -1) {
+                adapter.notifyItemInserted(it)
+                viewModel.onNotifySuccess()
+            }
+        }
+    }
+
+    private fun addIngredientRecyclerDivider() {
+        val layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false).apply {
+            binding.rvIngredients.layoutManager = this
+        }
+
+        DividerItemDecoration(this.context, layoutManager.orientation).apply {
+            binding.rvIngredients.addItemDecoration(this)
         }
     }
 
@@ -156,14 +176,10 @@ class EditProductFragment : Fragment() {
     private fun checkForNavigate() {
         if (viewModel.originalProduct.name != viewModel.selectedProperty.value?.name
             || viewModel.originalProduct.description != viewModel.selectedProperty.value?.description
-            || viewModel.originalProduct.newPrice != viewModel.newPrice.value.toString()
-                .toDoubleOrNull()
-            || viewModel.originalProduct.oldPrice != viewModel.oldPrice.value.toString()
-                .toDoubleOrNull()
+            || viewModel.originalProduct.price != viewModel.price.value.toString().toDoubleOrNull()
             || viewModel.originalProduct.ingredients != viewModel.selectedProperty.value?.ingredients
             || viewModel.originalProduct.img != viewModel.selectedProperty.value?.img
         ) {
-
             MaterialAlertDialogBuilder(this.requireContext())
                 .setTitle(resources.getString(R.string.save_product))
                 .setMessage(resources.getString(R.string.save_confirm))
@@ -171,6 +187,7 @@ class EditProductFragment : Fragment() {
                     dialog.cancel()
                 }
                 .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
+                    viewModel.onResetIngredientList()
                     findNavController().navigateUp()
                 }
                 .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->

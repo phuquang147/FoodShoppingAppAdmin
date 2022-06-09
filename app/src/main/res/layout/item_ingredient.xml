@@ -17,14 +17,19 @@
             android:id="@+id/tvIngredient"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginVertical="12dp"
             android:layout_marginEnd="6dp"
             android:text="@{ingredient}"
-            android:textSize="20sp"
+            android:textColor="@color/bluegray_700"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            android:fontFamily="@font/avenir_next_lt_pro"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imageDelete"
-            tools:text="Unbleached enriched wheat flour " />
+            tools:text="Unbleached enriched wheat flour "
+            tools:ignore="UnusedAttribute" />
 
         <ImageView
             android:id="@+id/imageDelete"

@@ -5,16 +5,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreen">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/welcome_splash_screen"
-        android:textSize="24sp"
-        android:textColor="@color/deep_orange_A200"
-        android:textStyle="bold"
-        android:textAllCaps="true"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

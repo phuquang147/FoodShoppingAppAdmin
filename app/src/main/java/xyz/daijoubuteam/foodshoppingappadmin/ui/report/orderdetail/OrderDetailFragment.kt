@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import xyz.daijoubuteam.foodshoppingappadmin.MainActivity
 import xyz.daijoubuteam.foodshoppingappadmin.R
@@ -35,6 +39,9 @@ class OrderDetailFragment : Fragment() {
 
         hideBottomNavigationView()
         setupProductInOrderListViewAdapter()
+        addProductInOrderRecyclerDivider()
+        setupBackButtonClick()
+        
         val activity = requireActivity() as MainActivity
         activity.setAppBarTitle("Order Detail")
 
@@ -49,6 +56,16 @@ class OrderDetailFragment : Fragment() {
             if (it != null) {
                 adapter.submitList(it.orderItems)
             }
+        }
+    }
+
+    private fun addProductInOrderRecyclerDivider() {
+        val layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false).apply {
+            binding.productsInOrderRecyclerView.layoutManager = this
+        }
+
+        DividerItemDecoration(this.context, layoutManager.orientation).apply {
+            binding.productsInOrderRecyclerView.addItemDecoration(this)
         }
     }
 

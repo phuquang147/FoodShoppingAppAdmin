@@ -1,5 +1,6 @@
 package xyz.daijoubuteam.foodshoppingappadmin.ui.products.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -35,11 +36,13 @@ class IngredientAdapter(private val onClickListener: OnClickListener) :
         return IngredientViewHolder(binding)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: IngredientViewHolder, position: Int) {
         val ingredientItem = getItem(position)
         val btnDelete = holder.itemView.findViewById<ImageView>(R.id.imageDelete)
         btnDelete.setOnClickListener {
             onClickListener.onClick(ingredientItem)
+            notifyItemRemoved(position)
         }
         holder.bind(ingredientItem)
     }

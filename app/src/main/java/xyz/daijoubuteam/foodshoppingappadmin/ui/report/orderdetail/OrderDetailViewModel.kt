@@ -8,13 +8,11 @@ import xyz.daijoubuteam.foodshoppingappadmin.repositories.OrderRepository
 import java.text.NumberFormat
 
 class OrderDetailViewModel(orderProperty: Order) : ViewModel() {
-    private val orderRepository = OrderRepository()
     val selectedProperty = MutableLiveData<Order>()
     var total = ""
 
     init {
-        selectedProperty.value =
-            orderRepository.getProductListInOrder(orderProperty).getOrNull()?.value
+        selectedProperty.value = orderProperty
         total = selectedProperty.value?.totalPrice.toString()
     }
 }

@@ -16,12 +16,19 @@ class NewProductViewModel : ViewModel() {
     val eateryRepository = EateryRepository()
     var product = MutableLiveData<Product>()
     private val eatery = MainApplication.eatery
-    private val _ingredients: MutableLiveData<ArrayList<String>> = MutableLiveData()
+
+    private val _ingredients: MutableLiveData<ArrayList<String>> = MutableLiveData<ArrayList<String>>()
     val ingredients: LiveData<ArrayList<String>>
         get() = _ingredients
+
     private val _message = MutableLiveData("")
     val message: LiveData<String>
         get() = _message
+
+    private val _notify = MutableLiveData(-1)
+    val notify: LiveData<Int>
+        get() = _notify
+
     val ingredient = MutableLiveData("")
     val name = MutableLiveData("")
     val price = MutableLiveData("")
@@ -33,26 +40,32 @@ class NewProductViewModel : ViewModel() {
     }
 
     fun onAddIngredient() {
-        viewModelScope.launch {
-            try {
-                if (eatery.value == null) {
-                    throw Exception("Eatery not found")
-                }
-                if (!ingredient.value.isNullOrEmpty() && ingredient.value!!.isNotBlank()
-                    && !_ingredients.value?.contains(ingredient.value.toString())!!
-                ) {
-                    _ingredients.value?.add(ingredient.value.toString())
-                    ingredient.value = ""
-                }
-
-            } catch (exception: Exception) {
-                exception.message?.let { onShowMessage(it) }
-            }
+        if (eatery.value == null) {
+            onShowMessage("Eatery not found")
+        }
+        if (!ingredient.value.isNullOrEmpty() && ingredient.value!!.isNotBlank()
+            && !_ingredients.value?.contains(ingredient.value.toString())!!
+        ) {
+            _ingredients.value?.add(ingredient.value.toString())
+            ingredient.value = ""
+            onNotify(_ingredients.value!!.size - 1)
         }
     }
 
     fun onShowMessage(msg: String?) {
         _message.value = msg
+    }
+
+    fun onShowMessageComplete() {
+        _message.value = ""
+    }
+
+    fun onNotify(index: Int) {
+        _notify.value = index
+    }
+
+    fun onNotifySuccess() {
+        _notify.value = -1
     }
 
     fun uploadProductImage(uri: Uri) {
@@ -85,7 +98,7 @@ class NewProductViewModel : ViewModel() {
             val product = Product(
                 name = name.value,
                 description = description.value,
-                newPrice = price.value!!.toDoubleOrNull(),
+                price = price.value!!.toDoubleOrNull(),
                 img = image.value,
                 ingredients = _ingredients.value
             )
