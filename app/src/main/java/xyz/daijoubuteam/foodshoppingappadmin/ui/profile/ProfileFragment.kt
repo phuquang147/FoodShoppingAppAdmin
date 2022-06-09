@@ -35,16 +35,9 @@ class ProfileFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        setupNavigateToReviewsFragment()
         setupNavigateToEditProfileFragment()
         setupNavigateToLoginFragment()
         return binding.root
-    }
-
-    private fun setupNavigateToReviewsFragment() {
-        binding.btnReviews.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToReviewsFragment())
-        }
     }
 
     private fun setupNavigateToEditProfileFragment() {
