@@ -19,15 +19,19 @@
                 android:id="@+id/tvHeader"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginVertical="8dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:elevation="2dp">
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/imageChevronleft"
                     app:backgroundTint="#4DFFFFFF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginStart="8dp"
                     app:borderWidth="0dp"
                     app:elevation="0dp"
+                    app:fabCustomSize="48dp"
                     app:pressedTranslationZ="0dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/img_chevronleft"
@@ -41,9 +45,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Edit Product"
+                    android:text="@string/edit_product"
                     android:textColor="@color/gray_700"
-                    android:textFontWeight="500"
+                    android:textStyle="bold"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -60,41 +64,45 @@
                     android:clipToPadding="false"
                     android:fillViewport="true"
                     android:orientation="vertical"
-                    android:layout_marginBottom="8dp"
                     app:layout_constraintVertical_bias="0.0">
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/orange_400"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
-                            android:text="@={viewModel.selectedProperty.name}"
-                            android:backgroundTint="@color/orange_400"
-                            android:textCursorDrawable="@color/orange_400"
-                            android:layout_marginHorizontal="24dp"
-                            tools:text="Pizza"/>
-                        <TextView
-                            android:id="@+id/tvDescription"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:text="Description:"
-                            android:layout_marginHorizontal="24dp"
-                            tools:ignore="HardcodedText"/>
                         <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:hintTextColor="@color/lightOrange"
-                            app:boxStrokeColor="@color/lightOrange"
-                            android:layout_marginTop="12dp"
                             android:layout_marginHorizontal="24dp"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                            android:layout_marginTop="12dp"
+                            android:hint="@string/product_name"
+                            app:boxStrokeColor="@color/lightOrange"
+                            app:hintTextColor="@color/lightOrange">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etProductName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:padding="16dp"
+                                android:text="@={viewModel.selectedProperty.name}"
+                                android:textColor="@color/gray_800"
+                                android:textColorHint="@color/gray_500"
+                                android:textFontWeight="400"
+                                android:textSize="16sp"
+                                tools:ignore="RtlSymmetry"
+                                tools:targetApi="p" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="24dp"
+                            android:layout_marginTop="12dp"
+                            android:hint="@string/description"
+                            app:boxStrokeColor="@color/lightOrange"
+                            app:hintTextColor="@color/lightOrange">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etDescription"
@@ -111,101 +119,69 @@
                                 tools:targetApi="p" />
 
                         </com.google.android.material.textfield.TextInputLayout>
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginHorizontal="24dp">
-                            <TextView
-                                android:id="@+id/tvCurrentPrice"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                android:text="Current Price: $"
-                                tools:ignore="HardcodedText"/>
-                            <EditText
-                                android:id="@+id/etNewPrice"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
-                                android:textSize="20sp"
-                                android:text="@={viewModel.newPrice}"
-                                android:inputType="numberDecimal"
-                                app:layout_constraintStart_toEndOf="@id/tvCurrentPrice"
-                                app:layout_constraintTop_toTopOf="@id/tvCurrentPrice"
-                                app:layout_constraintBottom_toBottomOf="@id/tvCurrentPrice"
-                                tools:text="12.00"
-                                tools:ignore="HardcodedText"/>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="8dp"
-                            android:layout_marginHorizontal="24dp">
-                            <TextView
-                                android:id="@+id/tvOldPrice"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                android:text="Old Price: $"
-                                tools:ignore="HardcodedText"/>
-                            <EditText
-                                android:id="@+id/etOldPrice"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
-                                android:textSize="20sp"
-                                android:text="@={viewModel.oldPrice}"
-                                android:inputType="numberDecimal"
-                                app:layout_constraintStart_toEndOf="@id/tvOldPrice"
-                                app:layout_constraintTop_toTopOf="@id/tvOldPrice"
-                                app:layout_constraintBottom_toBottomOf="@id/tvOldPrice"
-                                tools:text="15.00"
-                                tools:ignore="HardcodedText"/>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                        <TextView
-                            android:id="@+id/tvIngredients"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:text="Ingredients: "
                             android:layout_marginHorizontal="24dp"
-                            tools:ignore="HardcodedText"/>
+                            android:layout_marginTop="12dp"
+                            android:hint="@string/price"
+                            app:boxStrokeColor="@color/lightOrange"
+                            app:hintTextColor="@color/lightOrange">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etPrice"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:inputType="numberDecimal"
+                                android:padding="16dp"
+                                android:text="@={viewModel.price}"
+                                android:textColor="@color/gray_800"
+                                android:textColorHint="@color/gray_500"
+                                android:textFontWeight="400"
+                                android:textSize="16sp"
+                                tools:ignore="RtlSymmetry"
+                                tools:targetApi="p" />
+                        </com.google.android.material.textfield.TextInputLayout>
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                            <EditText
-                                android:id="@+id/etIngredient"
-                                android:layout_width="wrap_content"
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/etIngredientLayout"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/black"
-                                android:textSize="20sp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                android:layout_marginStart="24dp"
                                 android:layout_marginVertical="12dp"
-                                android:hint="Enter Ingredient"
-                                android:text="@={viewModel.ingredient}"
-                                tools:ignore="HardcodedText"/>
+                                android:layout_marginStart="24dp"
+                                android:layout_marginEnd="12dp"
+                                android:hint="@string/ingredient"
+                                app:boxStrokeColor="@color/lightOrange"
+                                app:hintTextColor="@color/lightOrange"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/btn_add_ingredient"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etIngredient"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:padding="16dp"
+                                    android:text="@={viewModel.ingredient}"
+                                    android:textColor="@color/gray_800"
+                                    android:textColorHint="@color/gray_500"
+                                    android:textFontWeight="400"
+                                    android:textSize="16sp"
+                                    tools:ignore="RtlSymmetry"
+                                    tools:targetApi="p" />
+                            </com.google.android.material.textfield.TextInputLayout>
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btn_add_ingredient"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintTop_toTopOf="@id/etIngredient"
-                                app:layout_constraintBottom_toBottomOf="@id/etIngredient"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="6dp"
+                                app:layout_constraintTop_toTopOf="@id/etIngredientLayout"
+                                app:layout_constraintBottom_toBottomOf="@id/etIngredientLayout"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 android:layout_marginEnd="24dp"
                                 android:backgroundTint="@color/white"
@@ -250,7 +226,8 @@
                                     android:id="@+id/imgDescription"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    app:imageUrl="@{viewModel.selectedProperty.img}" />
+                                    app:imageUrl="@{viewModel.selectedProperty.img}"
+                                    tools:ignore="ContentDescription" />
                             </androidx.cardview.widget.CardView>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                         <com.google.android.material.button.MaterialButton
@@ -270,7 +247,7 @@
                             android:textFontWeight="400"
                             android:textSize="16sp"
                             tools:ignore="UnusedAttribute"
-                            android:text="select image" />
+                            android:text="@string/select_image" />
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -278,7 +255,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/white"
+            android:elevation="2dp">
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_delete"
                 android:layout_width="0dp"
@@ -290,6 +269,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:backgroundTint="@color/white"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
@@ -300,7 +280,7 @@
                 android:textFontWeight="400"
                 android:textSize="16sp"
                 tools:ignore="UnusedAttribute"
-                android:text="delete" />
+                android:text="@string/delete" />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_save"
                 android:layout_width="0dp"
@@ -312,6 +292,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:backgroundTint="@color/blue_A200"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
@@ -323,7 +304,7 @@
                 android:textFontWeight="400"
                 android:textSize="16sp"
                 tools:ignore="UnusedAttribute"
-                android:text="save" />
+                android:text="@string/save" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

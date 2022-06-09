@@ -3,6 +3,7 @@ package xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct
 //import com.canhub.cropper.CropImageContract
 //import com.canhub.cropper.CropImageView
 //import com.canhub.cropper.options
+import android.annotation.SuppressLint
 import android.app.ActionBar
 import android.app.Activity
 import android.content.Intent
@@ -26,6 +27,7 @@ import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.FragmentNewProductBinding
 import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.ui.products.adapter.IngredientAdapter
+import xyz.daijoubuteam.foodshoppingappadmin.utils.hideKeyboard
 
 class NewProductFragment : Fragment() {
 
@@ -65,12 +67,16 @@ class NewProductFragment : Fragment() {
             }
         )
         val adapter = binding.rvIngredients.adapter as IngredientAdapter
-        adapter.submitList(viewmodel.ingredients.value)
         viewmodel.ingredients.observe(viewLifecycleOwner) {
             if (it != null) {
-                adapter.submitList(null)
                 adapter.submitList(it)
-                Log.i("it", it.size.toString())
+            }
+        }
+
+        viewmodel.notify.observe(viewLifecycleOwner) {
+            if (it > -1) {
+                adapter.notifyItemInserted(it)
+                viewmodel.onNotifySuccess()
             }
         }
     }
@@ -79,7 +85,9 @@ class NewProductFragment : Fragment() {
     private fun setupMessageSnackbar() {
         viewmodel.message.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty() && it.isNotBlank()) {
+                hideKeyboard()
                 Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
+                viewmodel.onShowMessageComplete()
             }
         }
     }

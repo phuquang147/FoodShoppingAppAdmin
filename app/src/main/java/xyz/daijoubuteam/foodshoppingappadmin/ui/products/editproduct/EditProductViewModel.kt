@@ -17,22 +17,24 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
     val ingredient = MutableLiveData("")
     private val eatery = MainApplication.eatery
     val selectedProperty = MutableLiveData<Product>()
+
     private val _message = MutableLiveData("")
     val message: LiveData<String>
         get() = _message
-    val newPrice = MutableLiveData("")
-    val oldPrice = MutableLiveData("")
+
+    private val _notify = MutableLiveData(-1)
+    val notify: LiveData<Int>
+        get() = _notify
+
+    val price = MutableLiveData("")
+
     var originalProduct: Product
 
     init {
         selectedProperty.value = productProperty
         originalProduct = productProperty.copy()
         originalProduct.ingredients = ArrayList(selectedProperty.value!!.ingredients)
-        newPrice.value = selectedProperty.value?.newPrice.toString()
-        oldPrice.value = when (selectedProperty.value?.oldPrice) {
-            null -> ""
-            else -> selectedProperty.value?.oldPrice.toString()
-        }
+        price.value = selectedProperty.value?.price.toString()
     }
 
     fun onShowMessage(msg: String?) {
@@ -43,23 +45,29 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
         _message.value = ""
     }
 
-    fun onAddIngredient() {
-        viewModelScope.launch {
-            try {
-                if (eatery.value == null) {
-                    throw Exception("Eatery not found")
-                }
-                if (!ingredient.value.isNullOrEmpty() && ingredient.value!!.isNotBlank()
-                    && !selectedProperty.value?.ingredients?.contains(ingredient.value.toString())!!
-                ) {
-                    selectedProperty.value?.ingredients!!.add(ingredient.value.toString())
-                    ingredient.value = ""
-                }
+    fun onNotify(index: Int) {
+        _notify.value = index
+    }
 
-            } catch (exception: Exception) {
-                exception.message?.let { onShowMessage(it) }
-            }
+    fun onNotifySuccess() {
+        _notify.value = -1
+    }
+
+    fun onAddIngredient() {
+        if (eatery.value == null) {
+            throw Exception("Eatery not found")
         }
+        if (!ingredient.value.isNullOrEmpty() && ingredient.value!!.isNotBlank()
+            && !selectedProperty.value?.ingredients?.contains(ingredient.value.toString())!!
+        ) {
+            selectedProperty.value?.ingredients!!.add(ingredient.value.toString())
+            ingredient.value = ""
+            onNotify(selectedProperty.value?.ingredients!!.size - 1)
+        }
+    }
+
+    fun onResetIngredientList() {
+        selectedProperty.value!!.ingredients = ArrayList(originalProduct.ingredients)
     }
 
     fun uploadProductImage(uri: Uri) {
@@ -90,8 +98,8 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
         try {
             if (selectedProperty.value?.name.isNullOrEmpty() || selectedProperty.value?.name?.isBlank() == true)
                 throw Exception("Product Name Is Required")
-            if (selectedProperty.value?.newPrice.toString()
-                    .isNullOrEmpty() || selectedProperty.value?.newPrice?.toString()
+            if (selectedProperty.value?.price.toString()
+                    .isNullOrEmpty() || selectedProperty.value?.price?.toString()
                     ?.isBlank() == true
             )
                 throw Exception("Price Is Required")
@@ -101,16 +109,13 @@ class EditProductViewModel(productProperty: Product, app: Application) : Android
                 throw Exception("Description Image Is Required")
             val productName = selectedProperty.value?.name.toString()
             val description = selectedProperty.value?.description.toString()
-            val newPrice = newPrice.value.toString().toDoubleOrNull()
-            val oldPrice = oldPrice.value.toString().toDoubleOrNull()
-            Log.i("oldprice", oldPrice.toString())
+            val newPrice = price.value.toString().toDoubleOrNull()
             val ingredients = selectedProperty.value?.ingredients
             val image = selectedProperty.value?.img.toString()
             val product = Product(
                 name = productName,
                 description = description,
-                newPrice = newPrice,
-                oldPrice = oldPrice,
+                price = newPrice,
                 img = image,
                 ingredients = ingredients
             )
