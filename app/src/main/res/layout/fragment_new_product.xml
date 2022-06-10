@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewmodel"
             type="xyz.daijoubuteam.foodshoppingappadmin.ui.products.newproduct.NewProductViewModel" />
@@ -193,7 +192,7 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardNewProductAvatar"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginHorizontal="24dp"
                             android:layout_marginVertical="10dp"
