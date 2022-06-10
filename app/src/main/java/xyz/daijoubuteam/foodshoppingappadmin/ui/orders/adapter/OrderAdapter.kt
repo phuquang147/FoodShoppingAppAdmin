@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_order.view.*
+import xyz.daijoubuteam.foodshoppingappadmin.R
 import xyz.daijoubuteam.foodshoppingappadmin.databinding.ItemOrderBinding
 import xyz.daijoubuteam.foodshoppingappadmin.model.Order
 
@@ -38,6 +40,14 @@ class OrderAdapter(private val onClickListener: OnClickListener) :
         holder.itemView.setOnClickListener {
             onClickListener.onClick(orderItem)
         }
+
+        when (orderItem.status) {
+            "Preparing" -> holder.itemView.imageStatus.setImageResource(R.drawable.preparing)
+            "Shipping" -> holder.itemView.imageStatus.setImageResource(R.drawable.shipping)
+            "Completed" -> holder.itemView.imageStatus.setImageResource(R.drawable.completed)
+            else -> holder.itemView.imageStatus.setImageResource(R.drawable.pending)
+        }
+
         holder.bind(orderItem)
     }
 

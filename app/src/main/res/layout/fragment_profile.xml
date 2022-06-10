@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".client.profile.ProfileFragment"
-        android:background="@color/background_gray">
+        android:background="@color/bluegray_50">
         <ImageView
             android:id="@+id/img_description"
             android:layout_height="0dp"
@@ -45,7 +45,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:text="@{viewModel.eatery.name}"
                     android:textSize="24sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/bluegray_700"
                     android:textStyle="bold" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -70,11 +70,6 @@
                 app:backgroundTint="@null"
                 android:background="@drawable/button_chevron" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@android:color/darker_gray" />
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"
                 app:icon="@drawable/ic_logout"
@@ -83,7 +78,7 @@
                 android:text="Log Out"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="3dp"
                 app:iconTint="@color/primaryColor"
                 android:textColor="@color/primaryColor"
                 android:fontFamily="@font/avenir_next_lt_pro"
@@ -92,7 +87,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/bluegray_100" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

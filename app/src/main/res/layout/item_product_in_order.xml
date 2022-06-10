@@ -62,7 +62,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             tools:ignore="HardcodedText,UnusedAttribute"
-            android:text="@{product.productPrice.toString()}"
+            android:text="@{'$' + product.productPrice.toString()}"
             tools:text="$ 12.00" />
         <TextView
             android:id="@+id/tvQuantity"
@@ -80,7 +80,7 @@
             android:textSize="14sp"
             android:fontFamily="@font/avenir_next_lt_pro"
             android:textFontWeight="500"
-            android:text="@{product.quantity.toString()}"
+            android:text="@{'x' + product.quantity.toString()}"
             tools:text="Số lượng: 5"
             tools:ignore="UnusedAttribute" />
     </androidx.constraintlayout.widget.ConstraintLayout>
