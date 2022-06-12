@@ -71,7 +71,6 @@
     <string name="select">select</string>
     <string name="your_eatery_is_here">Your eatery is here</string>
     <string name="please_select_location">Please select location</string>
-    <string name="total">Total: $%1$s</string>
     <string name="report">Report</string>
     <string name="order_detail">Order detail</string>
     <string name="change">Change</string>
@@ -82,4 +81,7 @@
     <string name="edit_product">Edit Product</string>
     <string name="delete">Delete</string>
     <string name="select_image">Select Image</string>
+    <string name="total">%1$s VNĐ</string>
+    <string name="product_price">%1$s VNĐ</string>
+    <string name="total_price">Total: %1$s VNĐ</string>
 </resources>

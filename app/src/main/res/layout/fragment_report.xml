@@ -158,7 +158,7 @@
                 android:textColor="@color/deep_orange_A200"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="@{'$' + viewModel.totalRevenue.toString()}"/>
+                android:text="@{@string/total(viewModel.totalRevenue.toString())}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

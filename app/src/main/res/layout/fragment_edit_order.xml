@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="24dp"
                 android:paddingVertical="8dp"
-                android:text="@{'$' + viewModel.selectedProperty.totalPrice.toString()}"
+                android:text="@{@string/total_price(viewModel.selectedProperty.totalPrice.toString())}"
                 android:textColor="@color/deep_orange_A200"
                 android:textSize="18sp"
                 android:textStyle="bold" />
