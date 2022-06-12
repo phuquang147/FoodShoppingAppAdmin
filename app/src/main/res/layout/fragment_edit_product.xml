@@ -92,7 +92,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:inputType="numberDecimal"
+                        android:inputType="numberSigned"
                         android:padding="16dp"
                         android:text="@={viewModel.price}"
                         android:textColor="@color/gray_800"
