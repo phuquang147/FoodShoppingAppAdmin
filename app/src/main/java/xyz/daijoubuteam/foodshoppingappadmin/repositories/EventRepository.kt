@@ -1,6 +1,7 @@
 package xyz.daijoubuteam.foodshoppingappadmin.repositories
 
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import xyz.daijoubuteam.foodshoppingappadmin.MainApplication
@@ -19,21 +20,14 @@ class EventRepository {
                 for (eventDoc in value?.documents!!) {
                     val event = eventDoc.toObject(Event::class.java)
                     if (event != null) {
-                        docRef
-                        .document(eventDoc.id)
-                        .collection("eateries")
-                        .whereEqualTo("eateryId", MainApplication.eatery.value?.id)
-                        .addSnapshotListener { valueEvent, _ ->
-                            if (valueEvent != null) {
-                                event.subscribed = (valueEvent.documents.isNotEmpty())
-                                val index = eventList.indexOfFirst { it.id == event.id }
-                                if (index >= 0)
-                                    eventList[index] = event.copy()
-                                else
-                                    eventList.add(event)
-                            }
-                            events.value = eventList
-                        }
+                        event.subscribed =
+                            event.idEateryList?.any { it.id == MainApplication.eatery.value?.id } == true
+                        val index = eventList.indexOfFirst { it.id == event.id }
+                        if (index >= 0)
+                            eventList[index] = event.copy()
+                        else
+                            eventList.add(event)
+                        events.value = eventList
                     }
                 }
             }
@@ -45,12 +39,14 @@ class EventRepository {
 
     fun addEateryToEvent(eventId: String): Result<Boolean> {
         return try {
-            MainApplication.eatery.value?.let {
+            MainApplication.eatery.value?.let { it ->
                 db
-                .collection("events")
-                .document(eventId)
-                .collection("eateries")
-                .add(it)
+                    .collection("events")
+                    .document(eventId)
+                    .update(
+                        "idEateryList",
+                        (FieldValue.arrayUnion(MainApplication.eatery.value!!.eateryPath))
+                    )
             }
             Result.success(true)
         } catch (e: Exception) {
@@ -59,29 +55,17 @@ class EventRepository {
     }
 
     fun deleteEateryInEvent(eventId: String): Result<Boolean> {
-        var result = false
         return try {
-            val docRef =
+            MainApplication.eatery.value?.let { it ->
                 db
                 .collection("events")
                 .document(eventId)
-                .collection("eateries")
-
-            docRef
-                .whereEqualTo("eateryId", MainApplication.eatery.value?.id)
-                .get()
-                .addOnCompleteListener {
-                    if (it.result.documents.isEmpty()) {
-                        throw Exception("Unsubscribe failed!")
-                    }
-                    docRef
-                    .document(it.result.documents[0].id)
-                    .delete()
-                    .addOnSuccessListener {
-                        result = true
-                    }
-                }
-            Result.success(result)
+                .update(
+                    "idEateryList",
+                    (FieldValue.arrayRemove(MainApplication.eatery.value!!.eateryPath))
+                )
+            }
+            Result.success(true)
         } catch (e: Exception) {
             Result.failure(e)
         }

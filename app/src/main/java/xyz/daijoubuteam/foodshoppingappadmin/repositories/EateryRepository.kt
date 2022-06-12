@@ -32,6 +32,8 @@ class EateryRepository {
                 }
                 val eatery = documentSnapShot.documents[0].toObject(Eatery::class.java)
                 eatery?.eateryId = documentSnapShot.documents[0].id
+                eatery?.eateryPath = db.collection("eateries").document(eatery?.id.toString())
+
                 Result.success(eatery)
             }
         } catch (exception: Exception) {

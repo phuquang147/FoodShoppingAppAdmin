@@ -69,7 +69,6 @@ class EditProfileViewModel(eateryAddress: EateryAddress?) : ViewModel() {
                 work_time = eatery.value?.work_time,
                 average_rating_count = eatery.value?.average_rating_count,
                 addressEatery = eatery.value?.addressEatery,
-                reviews = eatery.value?.reviews,
                 products = eatery.value?.products,
                 photoUrl = eatery.value?.photoUrl,
                 username = eatery.value?.username,
