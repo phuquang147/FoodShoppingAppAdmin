@@ -128,7 +128,7 @@ class EditOrderFragment : Fragment() {
     }
 
     private fun disableDropDown() {
-        binding.statusDropDown.isEnabled = false
+        binding.statusMenu.isEnabled = false
     }
 
     private fun checkForNavigate() {
