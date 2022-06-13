@@ -86,4 +86,5 @@
     <string name="total">%1$s VNĐ</string>
     <string name="product_price">%1$s VNĐ</string>
     <string name="total_price">Total: %1$s VNĐ</string>
+    <string name="rating">%1$s/5.0</string>
 </resources>

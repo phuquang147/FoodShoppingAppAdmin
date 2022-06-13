@@ -19,7 +19,6 @@ data class Eatery(
     var photoUrl: String? = null,
     val username: String? = null,
     val password: String? = null,
-    var eateryId: String? = null,
     @Exclude
     val products: ArrayList<Product>? = null,
     @Exclude
