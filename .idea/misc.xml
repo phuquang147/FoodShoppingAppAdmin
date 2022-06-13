@@ -12,6 +12,8 @@
         <entry key="..\:/Project/FoodShoppingAppAdmin/app/src/main/res/layout/fragment_home.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/FoodShoppingAppAdmin/app/src/main/res/layout/fragment_notifications.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/FoodShoppingAppAdmin/app/src/main/res/menu/bottom_nav_menu.xml" value="0.23229166666666667" />
+        <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/drawable/ic_add.xml" value="0.155" />
+        <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/drawable/rectangle_bg_blue_a200_radius_6.xml" value="0.155" />
         <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/layout/activity_main.xml" value="0.12158054711246201" />
         <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/layout/activity_splash_screen.xml" value="0.22826086956521738" />
         <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/layout/fragment_dashboard.xml" value="0.2" />
@@ -22,6 +24,7 @@
         <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/layout/fragment_notifications.xml" value="0.12158054711246201" />
         <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/layout/fragment_products.xml" value="0.22826086956521738" />
         <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/layout/item_ingredient.xml" value="0.22826086956521738" />
+        <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/layout/item_order.xml" value="0.12158054711246201" />
         <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/layout/item_product.xml" value="0.22826086956521738" />
         <entry key="..\:/Study/Mobile_Application_Intro/FoodShoppingAppAdmin/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
       </map>

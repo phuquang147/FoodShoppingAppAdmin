@@ -36,6 +36,7 @@
     <string name="save_eatery">Save Eatery</string>
     <string name="save_order">Save Order</string>
     <string name="save_confirm">Do you want to save these changes?</string>
+    <string name="save_confirm_alert">Are you sure to save these changes?\nWith "Cancelled" or "Completed" status, you can not change it anymore</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="username">Username</string>
@@ -66,6 +67,7 @@
         <item>Preparing</item>
         <item>Shipping</item>
         <item>Completed</item>
+        <item>Cancelled</item>
     </string-array>
     <string name="total_revenue">Total revenue:</string>
     <string name="select">select</string>

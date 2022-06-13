@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -66,6 +67,7 @@ class EditOrderFragment : Fragment() {
             ArrayAdapter(this.requireContext(), R.layout.status_drop_down_layout, statuses)
         binding.statusDropDown.setAdapter(adapter)
         binding.statusDropDown.threshold = 100
+        if(viewModel.originalStatus == "Cancelled" || viewModel.originalStatus == "Completed") disableDropDown()
 
         return binding.root
     }
@@ -121,8 +123,12 @@ class EditOrderFragment : Fragment() {
 
     private fun setupSaveClick() {
         binding.btnSave.setOnClickListener {
-            viewModel.updateStatus()
+            alertSaveStatus()
         }
+    }
+
+    private fun disableDropDown() {
+        binding.statusDropDown.isEnabled = false
     }
 
     private fun checkForNavigate() {
@@ -134,15 +140,36 @@ class EditOrderFragment : Fragment() {
                     dialog.cancel()
                 }
                 .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
+                    viewModel.selectedProperty.value?.status = viewModel.originalStatus
                     findNavController().navigateUp()
                 }
-                .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
-                    viewModel.updateStatus()
-                    findNavController().navigateUp()
+                .setPositiveButton(resources.getString(R.string.yes)) { dialog, _ ->
+                    dialog.cancel()
+                    alertSaveStatus(true)
                 }
                 .show()
         } else {
             findNavController().navigateUp()
+        }
+    }
+
+    private fun alertSaveStatus(isNavigateUp: Boolean = false) {
+        if (viewModel.selectedProperty.value?.status == "Cancelled" || viewModel.selectedProperty.value?.status == "Completed") {
+            MaterialAlertDialogBuilder(this.requireContext())
+                .setTitle(resources.getString(R.string.save_order))
+                .setMessage(resources.getString(R.string.save_confirm_alert))
+                .setNegativeButton(resources.getString(R.string.no)) { dialog, _ ->
+                    dialog.cancel()
+                }
+                .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+                    viewModel.updateStatus()
+                    disableDropDown()
+                    if(isNavigateUp) findNavController().navigateUp()
+                }
+                .show()
+        } else {
+            if(isNavigateUp) findNavController().navigateUp()
+            viewModel.updateStatus()
         }
     }
 }

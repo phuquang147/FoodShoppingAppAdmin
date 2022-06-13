@@ -45,6 +45,7 @@ class OrderAdapter(private val onClickListener: OnClickListener) :
             "Preparing" -> holder.itemView.imageStatus.setImageResource(R.drawable.preparing)
             "Shipping" -> holder.itemView.imageStatus.setImageResource(R.drawable.shipping)
             "Completed" -> holder.itemView.imageStatus.setImageResource(R.drawable.completed)
+            "Cancelled" -> holder.itemView.imageStatus.setImageResource(R.drawable.cancelled)
             else -> holder.itemView.imageStatus.setImageResource(R.drawable.pending)
         }
 
