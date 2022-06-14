@@ -39,3 +39,23 @@
 ##### Chỉnh sửa địa chỉ cửa hàng
 - Giao diện chỉnh sửa địa chỉ cửa hàng, cho phép người dùng chọn vị trí trực tiếp trên bản đồ và cập nhật cho địa chỉ cửa hàng.
   - <img src=https://github.com/phuquang147/FoodShoppingAppAdmin/blob/main/Images/Address.png width=300 height=580 />
+  
+## Công nghệ và thư viện
+- Công nghệ
+  - Ngôn ngữ: Kotlin
+  - Database: [Firebase](https://www.mongodb.com/cloud/atlas) 
+- Thư viện
+  - [Material](https://material.io/components/snackbars/android)
+  - [Android Image Crop](https://github.com/CanHub/Android-Image-Cropper)
+  - [Timber](https://github.com/JakeWharton/timber)
+
+## Database
+ - <img src=https://github.com/dinhlockt02/FoodShoppingApp/blob/main/readmeImg/Screen%20Shot%202022-06-14%20at%2021.38.29.png width=580 height=316 />
+
+## Sơ đồ kiến trúc
+ - <img src=https://github.com/dinhlockt02/FoodShoppingApp/blob/main/readmeImg/Picture1.gif width=600 height=466 />
+
+## App dành cho khách hàng
+ - [FoodShoppingApp](https://github.com/dinhlockt02/FoodShoppingApp)
+## License
+Licensed under the [MIT License](LICENSE)
