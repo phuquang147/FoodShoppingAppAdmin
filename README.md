@@ -21,6 +21,7 @@
 - Giao diện danh sách đơn hàng, cho phép người dùng xem danh sách đơn hàng được sắp xếp theo thứ tự từ mới đến cũ cũng như xem thông tin chi tiết của đơn hàng.
   - <img src=https://github.com/phuquang147/FoodShoppingAppAdmin/blob/main/Images/Orders.png width=300 height=580 />
 #### Xem chi tiết đơn hàng và thay đổi trạng thái đơn hàng
+- Giao diện chi tiết đơn hàng, cho phép người dùng xem thông tin chi tiết của đơn hàng như danh sách sản phẩm trong đơn hàng, số lượng, … đồng thời có thể chỉnh sửa trạng thái của đơn hàng.
   - <img src=https://github.com/phuquang147/FoodShoppingAppAdmin/blob/main/Images/OrderDetail1.png width=300 height=580 />
   - <img src=https://github.com/phuquang147/FoodShoppingAppAdmin/blob/main/Images/OrderDetail2.png width=300 height=580 />
 ### Báo cáo tháng
@@ -35,5 +36,6 @@
 #### Xem về chỉnh sửa thông tin cửa hàng
 - Giao diện thông tin chi tiết cửa hàng, cho phép người dùng xem, chỉnh sửa các thông tin cơ bản, địa chỉ của cửa hàng.
   - <img src=https://github.com/phuquang147/FoodShoppingAppAdmin/blob/main/Images/ProfileDetail.png width=300 height=580 />
-- Chỉnh sửa địa chỉ cửa hàng
+##### Chỉnh sửa địa chỉ cửa hàng
+- Giao diện chỉnh sửa địa chỉ cửa hàng, cho phép người dùng chọn vị trí trực tiếp trên bản đồ và cập nhật cho địa chỉ cửa hàng.
   - <img src=https://github.com/phuquang147/FoodShoppingAppAdmin/blob/main/Images/Address.png width=300 height=580 />
