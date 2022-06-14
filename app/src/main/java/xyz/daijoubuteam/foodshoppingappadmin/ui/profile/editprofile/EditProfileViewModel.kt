@@ -82,6 +82,7 @@ class EditProfileViewModel(eateryAddress: EateryAddress?) : ViewModel() {
             MainApplication.eatery.value = newEatery
             MainApplication.eatery.value!!.id = id
             originalEatery = eatery.value
+            Log.i("mainapp", MainApplication.eatery.value!!.name.toString())
             onShowMessage("Update success")
             return true
         } catch (e: Exception) {

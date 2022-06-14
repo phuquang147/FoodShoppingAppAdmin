@@ -36,8 +36,15 @@ class ProfileFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         setupNavigateToEditProfileFragment()
+        setupMainApplicationObserve()
         setupNavigateToLoginFragment()
         return binding.root
+    }
+
+    private fun setupMainApplicationObserve(){
+        MainApplication.eatery.observe(viewLifecycleOwner){
+            viewModel.eatery.value = it
+        }
     }
 
     private fun setupNavigateToEditProfileFragment() {

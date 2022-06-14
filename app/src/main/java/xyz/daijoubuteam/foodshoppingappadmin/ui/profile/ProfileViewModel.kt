@@ -13,9 +13,5 @@ import xyz.daijoubuteam.foodshoppingappadmin.model.Product
 import xyz.daijoubuteam.foodshoppingappadmin.repositories.EateryRepository
 
 class ProfileViewModel : ViewModel() {
-    var eatery = MutableLiveData<Eatery>()
-
-    init {
-        eatery.value = MainApplication.eatery.value
-    }
+    var eatery = MutableLiveData<Eatery>(MainApplication.eatery.value)
 }
