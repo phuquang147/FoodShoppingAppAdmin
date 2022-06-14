@@ -72,7 +72,8 @@ class EditProfileViewModel(eateryAddress: EateryAddress?) : ViewModel() {
                 products = eatery.value?.products,
                 photoUrl = eatery.value?.photoUrl,
                 username = eatery.value?.username,
-                password = eatery.value?.password
+                password = eatery.value?.password,
+                eateryPath = eatery.value?.eateryPath
             )
             eateryRepository.updateEateryInfo(
                 MainApplication.eatery.value?.id.toString(),
@@ -82,7 +83,6 @@ class EditProfileViewModel(eateryAddress: EateryAddress?) : ViewModel() {
             MainApplication.eatery.value = newEatery
             MainApplication.eatery.value!!.id = id
             originalEatery = eatery.value
-            Log.i("mainapp", MainApplication.eatery.value!!.name.toString())
             onShowMessage("Update success")
             return true
         } catch (e: Exception) {
